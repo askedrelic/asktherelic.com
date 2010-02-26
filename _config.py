@@ -65,8 +65,8 @@ blog_auto_permalink         = "/:year/:month/:day/:title"
 # Intermediate Settings
 ######################################################################
 #### Disqus.com comment integration ####
-disqus_enabled = False
-disqus_name    = "your_disqus_name"
+disqus_enabled = True
+disqus_name    = "askedrelic"
 
 #### Emacs Integration ####
 emacs_orgmode_enabled = False
