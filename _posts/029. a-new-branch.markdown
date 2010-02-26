@@ -5,3 +5,5 @@ tags: ''
 title: A New Branch
 ---
 I've been writing on this site for a couple years now, slowing figuring out how to organize things and what I like to write about. I've finally come the conclusion that it's time to split into two sites, [asktherelic.com](www.asktherelic.com) and [thebehrensventure.com](www.thebehrensventure.com).
+
+AskTheRelic will focus on programming and other tech things, while TheBehrensVenture will focus on my random travels and stories. Two very different themes, deserving of different methods of display. This is all work in progress, bear with me!
