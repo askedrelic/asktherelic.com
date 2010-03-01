@@ -1,0 +1,24 @@
+a img {
+    border:medium none;
+}
+img.noborder {
+    border:medium none !important;
+}
+.aligncenter, .center {
+    text-align:center;
+}
+img.center, img[align="center"] {
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+}
+img[align="right"] {
+    display:block;
+    float:right;
+    margin:0 0 4px 8px;
+}
+img[align="left"] {
+    display:block;
+    float:left;
+    margin:0 8px 4px 0;
+}
