@@ -20,16 +20,16 @@ img.noborder {
     margin:0 8px 4px 0;
 }
 
-.blog_post img, .wp-caption {
+.blog_post img {
     -moz-border-radius:3px 3px 3px 3px;
     background-color:#F3F3F3;
-    border:1px solid #DDDDDD;
-    margin:2px;
+    border:2px solid #DDDDDD;
     padding:3px;
     text-align:center;
 }
 
 .blog_post a:hover img {
     background-color:#317DDA;
-    border:1px solid #316598;
+    background-color:#F3F3F3;
+    border:2px solid #316598;
 }

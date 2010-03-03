@@ -4,6 +4,8 @@ date: 2010/02/25 15:25:14
 tags: ''
 title: A New Branch
 ---
-I've been writing on this site for a couple years now, slowing figuring out how to organize things and what I like to write about. I've finally come the conclusion that it's time to split into two sites, [asktherelic.com](www.asktherelic.com) and [thebehrensventure.com](www.thebehrensventure.com).
+I've been writing on this site for a couple years now, slowing figuring out how to organize things and finding out what I like to write about. I've finally come the conclusion that it's time to split into two sites, [asktherelic.com](http://www.asktherelic.com) and [thebehrensventure.com](http://www.thebehrensventure.com).
 
-AskTheRelic will focus on programming and other tech things, while TheBehrensVenture will focus on my random travels and stories. Two very different themes, deserving of different methods of display. This is all work in progress, bear with me!
+AskTheRelic(this site) will focus on programming, sys admin, web dev, and other tech things I'm trying to make a career out of, while TheBehrensVenture will focus on my random travels, stories, and adventures. Two very different themes, deserving of different methods of display. TheBehrensVenture had running on Wordpress and will continue to do so. I love WP's simple plugins and contet management capabilties. It's damn simple to upload a picture and write something up. However, when posting longer how-tos or source code, WP wasn't cutting it. This blog, AskTheRelic will now be run off [Blogofile](http://blogofile.com/), a Python static file compiler. It's Python, which I love using, and is super easy to tinker with. I can also now keep this entire site under source control, git specifically, which is awesome.
+
+I've split up most of my travel/tech posts and moved them to their respective sites. I'm still cleaning up AskTheRelic, but I hope to keep moving things forward slowly. This is all work in progress, bear with me!
