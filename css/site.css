@@ -21,7 +21,9 @@ img.noborder {
 }
 
 .blog_post img {
-    -moz-border-radius:3px 3px 3px 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
     background-color:#F3F3F3;
     border:2px solid #DDDDDD;
     padding:3px;
