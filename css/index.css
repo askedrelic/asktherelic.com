@@ -1,0 +1,88 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+#container {
+    /* margin: 0 auto; */
+    /* width: 960px; */
+    color: white;
+    font-family: "Warnock Pro","Goudy Old Style","Palatino","Book Antiqua",Georgia,serif;
+}
+#left {
+    position: absolute;
+    top: 250px;
+    left: 50%;
+    margin-left: -480px;
+    width: 430px;
+    text-align: right;
+    padding-right: 50px;
+}
+#right {
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    width: 50%;
+    background: #1A5496;
+}
+#header, #content {
+    padding-left: 50px;
+}
+#headshot {
+    width: 183px;
+    height: 250px;
+    border: 7px solid #2D445E;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+#header {
+    padding-top: 100px;
+}
+#content {
+    padding-top: 88px;
+}
+
+h1 {
+    color: #6EA6E5;
+    font-size: 50px;
+    font-weight: bold;
+    font-family: "Verdana", "Arial", sans-serif;
+    border-bottom: 3px solid white;
+}
+h2 {
+    color: #A7C4E5;
+    font-size: 22px;
+    font-family: "Verdana", "Arial", sans-serif;
+}
+#content p {
+    font-size: 16px;
+    padding-left: 20px;
+}
+#content ul {
+    padding-left: 40px;
+}
+h2, #right p, #right ul {
+    padding-bottom: 12px;
+}
+#content a {
+    color: white;
+}
+#content a img {
+    border: 0;
+    opacity: 0.8;
+}
+#content a:hover img {
+    opacity: 1;
+}
+
+#footer {
+    padding-top: 200px;
+    padding-left: 25px;
+    padding-bottom: 25px;
+    font-size: 12px;
+    color: black;
+}
+
+#footer a, #footer a:visited {
+    color: black;
+}
