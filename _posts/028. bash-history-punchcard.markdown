@@ -9,9 +9,9 @@ I love the punchcard graph on GitHub, showing the hourly/daily/weekly output of 
 
 By default, Bash just stores history commands sequentially with a number and the command. To store the command with a timestamp, you must set the HISTTIMEFORMAT variable in your bashrc. That variable is used to format the output from "history", but it must be set to something for Bash to store the timestamp.
 
-<pre lang="sh">
-export HISTTIMEFORMAT='%Y-%m-%d %H:%M:%S - '
-</pre>
+    $$code(lang=perl)
+    export HISTTIMEFORMAT='%Y-%m-%d %H:%M:%S - '
+    $$/code
 
 With a timestamped .bash_history file, you can figure out when you were using your terminal! Someone else had <a href="http://dustin.github.com/2009/01/11/timecard.html">already come up with this idea</a> using git history data, so I borrowed most of their code and created a new project on github.
 
