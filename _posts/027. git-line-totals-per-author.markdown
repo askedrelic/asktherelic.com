@@ -19,7 +19,7 @@ Awhile back I wrote a command to print the total number of lines contributed per
        1276 jim
         358 tom
          64 brad
-         13 Not Committed Yet<
+         13 Not Committed Yet
     $$/code
 
 This output includes a bunch of binary files which throw off the total.  If you mess with the ls-file options, you can remove them or only include specific source filestypes.

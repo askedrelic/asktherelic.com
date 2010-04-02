@@ -35,3 +35,7 @@ img.noborder {
     background-color:#F3F3F3;
     border:2px solid #316598;
 }
+.pygments_murphy {
+    background: #eee;
+    border: 1px solid #ccc;
+}
