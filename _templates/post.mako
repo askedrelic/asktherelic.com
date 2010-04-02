@@ -10,11 +10,18 @@
            #For drafts, we don't write to the category dirs, so just write the categories as text
            category_links.append(category.name)
        else:
-           category_links.append("<a href='"+category.path+"'>"+category.name+"</a>")
+           category_links.append("<a href='%s'>%s</a>" % (category.path, category.name))
 %>
 ${", ".join(category_links)}
+% if bf.config.disqus_enabled:
+ | <a href="${post.permalink}#disqus_thread">View Comments</a>
+% endif
 </small><p/>
   <span class="post_prose">
-    ${post.content}
+    ${self.post_prose(post)}
   </span>
 </div>
+
+<%def name="post_prose(post)">
+  ${post.content}
+</%def>

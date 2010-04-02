@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 ######################################################################
 # This is the main Blogofile configuration file.
 # www.Blogofile.com
@@ -19,7 +21,7 @@
 #  If you're hosting a blogofile powered site as a subdirectory of a larger
 #  non-blogofile site, then you would set the site_url to the full URL
 #  including that subdirectory: "http://www.yoursite.com/path/to/blogofile-dir"
-site_url         = "http://www.asktherelic.com"
+site_url         = "http://asktherelic.com/"
 
 #### Blog Settings ####
 
@@ -33,11 +35,11 @@ blog_enabled = True
 #  and you set blog_path to "/blog" your full blog URL would be
 #  "http://www.yoursite.com/~ryan/blog"
 #  Leave blank "" to set to the root of site_url
-blog_path = ""
+blog_path = "/code"
 
 ## blog_name -- Your Blog's name.
 # This is used repeatedly in default blog templates
-blog_name        = "AskTheRelic"
+blog_name        = "Ask the Relic"
 
 ## blog_description -- A short one line description of the blog
 # used in the RSS/Atom feeds.
@@ -136,6 +138,16 @@ ignore_patterns = [
     r".*([\/]|[\\])\.svn", #Subversion VCS dir
     r".*([\/]|[\\])CVS"    #CVS dir
     ]
+
+#### Default post filters ####
+# If a post does not specify a filter chain, use the 
+# following defaults based on the post file extension:
+blog_post_default_filters = {
+    "markdown": "syntax_highlight, markdown",
+    "textile": "syntax_highlight, textile",
+    "org": "syntax_highlight, org",
+    "rst": "syntax_highlight, rst"
+}
 
 ### Pre/Post build hooks:
 def pre_build():
