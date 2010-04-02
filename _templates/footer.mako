@@ -2,7 +2,7 @@
 <p id="credits">
 Powered by <a href="http://www.blogofile.com">Blogofile</a>.<br/>
 <br/>
-RSS feeds for <a href="${bf.util.site_path_helper(bf.config.blog_path,'feed')}">Entries</a>
+RSS feeds for <a href="http://asktherelic.com/code/feed/index.xml">Entries</a>
 % if bf.config.disqus_enabled:
  and <a
 href="http://${bf.config.disqus_name}.disqus.com/latest.rss">Comments</a>.
