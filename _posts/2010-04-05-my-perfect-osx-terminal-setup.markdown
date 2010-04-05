@@ -4,7 +4,7 @@ date: 2010/04/05 14:44:13
 tags: ''
 title: My Perfect OSX Terminal Setup
 ---
-As a programmer and an part-time sysadmin, I spend a huge amount of time in the OSX Terminal and find it be one of the better CLI environments I've used, after some tweaking. Windows + Powershell or CMD (shudder) is just terrible. Linux with Xterm comes close, but doesn't have the same easy usability that I enjoy about the OSX Terminal. Today, I'd like to share my tweaks and explain what I enjoy about them.
+As a programmer and a part-time sysadmin, I spend a huge amount of time in the OSX Terminal and find it be one of the better CLI environments I've used, after some tweaking. Windows + Powershell or CMD (shudder) is just terrible. Linux with Xterm comes close, but doesn't have the same easy usability that I enjoy about the OSX Terminal. Today, I'd like to share my tweaks and explain what I enjoy about them.
 
 Here is my general color scheme/terminal look. I'm running OSX 10.6.3 with 64-bit Terminal. All of these tweaks depend on [SIMBL](http://www.culater.net/software/SIMBL/SIMBL.php), a bundle loader which loads these tweaks. I'm running version 0.9.7a.
 
@@ -33,4 +33,4 @@ This is mostly cosmetic, but when in Vim and coding, having the specific color f
 
 [TerminalColors](http://blog.fallingsnow.net/2009/08/28/fixing-colors-in-terminal-app-on-10-6/) is a plugin that updates the default colors to be less jarring and lets you use the standard OSX color picker to choose any color you want. Downloadable [here](http://cloud.github.com/downloads/evanphx/terminalcolours/TerminalColours-SL.tar.gz).
 
-These tweaks help me use Terminal better and make my life easier. Hope they help you as well!
+These tweaks help me use Terminal better and make my life easier. If you want more tips on OSX Finder and Terminal integration, check out my other post [here](/2009/01/31/osx-terminal-and-finder-integration/). Hope they help you as well!
