@@ -49,6 +49,31 @@ I love the Terminal that comes standard with OSX and now thanks to 10.5, the Fin
     }
     $$/code
 
+For the reverse, you can create an executable bash script called 'fdc', which you place in your `~/bin/` directory, assuming your Path sources `~/bin/`.
+
+	$$code(lang=sh)
+	#!/bin/sh
+	
+	if [ -n "$1" ]; then
+		if [ "${1%%/*}" = "" ]; then
+			thePath="$1"
+		else
+			thePath=`pwd`"/$1"
+		fi
+	else
+		thePath=`pwd`
+	fi
+	
+	osascript<<END
+	set myPath to ( POSIX file "$thePath" as alias )
+	try
+		tell application "Finder" to set the (folder of the front window) to myPath
+	on error -- no open folder windows
+		tell application "Finder" to open myPath
+	end try
+	END
+	$$/code
+
 </li>
 	<li>You can drag a Finder window's location into a Terminal by using the titlebar folder icon again. Prefix with a "cd", then select the folder icon, and drag over the Terminal window until the green + icon appears.</li>
 </ul>
