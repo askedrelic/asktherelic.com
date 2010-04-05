@@ -15,7 +15,7 @@ body {
     position: absolute;
     top: 250px;
     left: 50%;
-    width: 350px;
+    width: 200px;
     margin-left: -260px;
 }
 #right {
@@ -27,7 +27,7 @@ body {
 #headshot {
     width: 200px;
     height: 300px;
-    border: 7px solid #2D445E;
+    border: 10px solid #2D445E;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
@@ -68,6 +68,7 @@ h2, #right p, #right ul {
     opacity: 0.8;
 }
 #content a:hover img {
+    border: 0;
     opacity: 1;
 }
 
