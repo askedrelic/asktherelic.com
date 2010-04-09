@@ -5,6 +5,28 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
         <title>Questions?</title>
         <link rel="stylesheet" href="/css/index.css" type="text/css" media="screen, projection">
+
+        <script src="http://www.google.com/jsapi"></script>
+        <script type="text/javascript">
+            google.load("jquery", "1.4.2");
+        </script>
+        <script type="text/javascript">
+            $(function() {
+                $("a.link").hover(function() {
+                    var text = $(this).next("span").html();
+                    var hoverbox = $(this).parent().next(".displaybox");
+                    var currenthover = $(this).attr('name');
+                    //don't double display the hover; to stop the google voice
+                    // flash player from freaking out
+                    if(currenthover !== hoverbox.data('last')) {
+                        //update hover text
+                        hoverbox.css('display','none');
+                        hoverbox.html(text).fadeIn('slow');
+                        }
+                    hoverbox.data('last', currenthover);
+                    });
+            });
+        </script>
     </head>
 <body>
     <script type="text/javascript">                                                                                          
@@ -28,29 +50,40 @@
         <div id='content'>
             <h2>Hi</h2>
             <p>My name is Matthew Behrens and I'm a programmer by trade, world traveler by hobby, and umbrella thief by night.</p>
+
             <h2>Stuff I Do</h2>
             <ul>
                 <li><a href="http://github.com/askedrelic">Code</a></li>
                 <li><a href="/code/">Blog about Coding and Software</a></li>
                 <li><a href="http://thebehrensventure.com">Blog about Traveling</a></li>
             </ul>
+
             <h2>Contact Me</h2>
             <p>
-            <a href="mailto:relic@asktherelic.com"><img src="/img/email_32.png" /></a>
-            <a href="aim:GoIM?screenname=askedrelic"><img src="/img/aim_32.png" /></a>
-            <a href="#"><img src="/img/google_voice_32.png" /></a>
+                <a href="mailto:relic@asktherelic.com" class="link" name='email'><img src="/img/email_32.png" /></a>
+                <span class="hidden">email me!</span>
+                <a href="aim:GoIM?screenname=askedrelic" class="link" name='aim'><img src="/img/aim_32.png" /></a>
+                <span class="hidden">aim me!</span>
+                <a class="link"><img src="/img/google_voice_32.png" /></a>
+                <span class="hidden" name="voice">
+                    <object type="application/x-shockwave-flash" data="https://clients4.google.com/voice/embed/webCallButton" width="230" height="85"><param name="movie" value="https://clients4.google.com/voice/embed/webCallButton" /><param name="wmode" value="transparent" /><param name="FlashVars" value="id=77a40e698b1d1423a003012ccc7afb1e5dc17c67&style=0" /></object>
+                </span>
             </p>
+            <div class="displaybox hidden"></div>
+
             <h2>Other Stuff I Use</h2>
             <p>
-            <a href="http://delicious.com/askedrelic"><img src="/img/delicious_32.png" /></a>
-            <a href="http://www.facebook.com/matthewjbehrens"><img src="/img/facebook_32.png" /></a>
-            <a href="http://www.flickr.com/photos/askedrelic"><img src="/img/flickr_32.png" /></a>
-            <a href="http://www.last.fm/user/AskedRelic"><img src="/img/lastfm_32.png" /></a>
-            <a href="http://www.linkedin.com/in/matthewjbehrens"><img src="/img/linkedin_32.png" /></a>
-            <a href="http://www.reddit.com/user/askedrelic/"><img src="/img/reddit_32.png" /></a>
-            <a href="http://twitter.com/askedrelic"><img src="/img/twitter_32.png" /></a>
-            <a href="http://askedrelic.yelp.com/"><img src="/img/yelp_32.png" /></a>
+                <a href="http://delicious.com/askedrelic"><img src="/img/delicious_32.png" /></a>
+                <a href="http://www.facebook.com/matthewjbehrens"><img src="/img/facebook_32.png" /></a>
+                <a href="http://www.flickr.com/photos/askedrelic"><img src="/img/flickr_32.png" /></a>
+                <a href="http://www.last.fm/user/AskedRelic"><img src="/img/lastfm_32.png" /></a>
+                <a href="http://www.linkedin.com/in/matthewjbehrens"><img src="/img/linkedin_32.png" /></a>
+                <a href="http://www.reddit.com/user/askedrelic/"><img src="/img/reddit_32.png" /></a>
+                <a href="http://twitter.com/askedrelic"><img src="/img/twitter_32.png" /></a>
+                <a href="http://askedrelic.yelp.com/" class="link"><img src="/img/yelp_32.png" /></a>
+                <span class="hidden" name="yelp">hi</yelp>
             </p>
+            <div class="displaybox hidden"></div>
         </div>
         <div id='footer'>
             <a href="http://www.komodomedia.com/blog/2009/06/social-network-icon-pack/">Icons from komodomedia.com</a>

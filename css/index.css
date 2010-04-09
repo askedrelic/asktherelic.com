@@ -57,7 +57,7 @@ h2 {
 #content ul {
     margin-left: 40px;
 }
-h2, #right p, #right ul {
+h2, #right p, #right ul, .displaybox {
     margin-bottom: 12px;
 }
 #content a {
@@ -70,6 +70,9 @@ h2, #right p, #right ul {
 #content a:hover img {
     border: 0;
     opacity: 1;
+}
+.hidden {
+    display:none;
 }
 
 #footer {
