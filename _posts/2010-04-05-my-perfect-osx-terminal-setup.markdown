@@ -33,4 +33,7 @@ This is mostly cosmetic, but when in Vim and coding, having the specific color f
 
 [TerminalColors](http://blog.fallingsnow.net/2009/08/28/fixing-colors-in-terminal-app-on-10-6/) is a plugin that updates the default colors to be less jarring and lets you use the standard OSX color picker to choose any color you want. Downloadable [here](http://cloud.github.com/downloads/evanphx/terminalcolours/TerminalColours-SL.tar.gz).
 
+**Addendum:**
+If you are getting "Terminal version errors" or something equivalent, you may have to modify your plugin to support the latest version of Terminal. Goto `~/Library/Application Support/SIMBL`, right click on the broken plugin and select "Show Package Contents". Then open the Contents folder and open the Info.plist file with a text editor. Generally it is the MaxBundleVersion number that gives problems. Increase that number until it works, I'm using 280 for my bundles and Terminal is at version 273 as of now.
+
 These tweaks help me use Terminal better and make my life easier. If you want more tips on OSX Finder and Terminal integration, check out my other post [here](/2009/01/31/osx-terminal-and-finder-integration/). Hope they help you as well!
