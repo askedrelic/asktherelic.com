@@ -6,8 +6,7 @@ from fabric.api import *
 
 def package():
     with cd("_site/"):
-        local(("tar zcvf ../blog.tgz blog css projects p images about "
-            "sitemap.xml "))
+        local("tar zcvf ../blog.tgz --exclude '.DS_Store' --exclude '.gitignore' --exclude 'fabfile*' *")
 
 def new_post(post_name):
     NON_CHAR = re.compile(r'[^a-z0-9-]+')
@@ -51,20 +50,17 @@ def new_post(post_name):
 #    post = post_format % "_".join(post_name.split(" "))
 #    local("sed -i -e's!%s!%s!' %s" % (old_post_date, post_date, post))
 
-def install():
-    local("sudo pip install -r requirements.txt")
+#def install():
+#    local("sudo pip install -r requirements.txt")
 
 def test():
     local("blogofile build")
     local("blogofile serve 9000")
 
-#@hosts('h4941w83@morgangoose.com')
-#def build():
-#    local("blogofile build")
-#    local(("python _extensions/sitemap_gen/sitemap_gen.py "
-#        "--config=_extensions/sitemap_gen/config.xml"))
-#
-#    package()
-#    put("blog.tgz", "var/www/html/")
-#    with cd("var/www/html/"):
-#        run("tar zxvf blog.tgz")
+@hosts('askedrelic@asktherelic.com')
+def deploy():
+    """push latest version of the site"""
+    package()
+    put("blog.tgz", "public_html/asktherelic.com/private/")
+    with cd("public_html/asktherelic.com/private/"):
+        run("tar -C ../public/ -xvzf blog.tgz")
