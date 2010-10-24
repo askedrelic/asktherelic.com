@@ -5,6 +5,12 @@ body {
     font-family: calibri, helvetica, arial, sans-serif; 
 }
 
+#content {
+    margin: 0px auto;
+    width: 960px;
+    padding-bottom: 50px;
+}
+
 a img {
     border:medium none;
 }

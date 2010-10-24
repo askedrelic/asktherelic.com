@@ -10,7 +10,8 @@ I finally switched all of my projects over to git or git-svn and have never been
 Awhile back I wrote a command to print the total number of lines contributed per author for my svn repository because I wanted to see how awesome I am. I decided to port this command over to git.
 
     $$code(lang=sh)
-    git ls-files | xargs -n1 -d'n' -i git-blame {} | perl -n -e '/s((.*?)s[0-9]{4}/ && print "$1n"' | sort -f | uniq -c -w3 | sort -r
+    git ls-files | xargs -n1 -d'n' -i git-blame {} | perl -n -e '/s((.*?)s[0-9]{4}/ && print "$1n"' 
+         | sort -f | uniq -c -w3 | sort -r
     
     Output:
      217167 mattb

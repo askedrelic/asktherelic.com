@@ -108,7 +108,8 @@ In this CLI example, the user experience is pretty disjointed, but in a webapp s
 	$$code(lang=python)
 	#Google Auth using a callback
 	callback = "http://www.asktherelic.com/thenextstep/"
-	request_token_url = "https://www.google.com/accounts/OAuthGetRequestToken?scope=%s&oauth_callback=%s" % (scope, callback)
+	request_token_url = ("https://www.google.com/"
+		"accounts/OAuthGetRequestToken?scope=%s&oauth_callback=%s" % (scope, callback))
 	$$/code
 
 ###Possible Issues

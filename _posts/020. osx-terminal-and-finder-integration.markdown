@@ -51,9 +51,9 @@ I love the Terminal that comes standard with OSX and now thanks to 10.5, the Fin
 
 For the reverse, you can create an executable bash script called 'fdc', which you place in your `~/bin/` directory, assuming your Path sources `~/bin/`.
 
-    $$code(lang=sh)
+    $$code(lang=bash)
     #!/bin/sh
-
+    
     if [ -n "$1" ]; then
         if [ "${1%%/*}" = "" ]; then
             thePath="$1"
@@ -63,7 +63,7 @@ For the reverse, you can create an executable bash script called 'fdc', which yo
     else
         thePath=`pwd`
     fi
-
+    
     osascript<<END
     set myPath to ( POSIX file "$thePath" as alias )
     try
