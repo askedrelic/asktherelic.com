@@ -39,7 +39,7 @@ blog_path = "/code"
 
 ## blog_name -- Your Blog's name.
 # This is used repeatedly in default blog templates
-blog_name        = "Ask the Relic"
+blog_name        = "/code - a blog"
 
 ## blog_description -- A short one line description of the blog
 # used in the RSS/Atom feeds.
