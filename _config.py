@@ -81,7 +81,7 @@ emacs_orgmode_preamble = r"#+OPTIONS: H:3 num:nil toc:nil \n:nil"   # added in p
 syntax_highlight_enabled = True
 # You can change the style to any builtin Pygments style
 # or, make your own: http://pygments.org/docs/styles
-syntax_highlight_style   = "murphy"
+syntax_highlight_style   = "pastie"
 
 #### Custom blog index ####
 # If you want to create your own index page at your blog root
