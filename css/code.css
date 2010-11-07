@@ -17,6 +17,7 @@ a img {
 img.noborder {
     border:medium none !important;
 }
+
 .aligncenter {
     display:block;
     margin-left:auto;
@@ -49,7 +50,34 @@ img.noborder {
     background-color:#F3F3F3;
     border:2px solid #316598;
 }
+
+pre {
+	margin-left: -20px;
+}
 .pygments_murphy {
-    background: #eee;
-    border: 1px solid #ccc;
+    border-left: 10px solid #ccc;
+}
+.pygments_pastie {
+    border-left: 10px solid #ccc;
+}
+
+h1 a, h1 a:visited {
+	color: #A7C4E5;
+	text-decoration: none;
+}
+h1 a:hover {
+	text-decoration: underline;
+}
+
+.blog_post_title {
+	font-size: 28px;
+	margin-bottom: 0px;
+}
+.blog_post_title a, .blog_post_title a:visited {
+	color: #A7C4E5;
+	font-variant: small-caps;
+	text-decoration: none;
+}
+.blog_post_title a:hover {
+	text-decoration: underline;
 }

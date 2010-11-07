@@ -21,6 +21,6 @@ def write_permapages():
         except OSError:
             pass
         bf.writer.materialize_template(
-            "permapage.mako", bf.util.path_join(path,"index.html"), 
+            "permapage.mako", bf.util.path_join(path,"index.html"),
             { "post": post, "posts": bf.posts })
-        
+
