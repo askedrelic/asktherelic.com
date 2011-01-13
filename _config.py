@@ -136,7 +136,8 @@ ignore_patterns = [
     r".*([\/]|[\\])\.hg",  #Mercurial VCS dir
     r".*([\/]|[\\])\.bzr", #Bazaar VCS dir
     r".*([\/]|[\\])\.svn", #Subversion VCS dir
-    r".*([\/]|[\\])CVS"    #CVS dir
+    r".*([\/]|[\\])CVS",    #CVS dir
+    r".*([\/]|[\\])fabfile\.py", #fabfile
     ]
 
 #### Default post filters ####
