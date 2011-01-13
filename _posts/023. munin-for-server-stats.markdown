@@ -17,15 +17,15 @@ After tweaking, the coolest things I have running right now are:
 	<li>CPU usage, load, memory usage</li>
 	<li>SSH failed logins/attempted breakins. The installed <em>auth</em> plugin was last updated in 2006, so I had to update a few of the grep string values and bash values to get it to work with Ubuntu. The main value printing section here:
 
-	$$code(lang=bash)
-	echo -n "illegal_user.value "
-	echo $(grep "Failed password|Failed none" /var/log/auth.log | grep "`date '+%b %e'`" | wc -l)
-	echo -n
-	echo -n "possible_breakin.value "
-	echo $(grep -i "POSSIBLE BREAK-IN ATTEMPT" /var/log/auth.log | grep "`date '+%b %e'`" | wc -l)
-	echo -n "authentication_failure.value "
-	echo $(grep "authentication failure" /var/log/auth.log | grep "`date '+%b %e'`" | wc -l)
-	$$/code
+$$code(lang=bash)
+echo -n "illegal_user.value "
+echo $(grep "Failed password|Failed none" /var/log/auth.log | grep "`date '+%b %e'`" | wc -l)
+echo -n
+echo -n "possible_breakin.value "
+echo $(grep -i "POSSIBLE BREAK-IN ATTEMPT" /var/log/auth.log | grep "`date '+%b %e'`" | wc -l)
+echo -n "authentication_failure.value "
+echo $(grep "authentication failure" /var/log/auth.log | grep "`date '+%b %e'`" | wc -l)
+$$/code
 
 </li>
 <li>The grep search for "failed password" and "possible break-in" had changed, along with the date formatting in the auth.log file (no leading 0 in the date command).</li>

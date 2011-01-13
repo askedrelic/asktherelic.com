@@ -33,22 +33,22 @@ I first found out about the CLI version and prefer this version due to the custo
 
 First, checkout the code from Google Code using Subversion, following the <a title="http://code.google.com/p/macfuse/wiki/MACFUSE_FS_SSHFS" href="http://code.google.com/p/macfuse/wiki/MACFUSE_FS_SSHFS">official install instructions</a>. OSX 10.5 should have Subversion installed.
 
-    $$code(lang=sh)
-    $ cd ~/Desktop
-    $ svn co http://macfuse.googlecode.com/svn/trunk/filesystems/sshfs/binary sshfs-binaries
-    $$/code
+$$code(lang=sh,linenums=true)
+$ cd ~/Desktop
+$ svn co http://macfuse.googlecode.com/svn/trunk/filesystems/sshfs/binary sshfs-binaries
+$$/code
 
 The binaries for 10.5 and 10.4 are the latest version of SSHFS, 2.2.0. Now you need to create a folder to mount to and then mount the shared drive!
 
-    $$code(lang=sh)
-    # Mounting the SSH file system
-    $ mkdir /some/mount/point # or use one that already exists
-    $ sshfs user@host:/some/directory /some/mount/point -oauto_cache,reconnect,volname="some vol name"
-    #My usual mount command
-    $ mkdir /Volumes/thebehrensventure.com
-    $ sshfs-static-leopard askedrelic@thebehrensventure.com:/home/askedrelic \
-         /Volumes/thebehrensventure.com -oauto_cache,reconnect,volname="thebehrensventure.com"
-    $$/code
+$$code(lang=sh,linenums=true)
+# Mounting the SSH file system
+$ mkdir /some/mount/point # or use one that already exists
+$ sshfs user@host:/some/directory /some/mount/point -oauto_cache,reconnect,volname="some vol name"
+#My usual mount command
+$ mkdir /Volumes/thebehrensventure.com
+$ sshfs-static-leopard askedrelic@thebehrensventure.com:/home/askedrelic \
+		/Volumes/thebehrensventure.com -oauto_cache,reconnect,volname="thebehrensventure.com"
+$$/code
 
 From here, you link the binary to your /usr/local/bin perhaps and create a script to automount the drive on login. Generally I prefer doing things via the Terminal, but that's just me.
 <h3>Working with SSHFS</h3>

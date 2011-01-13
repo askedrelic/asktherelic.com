@@ -24,32 +24,32 @@ First, we setup out basic graph. With the 1000px limit, we can create three year
 
 Python's list comprehensions make generating random data formats for graphs quite easy! Here we are using the calendar modules built in listing of month abbreviations to generate the months, then the year date below.
 
-	$$code(lang=python)
-	#build the monthly abbrevations
-	months += [x for x in calendar.month_abbr if x]
-	#build the empty year array
-	years += [''] * 12
-	#then fill in January position
-	years[y * 12] = ' %s' % start_year
-	$$/code
+$$code(lang=python,linenums=true)
+#build the monthly abbrevations
+months += [x for x in calendar.month_abbr if x]
+#build the empty year array
+years += [''] * 12
+#then fill in January position
+years[y * 12] = ' %s' % start_year
+$$/code
 
 After we have generated multiple three year graphs, we can join them together into one huge graph using the PIL to crop and paste them together. We create a large blank image first, then paste the first graph, then crop the other future graphs to remove their y axis labels. The specific crop values come from trial-error, but they are easy to figure out.
 
-	$$code(lang=python)
-	#new large canvas to work with
-	nim = Image.new("RGB", (5000,300), "white")
-	for file in glob.iglob('20*-*.png'):
-	    #if the first graph, start at 0
-	    if counter == 0:
-	        im = Image.open(file)
-	        nim.paste(im, (0,40))
-	    #otherwise, crop the y labels from future graphs
-	    else:
-	        im = Image.open(file)
-	        im = im.crop((18,0,825,250))
-	        nim.paste(im, (x,40))
-	        x += 790
-	$$/code
+$$code(lang=python,linenums=true)
+#new large canvas to work with
+nim = Image.new("RGB", (5000,300), "white")
+for file in glob.iglob('20*-*.png'):
+    #if the first graph, start at 0
+    if counter == 0:
+        im = Image.open(file)
+        nim.paste(im, (0,40))
+    #otherwise, crop the y labels from future graphs
+    else:
+        im = Image.open(file)
+        im = im.crop((18,0,825,250))
+        nim.paste(im, (x,40))
+        x += 790
+$$/code
 
 Then we wind up with a huge 5000px x 250px graph [here][2]. Having a blank yearly based template is useful for alot of data, but this could be generalized easily to daily data, or hourly data.
 

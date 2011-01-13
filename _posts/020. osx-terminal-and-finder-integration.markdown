@@ -11,9 +11,9 @@ I love the Terminal that comes standard with OSX and now thanks to 10.5, the Fin
     <li>For just navigating around, I use List mode (Apple + 2) exclusively. My hands sit on the Apple key and the cursor keys. You can move the current selection up and down with the cursor keys. If you want to go up a directory, Apple + cursor Up. If you have selected a file to open or folder you want to descend into, Apple + cursor Down. If you want to view the contents of the directory, with the directory still selected, hit cursor Right to open up a tree of the directory. Hit cursor Left to close the tree. If you see another directory you want to explore in the tree of files and folders you just opened, go down to it and cursor Right to open another tree. Once you are multiple trees deep, tap cursor Left to go up to the top of the immediate tree. Tap cursor left again to close it. You can keep double tapping cursor Left to get the top tree you first opened.</li>
     <li>I enable showing the full path of the current directory in the Finder title by running this in a Terminal:
 
-    $$code(lang=sh)
-    defaults write com.apple.finder _FXShowPosixPathInTitle -bool YES
-    $$/code
+$$code(lang=sh)
+defaults write com.apple.finder _FXShowPosixPathInTitle -bool YES
+$$/code
 <a title="http://www.tuaw.com/2008/12/05/terminal-tips-enable-path-view-in-finder/" href="http://www.tuaw.com/2008/12/05/terminal-tips-enable-path-view-in-finder/" target="_blank">Thanks to TUAW</a>.</li>
     <li>I have a button to open a new Terminal at the Finder's current location. <a title="http://jo.irisson.free.fr/?p=59" href="http://jo.irisson.free.fr/?p=59" target="_blank">All credit goes here, where you can download it too.</a>. Once you have that application downloaded, I place it in my Utilities directory. To drag it onto the toolbar, you might have to hold down the Apple button, so that a green + icon shows up.</li>
     <li>To see and quickly go to a parent directory of the current directory, hold Apple and click on the top folder icon in the title bar. A dropdown appears showing the directories; selecting one will open it in a new Finder window.</li>
@@ -22,57 +22,57 @@ I love the Terminal that comes standard with OSX and now thanks to 10.5, the Fin
 <ul>
     <li>To open a new Finder window at the current Terminal location, you can run "open ." Open is part of the OSX suite to open any application in the Application directory. In my .bashrc, I have this aliased as follows:
 
-    $$code(lang=sh)
-    alias of="open ."
-    $$/code
+$$code(lang=sh)
+alias of="open ."
+$$/code
 
 </li>
     <li>I have another binding to change the Terminal location to the location of the front most Finder window. I can't take credit for this, so thanks to the internet for this! As follows in my .bashrc:
 
-    $$code(lang=sh)
-    # cdf: cd's to frontmost window of Finder
-    cdf ()
-    {
-        currFolderPath=$( /usr/bin/osascript <<"    EOT"
-            tell application "Finder"
-                try
-                    set currFolder to (folder of the front window as alias)
-                on error
-                    set currFolder to (path to desktop folder as alias)
-                end try
-                POSIX path of currFolder
-            end tell
-        EOT
-        )
-        echo "cd to "$currFolderPath""
-        cd "$currFolderPath"
-    }
-    $$/code
+$$code(lang=sh)
+# cdf: cd's to frontmost window of Finder
+cdf ()
+{
+    currFolderPath=$( /usr/bin/osascript <<"    EOT"
+        tell application "Finder"
+            try
+                set currFolder to (folder of the front window as alias)
+            on error
+                set currFolder to (path to desktop folder as alias)
+            end try
+            POSIX path of currFolder
+        end tell
+    EOT
+    )
+    echo "cd to "$currFolderPath""
+    cd "$currFolderPath"
+}
+$$/code
 
 For the reverse, you can create an executable bash script called 'fdc', which you place in your `~/bin/` directory, assuming your Path sources `~/bin/`.
 
-    $$code(lang=bash)
-    #!/bin/sh
-    
-    if [ -n "$1" ]; then
-        if [ "${1%%/*}" = "" ]; then
-            thePath="$1"
-        else
-            thePath=`pwd`"/$1"
-        fi
+$$code(lang=bash)
+#!/bin/sh
+
+if [ -n "$1" ]; then
+    if [ "${1%%/*}" = "" ]; then
+        thePath="$1"
     else
-        thePath=`pwd`
+        thePath=`pwd`"/$1"
     fi
-    
-    osascript<<END
-    set myPath to ( POSIX file "$thePath" as alias )
-    try
-        tell application "Finder" to set the (folder of the front window) to myPath
-    on error -- no open folder windows
-        tell application "Finder" to open myPath
-    end try
-    END
-    $$/code
+else
+    thePath=`pwd`
+fi
+
+osascript<<END
+set myPath to ( POSIX file "$thePath" as alias )
+try
+    tell application "Finder" to set the (folder of the front window) to myPath
+on error -- no open folder windows
+    tell application "Finder" to open myPath
+end try
+END
+$$/code
 
 </li>
     <li>You can drag a Finder window's location into a Terminal by using the titlebar folder icon again. Prefix with a "cd", then select the folder icon, and drag over the Terminal window until the green + icon appears.</li>

@@ -2,7 +2,7 @@ html, body {
     height: 100%;
 }
 body {
-    font-family: calibri, helvetica, arial, sans-serif; 
+    font-family: calibri, helvetica, arial, sans-serif;
 }
 
 #content {
@@ -51,14 +51,23 @@ img.noborder {
     border:2px solid #316598;
 }
 
-pre {
-	margin-left: -20px;
-}
-.pygments_murphy {
+div.pygments_pastie {
     border-left: 10px solid #ccc;
+    padding-left: 5px;
 }
-.pygments_pastie {
-    border-left: 10px solid #ccc;
+
+/* If regular pygments code table, pad 20 to the left */
+div.pygments_pastie {
+    margin-left: 20px;
+}
+
+/* If numerated pygments code table, pad 20 to the left, but pull the text back
+ * to look right */
+.pygments_pastietable {
+    margin-left: 20px;
+}
+.pygments_pastietable tbody tr td .pygments_pastie{
+    margin-left: 5px;
 }
 
 h1 a, h1 a:visited {

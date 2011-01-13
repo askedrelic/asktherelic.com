@@ -11,52 +11,52 @@ A friend of mine, <a title="http://dinomite.net/" href="http://dinomite.net/" ta
 
 I installed the package via CPAN:
 
-    $$code(lang=sh)
-    install 'Mac::iTunes::Library'
-    $$/code
+$$code(lang=sh)
+install 'Mac::iTunes::Library'
+$$/code
 
 Then coded up up a script to pull the top 50 artists based on the number of tracks. Assuming I listen to these tracks, it's probably a good statistic that I like this artist.
 
-    $$code(lang=perl)
-    #!/usr/bin/env perl
-    use strict;
-    use warnings;
-    
-    use Mac::iTunes::Library;
-    use Mac::iTunes::Library::XML;
-    
-    my $file = $ARGV[0];
-    
-    # Make a new Library
-    my $library = Mac::iTunes::Library->new();
-    $library = Mac::iTunes::Library::XML->parse($file);
-    
-    #hash of <Artist, numTracks>
-    my %artists = $library->artist();
-    my @sortedArtists = ();
-    my $count = 0;
-    
-    #sort function
-    sub numerically {
-            $artists{$b} <=> $artists{$a};
+$$code(lang=perl,linenums=true)
+#!/usr/bin/env perl
+use strict;
+use warnings;
+
+use Mac::iTunes::Library;
+use Mac::iTunes::Library::XML;
+
+my $file = $ARGV[0];
+
+# Make a new Library
+my $library = Mac::iTunes::Library->new();
+$library = Mac::iTunes::Library::XML->parse($file);
+
+#hash of <Artist, numTracks>
+my %artists = $library->artist();
+my @sortedArtists = ();
+my $count = 0;
+
+#sort function
+sub numerically {
+        $artists{$b} <=> $artists{$a};
+}
+
+#sort artists by the number of tracks, then grab the top 50
+for my $artist (sort numerically (keys %artists)) {
+    if( $count < 50) {
+        push(@sortedArtists, $artist);
     }
-    
-    #sort artists by the number of tracks, then grab the top 50
-    for my $artist (sort numerically (keys %artists)) {
-        if( $count < 50) {
-            push(@sortedArtists, $artist);
-        }
-        $count++;
-    }
-    
-    #Now take the top 50 artists sorted by number of tracks,
-    #and sort alphabetically, and print
-    foreach my $artist (sort(@sortedArtists)) {
-        print "$artist, ";
-    }
-    
-    print "n";
-    $$/code
+    $count++;
+}
+
+#Now take the top 50 artists sorted by number of tracks,
+#and sort alphabetically, and print
+foreach my $artist (sort(@sortedArtists)) {
+    print "$artist, ";
+}
+
+print "n";
+$$/code
 
 Now, I'm a beginner with Perl, but from a quick parse of the results, there are still some case-sensitivity issues that I'm looking into; "Boards of Canada" and "Boards Of Canada" are seperate artists, but that's also a problem with iTunes not caring much about case either when saving data. With some minor formatting to the output, you should be rewarded with a list something like this:
 
