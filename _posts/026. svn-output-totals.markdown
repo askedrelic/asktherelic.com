@@ -8,7 +8,7 @@ title: SVN Line Output Totals
 I'm working in a group project currently and annoyed at the lack of output by my teammates. Wanting hard metrics of how awesome I am and how awesome they aren't, I wrote this command up.
 
 $$code(lang=sh,linenums=true)
-svn ls -R | egrep -v -e "/$" | xargs svn blame | awk '{print $2}' | sort | uniq -c | sort -r
+svn ls -R | egrep -v -e "\/$" | xargs svn blame | awk '{print $2}' | sort | uniq -c | sort -r
 
 Output:
     2038 matt
