@@ -61,6 +61,11 @@ div.pygments_pastie {
     margin-left: 20px;
 }
 
+/* Fix extra padding on empty lines in code tag */
+.pygments_pastie p {
+	margin: 0;
+}
+
 /* If numerated pygments code table, pad 20 to the left, but pull the text back
  * to look right */
 .pygments_pastietable {
