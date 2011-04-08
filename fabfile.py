@@ -4,10 +4,6 @@ from datetime import datetime
 
 from fabric.api import *
 
-def package():
-    with cd("_site/"):
-        local("tar zcvf ../blog.tgz --exclude '.DS_Store' --exclude '.gitignore' --exclude 'fabfile*' *")
-
 def new(post_name):
     """new post. requires post name arguement"""
     NON_CHAR = re.compile(r'[^a-z0-9-]+')
@@ -42,10 +38,22 @@ def test():
     local("blogofile build")
     local("blogofile serve 9000")
 
+def package():
+    with lcd('_site/'):
+        local("tar zcvf ../_blog.tgz --exclude '.DS_Store' --exclude '.gitignore' --exclude 'fabfile*' *")
+
+def build():
+    local("blogofile build")
+
+def clean():
+    local("rm -rf _site/")
+
 @hosts('askedrelic@asktherelic.com')
 def deploy():
     """push latest version of the site"""
+    clean()
+    build()
     package()
-    put("blog.tgz", "public_html/asktherelic.com/private/")
+    put("_blog.tgz", "public_html/asktherelic.com/private/blog.tgz")
     with cd("public_html/asktherelic.com/private/"):
         run("tar -C ../public/ -xvzf blog.tgz")
