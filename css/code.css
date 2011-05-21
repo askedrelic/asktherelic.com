@@ -2,12 +2,15 @@ html, body {
     height: 100%;
 }
 body {
-    font-family: calibri, helvetica, arial, sans-serif;
+    font-family: Palatino,"Palatino Linotype","Book Antiqua",Georgia,"Times New Roman",serif;
+    word-spacing: .1em;
+    line-height: 1.5em;
 }
 
 #content {
     margin: 0px auto;
     width: 960px;
+    padding-top: 50px;
     padding-bottom: 50px;
 }
 
@@ -79,8 +82,28 @@ h1 a, h1 a:visited {
 	color: #A7C4E5;
 	text-decoration: none;
 }
-h1 a:hover {
+
+h2 a, h2 a:visited {
+	color: black;
+	text-decoration: none;
+}
+
+h1 a:hover, h2 a:hover {
 	text-decoration: underline;
+}
+
+h1 {
+	font-size: 3em;
+}
+
+h2 {
+	font-size: 2em;
+}
+
+hr {
+	margin-top: 40px;
+	margin-bottom: 40px;
+	color: #CCCCCC;
 }
 
 .blog_post_title {
