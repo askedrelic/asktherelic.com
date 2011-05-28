@@ -1,4 +1,23 @@
 <%inherit file="site.mako" />
+
+<script type="text/javascript">
+    $(function() {
+        $(window).sausage({
+            page: '.post',
+            content: function (i, $page) {
+                return '<span class="sausage-span">' + $page.find('h2').first().text() + '</span>';
+            }
+        });
+
+        $.each($('.sausage'), function (i, e) {
+            $(e).bind('click', function () {
+                var curTop = $('h2').eq(i).offset().top;
+                $(window).scrollTop(curTop - 20);
+            });
+        });
+    });
+</script>
+
 % for post in posts:
   <%include file="post.mako" args="post=post" />
 % if bf.config.blog.disqus.enabled:

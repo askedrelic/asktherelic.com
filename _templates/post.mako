@@ -1,5 +1,5 @@
 <%page args="post"/>
-<div class="blog.post">
+<div class="post">
   <a name="${post.title}" />
   <h2 class="blog.post_title"><a href="${post.permapath()}" rel="bookmark" title="Permanent Link to ${post.title}">${post.title}</a></h2>
   <small>${post.date.strftime("%B %d, %Y at %I:%M %p")} | categories: 
@@ -17,7 +17,7 @@ ${", ".join(category_links)}
  | <a href="${post.permalink}#disqus_thread">View Comments</a>
 % endif
 </small><p/>
-  <span class="post_prose">
+  <span class="post-prose">
     ${self.post_prose(post)}
   </span>
 </div>

@@ -1,6 +1,3 @@
-html, body {
-    height: 100%;
-}
 body {
     font-family: Palatino,"Palatino Linotype","Book Antiqua",Georgia,"Times New Roman",serif;
     word-spacing: .1em;
@@ -9,7 +6,7 @@ body {
 
 #content {
     margin: 0px auto;
-    width: 960px;
+    width: 920px;
     padding-top: 50px;
     padding-bottom: 50px;
 }

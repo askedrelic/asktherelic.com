@@ -1,10 +1,16 @@
 <%inherit file="base.mako" />
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!doctype html> 
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     ${self.head()}
+    <link rel="stylesheet" type="text/css" href="/css/sausage.reset.css"> 
+    <link rel="stylesheet" type="text/css" href="/css/sausage.css"> 
+
+    <script type="text/javascript" src="/js/jquery-1.5.2.js"></script>
+    <script type="text/javascript" src="/js/jquery.ui.widget-1.8.11.js"></script>
+    <script type="text/javascript" src="/js/jquery.sausage-1.0.js"></script>
+
   </head>
   <body>
     <script type="text/javascript">
