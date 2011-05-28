@@ -8,13 +8,13 @@ draft: false
 
 Several weeks ago, a friend linked me to [Sausage.js][1], "a jQuery UI widget for
 contextual pagination." I would call it more of a sidebar navigation widget.
-The example page was intruiging and prompted me to add it to this blog.
+The example page was intriguing and prompted me to add it to this blog.
 
 ### Requirements
 
 My inital goal was based off the [CouchDB example][2] linked on the Sausage
 homepage. I was slowed down by trying to figure out the exact JS and CSS
-requirements, which aren't specificly listed out, and some conflicts with my
+requirements, which aren't specifically listed out, and some conflicts with my
 local CSS for this blog, the main Sausage div requires height 100% and I had
 something else set to 100% height which didn't work well...
 
@@ -36,18 +36,15 @@ $(window).sausage({
 });
 $$/code
 
-### Adding Navigation Ability
+### Bugfixing
 
 The main thing Sausage.js provides is a sidebar that updates as you scroll,
 showing your current position among the main elements of the page. Great for
 blogs or documentation and no need to modify your current docs, since it's
-dynamicly created on the client.
+dynamically created on the client.
 
-I wanted to add the ability to jump between elements, which Sausage doesn't
-provide right now. Using jQuery, I came up with the code below to cycle through
-the Sausage elements and create links which scroll to the element you want. The
-main caveat right now is that Sausage watches for browser resizing and redraws
-itself, which will remove the links.
+I wanted to add the ability to jump between elements, which when I looked, was
+broken in Sausage and I re-implemented poorly.
 
 $$code(lang=javascript)
 $.each($('.sausage'), function (i, e) {
@@ -58,7 +55,8 @@ $.each($('.sausage'), function (i, e) {
 });
 $$/code
 
-I think this is good enough for now to provide some simple navigation on the blog.
+Thanks to GitHub, I was able to easily fix the broken scrolling code, offer a
+fix, and get some simple navigation on the blog.
 
 [1]: http://christophercliff.github.com/sausage/
 [2]: http://christophercliff.github.com/sausage/examples/couchdb.html
