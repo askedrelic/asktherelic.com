@@ -8,13 +8,6 @@
                 return '<span class="sausage-span">' + $page.find('h2').first().text() + '</span>';
             }
         });
-
-        $.each($('.sausage'), function (i, e) {
-            $(e).bind('click', function () {
-                var curTop = $('h2').eq(i).offset().top;
-                $(window).scrollTop(curTop - 20);
-            });
-        });
     });
 </script>
 
