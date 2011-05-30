@@ -25,7 +25,7 @@ categories: Life
 date: %s
 tags: ''
 title: %s
-draft: true
+draft: false
 ---
     """ % (now.strftime(date_format), post_name)
 
