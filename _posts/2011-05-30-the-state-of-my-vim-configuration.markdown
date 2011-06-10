@@ -55,10 +55,6 @@ nmap <Leader>sv :source $MYVIMRC<CR>
 nmap <Leader>s :%s/\\s\\+$\/\/<CR>
 $$/code
 
-[1]: http://www.kk.org/cooltools/
-[2]: /2010/04/05/my-perfect-osx-terminal-setup/
-[3]: /2011/04/02/on-easily-replacing-text-in-vim/
-[4]: https://github.com/askedrelic/homedir/blob/master/.vimrc
 
 ### Current Plugins
 
@@ -100,10 +96,14 @@ other plugins are just new folders (or git clones).
 I wanted to get this initial post out as a base, to start the story of my Vim
 configuration files. [Subscribe][10] for future Vim posts!
 
+[1]: http://www.kk.org/cooltools/
+[2]: /2010/04/05/my-perfect-osx-terminal-setup/
+[3]: /2011/04/02/on-easily-replacing-text-in-vim/
+[4]: https://github.com/askedrelic/homedir/blob/master/.vimrc
 [5]: http://www.vim.org/scripts/script.php?script_id=2332
 [6]: https://github.com/jamis/fuzzyfinder_textmate
-[pic1]: /pic/fuzzyfinder.png
 [7]: https://github.com/jamis/fuzzyfinder_textmate/network
 [8]: http://vim-taglist.sourceforge.net/
 [9]: http://www.vim.org/scripts/script.php?script_id=1658
 [10]: /code/feed
+[pic1]: /pic/fuzzyfinder.png
