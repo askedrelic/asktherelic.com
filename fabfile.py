@@ -38,15 +38,15 @@ def test():
     local("blogofile build")
     local("blogofile serve 9000")
 
-def package():
-    with lcd('_site/'):
-        local("tar zcvf ../_blog.tgz --exclude '.DS_Store' --exclude '.gitignore' --exclude 'fabfile*' *")
+def clean():
+    local("rm -rf _site/")
 
 def build():
     local("blogofile build")
 
-def clean():
-    local("rm -rf _site/")
+def package():
+    with lcd('_site/'):
+        local("tar zcvf ../_blog.tgz --exclude '.DS_Store' --exclude '.gitignore' --exclude 'fabfile*' *")
 
 @hosts('askedrelic@asktherelic.com')
 def deploy():
