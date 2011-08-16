@@ -9,11 +9,13 @@ draft: false
 I'm releasing 0.1 of Journal, a simple Python CLI tool to help with keeping a
 journal for work/personal stuff! Inspired by Peter Lyons' [article on career
 development](http://peterlyons.com/leveling_up.html), I decided to write up a
-script to help manage things. A blog is heavy-weight and mostly something you
-manage through the web. I prefer KISS and keeping things on the console. Lyons'
-article also mirrors my own experiences with working so far: keeping
-meticulously notes of what I'm doing is always helpful and not really that much
-work, when using a paper notebook. Now I can keep things digital!
+script to help manage things. 
+
+The idea from Lyons' article is to keep a chronological log of everything you
+do at your job. This mirrors my own experiences with working so
+far: keeping meticulously notes of what I'm doing is always helpful and not
+too much extra work, since I always carry a notebook around with me for this
+purpose. Now I can keep things digital! 
 
 ###Install
 
@@ -48,5 +50,9 @@ For interest, here was my progression of work in creating this tool:
     I found [work_log](https://github.com/fabrik42/work_log), a Ruby script
     more oriented for tracking time. I got some good ideas for how the CLI
     interface should work, but this program didn't quite solve my problem.
+
+    There are existing blogging solutions, but a blog is heavy-weight and
+    mostly something you manage through the web. I prefer KISS and keeping
+    things on the console. 
 
 3.  Then I rolled my own!
