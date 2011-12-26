@@ -34,9 +34,18 @@ draft: false
 
     print "New draft post created: \n%s\n" % fname
 
+def watch():
+    """
+    Watch for changes using when-change.py script and rebuild
+    https://github.com/joh/when-changed
+    """
+    local("""when-changed.py `ls | egrep -v "_site|*.pyc"` -c "fab clean build" """)
+
+def serve():
+    local("blogofile serve 8000")
+
 def test():
     local("blogofile build")
-    local("blogofile serve 9000")
 
 def clean():
     local("rm -rf _site/")
