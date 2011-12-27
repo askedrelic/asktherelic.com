@@ -39,6 +39,8 @@ def watch():
     Watch for changes using when-change.py script and rebuild
     https://github.com/joh/when-changed
     """
+    clean()
+    build()
     local("""when-changed.py `ls | egrep -v "_site|*.pyc"` -c "fab clean build" """)
 
 def serve():
@@ -48,7 +50,7 @@ def test():
     local("blogofile build")
 
 def clean():
-    local("rm -rf _site/")
+    local("rm -r _site/")
 
 def build():
     local("blogofile build")
