@@ -6,8 +6,7 @@ html, body {
     height: 100%;
 }
 body {
-    height: 100%;
-    font-family: calibri, helvetica, arial, sans-serif; 
+    font-family: "Georgia", "Times New Roman", serif;
     color: white;
 }
 
@@ -33,15 +32,16 @@ body {
     border-radius: 5px;
 }
 #header {
-    margin: 100px 0 0 40px; 
+    margin: 100px 0 0 40px;
 }
 #content {
-    display: block; 
-    margin: 88px 40px 0 40px; 
-    line-height: 1.5em; 
+    display: block;
+    margin: 88px 40px 0 40px;
+    line-height: 1.5em;
 }
 
 h1, h2 {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
     color: #A7C4E5;
 }
 h1 {
@@ -60,9 +60,15 @@ h2 {
 h2, #right p, #right ul, .displaybox {
     margin-bottom: 12px;
 }
-#content a {
+
+#content a:link, #content a:visited {
     color: white;
+    text-decoration: none;
 }
+#content a:hover, #content a:active {
+    text-decoration: underline;
+}
+
 #content a img {
     border: 0;
     opacity: 0.8;
@@ -85,5 +91,5 @@ h2, #right p, #right ul, .displaybox {
 }
 
 * html #right {
-    height: 100%;   
+    height: 100%;
 }

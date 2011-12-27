@@ -41,6 +41,7 @@ blog.path = "/code"
 ## blog_name -- Your Blog's name.
 # This is used repeatedly in default blog templates
 blog.name        = "/code - a blog"
+blog.title       = "/code - AsktheRelic.com"
 
 ## blog_description -- A short one line description of the blog
 # used in the RSS/Atom feeds.
@@ -50,7 +51,7 @@ blog.description = "Programming 'n stuff"
 blog.timezone    = "US/Eastern"
 
 ## blog_posts_per_page -- Blog posts per page
-#blog.posts_per_page = 5
+blog.posts_per_page = 500
 
 # Automatic Permalink
 # (If permalink is not defined in post article, it's generated
