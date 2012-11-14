@@ -41,7 +41,7 @@ def watch():
     """
     clean()
     build()
-    local("""when-changed.py `ls | egrep -v "_site|*.pyc"` -c "fab clean build" """)
+    local("""when-changed.py $(ls | egrep -v "_site|\*.pyc") -c "fab clean build" """)
 
 def serve():
     local("blogofile serve 8000")
