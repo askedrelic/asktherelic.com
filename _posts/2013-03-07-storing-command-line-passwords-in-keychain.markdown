@@ -53,7 +53,7 @@ bridge.
 
 ## Hopefully Good Ideas Spread
 
-Specifically, the [Python .pypirc](http://docs.python.org/2/distutils/packageindex.html#pypirc]
+Specifically, the [Python .pypirc](http://docs.python.org/2/distutils/packageindex.html#pypirc)
 has frustrated me recently with forcing me to store a clear text password or no
 password, but there are plenty of programs I would love to switch to not using
 a read-only config format.
