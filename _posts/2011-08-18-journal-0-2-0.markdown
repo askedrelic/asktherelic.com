@@ -5,7 +5,7 @@ tags: ''
 title: Journal 0.2.0 Released!
 draft: false
 ---
-    
+
 I'm releasing v0.2.0 of Journal today, a Python command line tool that I've
 created to help with keeping a journal for work/personal stuff! Check PyPi for
 the latest or do an upgrade install with pip, `pip install -U journal`.
@@ -20,12 +20,14 @@ Read on for more details.
 
 ###Viewing Existing Entries
 
-I'm hesitant to add a full human-date parsing library as a dependency, since I
-don't need specific time based or future based dates, so I rolled my own. The
+I'm hesitant to add a full human-date parsing library as a dependency, since
+I don't need specific time based or future based dates, so I rolled my own. The
 date formats currently supported include:
 
-1. previous day increments: "1 day ago", "a day ago", "5 days ago", "yesterday", or "today"
-2. specific American date formats: "8/15", "8/15/2011", "5-6-2011", or "August 15"
+1. previous day increments: "1 day ago", "a day ago", "5 days ago", "yesterday",
+or "today"
+2. specific American date formats: "8/15", "8/15/2011", "5-6-2011", or "August
+15"
 
 So you can now view specific entries for a day by using the flag `--view`.
 Short tags work with these dates.

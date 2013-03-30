@@ -28,23 +28,23 @@ For **Friday**, having Paul Graham keynote should be quite interesting. After
 that, I'm planning on mostly staying on Track 4 for heavy low-level Python and
 then mixing it up.
 
-* 10:50AM - [Introduction to Metaclasses](https://us.pycon.org/2012/schedule/presentation/64/)
-* 11:30AM - [The Art of Subclassing](https://us.pycon.org/2012/schedule/presentation/399/)
-* 12:10PM - [Stop Writing Classes](https://us.pycon.org/2012/schedule/presentation/352/)
-* 1:45PM - [The Magic of Metaprogramming](https://us.pycon.org/2012/schedule/presentation/45/)
-* 2:40PM - [Interfaces and Python](http://)
-* 3:20PM - [Make Sure Your Programs Cras](https://us.pycon.org/2012/schedule/presentation/114/)
-* 5:20PM - [Practicing Continuous Deployment](https://us.pycon.org/2012/schedule/presentation/12/)
+* 10:50AM - [Introduction to Metaclasses][3]
+* 11:30AM - [The Art of Subclassing][4]
+* 12:10PM - [Stop Writing Classes][5]
+* 1:45PM - [The Magic of Metaprogramming][6]
+* 2:40PM - [Interfaces and Python][7]
+* 3:20PM - [Make Sure Your Programs Cras][8]
+* 5:20PM - [Practicing Continuous Deployment][9]
 
 For **Saturday**, it's a better mix of topics, which seem more web related. I'm
 totally happy with that!
 
-* 10:25AM - [What you need to know about datetimes](https://us.pycon.org/2012/schedule/presentation/255/)
-* 11:05AM - [Django Form Processing Deep Dive](https://us.pycon.org/2012/schedule/presentation/420/)
-* 11:45AM - [Pragmatic Unicode, or, How do I stop the pain?](https://us.pycon.org/2012/schedule/presentation/141/)
-* 1:20PM - [Coroutines, event loops, and the history of Python generators](https://us.pycon.org/2012/schedule/presentation/104/)
-* 2:15PM - [RESTful APIs With Tastypie](https://us.pycon.org/2012/schedule/presentation/61/)
-* 2:55PM - [Using fabric to standardize the development process](https://us.pycon.org/2012/schedule/presentation/25/)
+* 10:25AM - [What you need to know about datetimes][10]
+* 11:05AM - [Django Form Processing Deep Dive][11]
+* 11:45AM - [Pragmatic Unicode, or, How do I stop the pain?][12]
+* 1:20PM - [Coroutines, event loops, and the history of Python generators][13]
+* 2:15PM - [RESTful APIs With Tastypie][14]
+* 2:55PM - [Using fabric to standardize the development process][15]
 
 By **Sunday**, I think I will be happy to still be standing.
 
@@ -64,5 +64,19 @@ has caveats and is not as nice as RubyGems or CPAN and I want to fix that.
 If you read my blog or follow me on twitter, send me a message, I'd love to
 meetup!
 
+
 [1]: http://www.meetup.com/sfpython/events/54525922/
 [2]: https://us.pycon.org/2012/schedule/
+[3]: https://us.pycon.org/2012/schedule/presentation/64/
+[4]: https://us.pycon.org/2012/schedule/presentation/399/
+[5]: https://us.pycon.org/2012/schedule/presentation/352/
+[6]: https://us.pycon.org/2012/schedule/presentation/45/
+[7]: https://us.pycon.org/2012/schedule/presentation/126/
+[8]: https://us.pycon.org/2012/schedule/presentation/114/
+[9]: https://us.pycon.org/2012/schedule/presentation/12/
+[10]: https://us.pycon.org/2012/schedule/presentation/255/
+[11]: https://us.pycon.org/2012/schedule/presentation/420/
+[12]: https://us.pycon.org/2012/schedule/presentation/141/
+[13]: https://us.pycon.org/2012/schedule/presentation/104/
+[14]: https://us.pycon.org/2012/schedule/presentation/61/
+[15]: https://us.pycon.org/2012/schedule/presentation/25/

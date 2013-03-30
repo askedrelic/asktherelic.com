@@ -23,23 +23,21 @@ more I track and organize my life, the easier it has become to achieve both
 small and large goals. Some might find it overwhelming, but with good external
 tools and practiced workflows, my brain never becomes overwhelmed and I can jump
 between different scopes easily. A great notion from the book [Pragmatic
-Programmer](http://pragprog.com/the-pragmatic-programmer), introduces the idea
-of programming as a craft and a tool: there is a time to use your tools and
-a time to polish your tools. It's good to know when to get shit done, but
-additionally when it's time to reflect and see where you can improve.
+Programmer][1], introduces the idea of programming as a craft and a tool: there
+is a time to use your tools and a time to polish your tools. It's good to know
+when to get shit done, but additionally when it's time to reflect and see where
+you can improve.
 
 ###Mixing Skills
 
 A good mix of skills is always useful. I hate hats, as well as the phrase "being
 able to wear multiple hats," but the idea fits. If the website is down or dishes
 need washing or the iPhone app is crashing, and you can help, go for it.
-Penelope Trunk [argues for
-specializing](http://blog.penelopetrunk.com/2012/05/28/5-reasons-you-should-specialize-right-now/)
-and while I agree on career focus, when you are in a small company with
-a diverse group of people, learn as much as you can from them.  I think the
-[Robustness Principle](http://en.wikipedia.org/wiki/Robustness_principle) from
-TCP is a good analog: own your job and field, but be open to help or ideas from
-others because you never know everything.
+Penelope Trunk [argues for specializing][2] and while I agree on career focus,
+when you are in a small company with a diverse group of people, learn as much as
+you can from them.  I think the [Robustness Principle][3] from TCP is a good
+analog: own your job and field, but be open to help or ideas from others because
+you never know everything.
 
 ###Controlled Chaos
 
@@ -73,4 +71,8 @@ Lastly, don't forget to enjoy the ride. Things will be good, bad, and everywhere
 in between. Watching a company grow is fun for me. It's an evolution, an
 orchestra, a journey, and for the years you will spend alongside a handful of
 people, you should hopefully enjoy it.  I am!
-    
+
+
+[1]: http://pragprog.com/the-pragmatic-programmer
+[2]: http://blog.penelopetrunk.com/2012/05/28/5-reasons-you-should-specialize-right-now/
+[3]: http://en.wikipedia.org/wiki/Robustness_principle

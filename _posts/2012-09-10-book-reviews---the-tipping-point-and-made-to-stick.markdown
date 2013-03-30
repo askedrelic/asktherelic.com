@@ -5,19 +5,21 @@ tags: ''
 title: Book Reviews - The Tipping Point And Made To Stick
 draft: false
 ---
-    
+
 Two for one special today. My reading backlog of late has been oriented on some
-well known books covering ideas; how they spread, how they are shared, and
-how you can get your ideas to stay in someone's head. I am always interested in
+well known books covering ideas; how they spread, how they are shared, and how
+you can get your ideas to stay in someone's head. I am always interested in
 improving how I can communicate with world around me and these books offer some
 great viewpoints on that subject.
 
 <span class="aligncenter">
-![The Tipping Point](/pic/the-tipping-point.jpg)
+![The Tipping Point][1]
 </span>
-    
-[The Tipping Point](http://www.amazon.com/gp/product/0316346624/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=0316346624&linkCode=as2&tag=asktherelic-20)  
+
+[The Tipping Point][2]
+
 Malcolm Gladwell
+
 ISBN: 0316346624
 
 ###What’s The Point?
@@ -46,10 +48,10 @@ ideas their ideas are shared.
 <br><br>
 
 <span class="aligncenter">
-![Made To Stick](/pic/made-to-stick.jpg)
+![Made To Stick][3]
 </span>
-    
-[Made To Stick](http://www.amazon.com/gp/product/1400064287/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=1400064287&linkCode=as2&tag=asktherelic-20)  
+
+[Made To Stick][4]
 Chip Heath, Dan Heath
 ISBN: 1400064287
 
@@ -76,3 +78,9 @@ important to everyone really. Thinking differently, about how people are trying
 to understand what you are saying, is a great way to improve what you are
 saying. Getting a new perspective on an idea is always useful. What you learn in
 this book can be applied everywhere in your life.
+
+
+[1]: /pic/the-tipping-point.jpg
+[2]: http://www.amazon.com/gp/product/0316346624/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=0316346624&linkCode=as2&tag=asktherelic-20
+[3]: /pic/made-to-stick.jpg
+[4]: http://www.amazon.com/gp/product/1400064287/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=1400064287&linkCode=as2&tag=asktherelic-20
