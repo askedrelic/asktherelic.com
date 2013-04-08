@@ -8,6 +8,7 @@ html, body, #container, #container1, #container2 { height: 100%; }
 body {
     font-family: "Georgia", "Times New Roman", serif;
     color: #000;
+    background-color: #fdfdfd;
 }
 
 #container {
@@ -27,7 +28,7 @@ body {
     width: 100%;
     position: relative;
     right: 140px;
-    background: #fff;
+    background-color: #fdfdfd;
 }
 
 #left {

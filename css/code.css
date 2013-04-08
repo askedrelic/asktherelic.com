@@ -2,6 +2,7 @@ html, body {
     font-family: Georgia,"Times New Roman",serif;
     margin: 0;
     padding: 0;
+    background-color: #fdfdfd;
 }
 #container {
     margin: 0 auto;
@@ -20,7 +21,7 @@ html, body {
     width: 100%;
     position: relative;
     right: 140px;
-    background: #fff;
+    background-color: #fdfdfd;
 }
 #left {
     float: left;
