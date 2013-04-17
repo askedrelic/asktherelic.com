@@ -1,13 +1,12 @@
 * {
     margin: 0;
     padding: 0;
-    background-color: #fdfdfd;
 }
 html, body {
     height: 100%;
 }
 body {
-    font-family: "Georgia", "Times New Roman", serif;
+    font-family: Helvetica, Arial, sans-serif;
     color: white;
 }
 
@@ -42,12 +41,14 @@ body {
 }
 
 h1, h2 {
-    font-family: "Lucida Sans Unicode", "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Helvetica, Arial, sans-serif;
     color: #A7C4E5;
 }
 h1 {
-    font-size: 50px;
-    border-bottom: 3px solid white;
+    font-size: 40px;
+    line-height: 61px;
+    text-transform: uppercase;
+    /* border-bottom: 3px solid white; */
 }
 h2 {
     font-size: 22px;
@@ -59,7 +60,7 @@ h2 {
     margin-left: 40px;
 }
 h2, #right p, #right ul, .displaybox {
-    margin-bottom: 12px;
+    margin-bottom: 18px;
 }
 
 #content a:link, #content a:visited {
@@ -83,7 +84,7 @@ h2, #right p, #right ul, .displaybox {
 }
 
 #footer {
-    margin: 200px 0 25px 25px;
+    margin: 200px 0 25px 40px;
     font-size: 12px;
     color: black;
 }

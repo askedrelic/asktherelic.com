@@ -6,7 +6,7 @@
 html, body, #container, #container1, #container2 { height: 100%; }
 
 body {
-    font-family: "Georgia", "Times New Roman", serif;
+    font-family: Helvetica, Arial, sans-serif;
     color: #000;
     background-color: #fdfdfd;
 }
@@ -46,7 +46,7 @@ body {
     overflow: hidden;
 }
 #left-header {
-    margin: 112px 20px 0 0;
+    margin: 100px 20px 0 0;
     border-bottom: 3px solid #1A5496;
 }
 #left-header * {
@@ -68,15 +68,18 @@ body {
 }
 
 h1, h2 {
-    font-family: "Lucida Sans Unicode", "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Helvetica, Arial, sans-serif;
     color: #A7C4E5;
 }
 h1 {
-    font-size: 50px;
+    font-size: 40px;
+    /* line-height: 61px; */
+    text-transform: uppercase;
 }
 h2 {
-    font-size: 37px;
-    line-height: 30px;
+    text-transform: uppercase;
+    font-size: 40px;
+    line-height: 47px;
 }
 h3 {
     font-size: 21px;

@@ -2,7 +2,7 @@
 categories: Life
 date: 2013/03/25 22:40:20
 tags: ''
-title: Pycon 2013 Wrapup
+title: PyCon 2013 Wrapup
 draft: false
 ---
     
