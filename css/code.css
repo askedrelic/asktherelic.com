@@ -203,9 +203,10 @@ h1 {
 h2 {
     text-transform: uppercase;
     font-size: 40px;
-    line-height: 47px;
+    line-height: 43px;
 }
 .post h2 {
+    text-transform: none;
     font-size: 28px;
     line-height: 28px;
     margin: 0;
