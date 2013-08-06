@@ -1,0 +1,29 @@
+<% wrap_layout :blog_index do %>
+    <div id="main_block">
+        <div id="prose_block" class="post">
+            <a name="<%= current_article.slug %>" />
+            <h2 class="blog.post_title"><%= link_to current_article.title, current_article %></h2>
+            <small><%= current_article.date.strftime("%B %d, %Y at %I:%M %p") %></small>
+
+            <span class="post-prose">
+            <%= yield %>
+            </span>
+        </div><!-- End Prose Block -->
+    </div><!-- End Main Block -->
+
+    <%# <div class="hr"></div> %>
+    <%# <div id="footer"> %>
+    <%#     <%= disqus %1> %>
+    <%# </div> <!-- End Footer --> %>
+
+    <div class="hr"></div>
+    <div>
+        <h4>Recent Articles</h4>
+        <% blog.articles[0...7].each do |article| %>
+            <div class="post frontpage">
+                <span class="linkdate"><%= article.date.strftime('%d %b %Y') %> »</span>
+                <%= link_to article.title, article %>
+            </div>
+        <% end %>
+    </div>
+<% end %>

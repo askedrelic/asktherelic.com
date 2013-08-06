@@ -1,0 +1,28 @@
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+ <id><%= data.website.id %>/</id>
+ <title><%= data.website.title %></title>
+ <link href="<%= data.website.root_url %>/code/feed/" rel="self"/>
+ <link href="<%= data.website.root_url%>/" />
+ <updated><%= Time.now.iso8601 %></updated>
+
+ <author>
+    <name><%= data.website.author %></name>
+ </author>
+
+ <% blog.articles.find_all{|x| !x.data.archive}.each do |article| %>
+ <entry>
+   <id><%= data.website.id + article.url %></id>
+   <title><%= article.title %></title>
+   <link href="<%= data.website.root_url + article.url %>?utm_source=RSS_Feed&amp;utm_medium=RSS&amp;utm_campaign=RSS_Syndication"/>
+   <published><%= article.date.to_time.iso8601 %></published>
+   <updated><%= article.date.to_time.iso8601 %></updated>
+   <author>
+       <name><%= data.website.author %></name>
+   </author>
+   <content type="html"><![CDATA[
+    <%= article.body %>
+   ]]></content>
+ </entry>
+ <% end %>
+</feed>
+  

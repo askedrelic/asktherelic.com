@@ -1,0 +1,21 @@
+<% wrap_layout :blog_index do %>
+
+    <h3>Archive for
+    <% case page_type
+        when 'day' %>
+        <%= Date.new(year, month, day).strftime('%b %e %Y') %>
+    <% when 'month' %>
+        <%= Date.new(year, month, 1).strftime('%b %Y') %>
+    <% when 'year' %>
+        <%= year %>
+    <% end %>
+    </h3>
+
+    <% page_articles.each_with_index do |article, i| %>
+    <div class="post frontpage">
+        <span class="linkdate"><%= article.date.strftime('%d %b %Y') %> »</span>
+        <%= link_to article.title, article %>
+    </div>
+    <% end %>
+
+<% end %>
