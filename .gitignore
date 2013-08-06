@@ -1,2 +1,9 @@
-_site/*
-_blog.tgz
+# Ignore bundler config
+/.bundle
+
+# Ignore the build directory
+build/*
+*/build/*
+
+# Ignore Sass' cache
+/.sass-cache
