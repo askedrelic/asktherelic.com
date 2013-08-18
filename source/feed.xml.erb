@@ -9,7 +9,7 @@
     <name><%= data.website.author %></name>
  </author>
 
- <% blog.articles.find_all{|x| !x.data.archive}.each do |article| %>
+ <% blog.articles[0...10].each do |article| %>
  <entry>
    <id><%= data.website.id + article.url %></id>
    <title><%= article.title %></title>
