@@ -7,3 +7,5 @@ build/*
 
 # Ignore Sass' cache
 /.sass-cache
+
+blog.tgz
