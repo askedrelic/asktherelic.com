@@ -1,4 +1,4 @@
-<!doctype html> 
+<!doctype html>
 <html>
     <head>
         <meta charset="UTF-8" />
@@ -10,43 +10,43 @@
         <link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/code.css" />
         <link rel="stylesheet" href='/stylesheets/github.css' type='text/css' />
         <link rel="shortcut icon" href="/favicon.ico" >
-        
+
         <script type="text/javascript" src="/javascripts/jquery-1.5.2.js"></script>
         <script type="text/javascript" src="/javascripts/jquery.ui.widget-1.8.11.js"></script>
         <script type="text/javascript"></script>
     </head>
     <body>
-    <div id="container">
-        <div id='container2'>
-            <div id='container1'>
-                <div id='left'>
-                    <div id="left-header">
-                        <h2><a href="/code">/code - a blog</a></h2>
-                    </div>
+        <div id="container">
+            <div id='container2'>
+                <div id='container1'>
+                    <div id='left'>
+                        <div id="left-header">
+                            <h2><a href="/code">/code - a blog</a></h2>
+                        </div>
 
-                    <div id="content">
-                        <%= yield %>
-                    </div> <!-- End Content -->
+                        <div id="content">
+                            <%= yield %>
+                        </div> <!-- End Content -->
 
-                    <div class="hr"></div>
-                    <p id="credits">
+                        <div class="hr"></div>
+                        <p id="credits">
                         Powered by <a href="http://middlemanapp.com/">Middleman</a>.
                         <br/>
                         <br/>
                         <%# RSS feeds for <a href="http://asktherelic.com/code/feed/index.xml">Entries</a> %>
                         <%# and <a href="http://askedrelic.disqus.com/latest.rss">Comments</a>. %>
                         <%# <br/> %>
-                    </p>
+                        </p>
 
-                </div>
-                <div id='right'>
-                    <div id="right-header">
-                        <a href="/"><h1>Ask the Relic</h1></a>
+                    </div>
+                    <div id='right'>
+                        <div id="right-header">
+                            <a href="/"><h1>Ask the Relic</h1></a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <%= google_analytics_tag %>
-  </body>
+        <%= google_analytics_tag %>
+    </body>
 </html>
