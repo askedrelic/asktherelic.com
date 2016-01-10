@@ -148,7 +148,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  middleman
+  middleman (>= 4.0.0)
   middleman-blog
   middleman-disqus
   middleman-google-analytics
