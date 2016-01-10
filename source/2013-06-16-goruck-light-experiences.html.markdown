@@ -1,9 +1,7 @@
 ---
-categories: Life
 date: 2013/06/16 10:32:56
-tags: ''
+tags:
 title: GoRuck Light Experiences
-draft: false
 ---
 
 Several months ago, I had the pleasure of completing a GoRuck Light event. It

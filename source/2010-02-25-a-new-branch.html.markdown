@@ -1,7 +1,7 @@
 ---
 categories: Life
-date: 2010/02/25 15:25:14  
-tags: ''
+date: 2010/02/25 15:25:14
+tags:
 title: A New Branch
 ---
 

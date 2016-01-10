@@ -1,7 +1,7 @@
 ---
 categories: Life
 date: 2011/06/19 22:59:04
-tags: ''
+tags:
 title: Weekend Python Hacking
 ---
 
@@ -22,12 +22,12 @@ things I learned:
   out somewhere. I found [this guide][1] for Ruby gems early last week and was
   very satisfied. One page, simple code and directory listings, best practice
   suggestions, from step one to published including a recommendation for
-  testing. The closest thing I've found for Python recently has been 
+  testing. The closest thing I've found for Python recently has been
   [this guide][2].
 
 * I know enough to use virtualenv + pip + a `requirements.txt` file to build a clean
   environment. But damn, I'm still figuring out setuptools, distribute,
-  distutils and distutils2. Actually, continuation of my comment above, 
+  distutils and distutils2. Actually, continuation of my comment above,
   [this chapter][3] on Python Packaging has been one of the best recent guides I've
   found. The whole "The Architecture of Open source Applications" book is
   fantastic, a great high level and detailed view into so many projects. But

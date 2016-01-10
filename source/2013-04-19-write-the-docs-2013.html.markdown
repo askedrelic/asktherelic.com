@@ -1,9 +1,7 @@
 ---
-categories: Life
-date: 2013/04/19 10:37:22
-tags: ''
 title: Write The Docs 2013
-draft: false
+date: 2013/04/19 10:37 PDT
+tags:
 ---
 
 There is definite value to moving where you work and frequently changing your

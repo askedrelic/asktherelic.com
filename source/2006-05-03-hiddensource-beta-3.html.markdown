@@ -1,7 +1,7 @@
 ---
 categories: Life
 date: 2006/05/03 12:00:00
-tags: ''
+tags:
 title: "Hidden:Source Beta 3"
 ---
 

@@ -1,8 +1,7 @@
 ---
-categories: Life
-date: 2007/06/04 15:00:00
-tags: ''
 title: "Blackberry Curve Thoughts: Day One"
+date: 2007/06/04 15:00 PDT
+tags:
 ---
 
 Since getting a Blackberry at work, I've been obsessed. Internet, chatting with
