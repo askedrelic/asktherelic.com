@@ -2,14 +2,14 @@
 # Blog settings
 ###
 
+activate :syntax
+
 set :markdown_engine, :redcarpet
 set :markdown,
  :no_intra_emphasis => true,
  :fenced_code_blocks => true,
  :smartypants => true,
  :prettify => true
-activate :livereload
-activate :rouge_syntax
 
 Time.zone = "America/Los_Angeles"
 
@@ -17,8 +17,6 @@ activate :blog do |blog|
   # sigh, why did I not do a prefix earlier?
   blog.prefix = ""
   blog.permalink = ":year/:month/:day/:title.html"
-  # blog.sources = ":year-:month-:day-:title.html"
-  # blog.taglink = "tags/:tag.html"
 
   # use this layout for blog articles
   blog.layout = "blog_post"
@@ -38,79 +36,36 @@ activate :blog do |blog|
   # blog.per_page = 10
   # blog.page_link = "page/:num"
 end
-
-
+# Need to activate after blog
 activate :directory_indexes
+
 page "/", :layout => "index"
 page "/feed.xml", :layout => false
 page "/projects.html", :layout => false
 page "/code.html", :layout => "blog_index"
 
-###
-# Compass
-###
 
-# Susy grids in Compass
-# First: gem install susy
-# require 'susy'
-
-# Change Compass configuration
-# compass_config do |config|
-#   config.output_style = :compact
-# end
-
-###
-# Page options, layouts, aliases and proxies
-###
-
-# Per-page layout changes:
-#
-#
-# With alternative layout
-# page "/path/to/file.html", :layout => :otherlayout
-#
-# A path which all have the same layout
-# with_layout :admin do
-#   page "/admin/*"
-# end
-
-# Proxy (fake) files
-# page "/this-page-has-no-template.html", :proxy => "/template-file.html" do
-#   @which_fake_page = "Rendering a fake page with a variable"
-# end
-
-#fix RSS feed location
-# proxy "/code/feed", "/feed.xml"
+# Make used RSS feed works
+proxy "/feed/", "/feed.xml"
 proxy "/code/feed/index.xml", "/feed.xml"
-
-###
-# Helpers
-###
-
-# Automatic image dimensions on image_tag helper
-# activate :automatic_image_sizes
-
-# Methods defined in the helpers block are available in templates
-# helpers do
-#   def some_helper
-#     "Helping"
-#   end
-# end
 
 activate :google_analytics do |ga|
   ga.tracking_id = 'UA-1004202-1'
 end
 
-# activate :disqus do |d|
-#   d.shortname = "askedrelic"
-# end
-
 set :css_dir, 'stylesheets'
 set :js_dir, 'javascripts'
 set :images_dir, 'pic'
 
-# Build-specific configuration
+##### Build-specific configuration
+
+# Reload the browser automatically whenever files change
+configure :development do
+  activate :livereload
+end
+
 configure :build do
+
   # For example, change the Compass output style for deployment
   # activate :minify_css
 

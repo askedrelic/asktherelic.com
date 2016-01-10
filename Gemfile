@@ -2,14 +2,16 @@ source "https://rubygems.org"
 
 gem 'middleman', '>= 4.0.0'
 gem "middleman-livereload"
-
-gem "middleman-more"
 gem "middleman-blog"
-gem "middleman-syntax"
-gem "middleman-smusher"
-gem "middleman-minify-html"
-gem 'middleman-rouge'
-gem 'middleman-disqus'
 gem 'middleman-google-analytics'
 
-gem 'redcarpet'
+gem 'redcarpet', '~> 3.3', '>= 3.3.3'
+
+# For feed.xml.builder
+gem "builder", "~> 3.0"
+
+gem "middleman-syntax"
+
+gem 'rouge'
+gem "middleman-more"
+gem "middleman-minify-html"
