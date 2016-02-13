@@ -1,0 +1,85 @@
+<!doctype html> <html> <head> <meta charset=UTF-8 /> <meta http-equiv=Content-Type content="text/html"/> <title>/code - AsktheRelic.com</title> <link rel=alternate type="application/rss+xml" title="RSS 2.0" href="/code/feed/"/> <link rel=stylesheet media=screen href="/stylesheets/code.css?1455393827"/> <link rel=stylesheet href='/stylesheets/github.css?1455393827'/> <link rel="shortcut icon" href="/favicon.ico"> <script src="/javascripts/jquery-1.5.2.js?1455393827"></script> <script src="/javascripts/jquery.ui.widget-1.8.11.js?1455393827"></script> <script></script> </head> <body> <div id=container> <div id=container2> <div id=container1> <div id=left> <div id=left-header> <h2><a href="/code">/code - a blog</a></h2> </div> <div id=content> <div id=main_block> <div id=prose_block class=post> <a name=accessing-google-reader-via-oauth-and-python /> <h2 class="blog.post_title"><a href="/2010/04/26/accessing-google-reader-via-oauth-and-python/">Accessing Google Reader via OAuth and Python</a></h2> <small>April 26, 2010 at 06:19 PM</small> <span class=post-prose> <p>Last month, Google Reader <a title="Groups post on OAuth access" href="http://groups.google.com/group/fougrapi/browse_thread/thread/4430c9a6dea4d70f">announced</a> support for accessing user data via OAuth. Previously, access was unofficially allowed using the <a title="Authentication using ClientLogin" href="http://code.google.com/apis/accounts/docs/AuthForInstalledApps.html">ClientLogin method</a>, which required the user&rsquo;s login and password. OAuth seems to be the recommended access method for the future, due to security it provides for a user. I&rsquo;ve finally had a chance to figure out OAuth using Python and how to get your Reader data, so I wanted to share my method.</p> <p>For an example of the ClientLogin method in Python, take a look at my <a title="Python library for working with Google Reader" href="http://github.com/askedrelic/libgreader">libgreader library</a> on github. It automates the ClientLogin auth and tokens that you are required to have for any requests. I&rsquo;m working to merge this code below into a more generic Google Reader library supporting both auth methods.</p> <p>I&rsquo;ve written my code using v1.1.3 of the <a title="OAuth2 v1.1.3" href="http://github.com/simplegeo/python-oauth2/">OAuth2 python library</a> to help wrangle OAuth. This was my first foray into OAuth and using the library certainly helped for figuring out all the required data and security that you need to have on every request. If you haven&rsquo;t used OAuth before, definitely check out <a href="http://oauth.net/">http://oauth.net/</a> and the <a title="docs for Google OAuth for Webapps" href="http://code.google.com/apis/accounts/docs/OAuth.html">Google docs</a> for using their OAuth implementation. If you just want to experiment with the process not using Python, use <a title="Interactive OAuth using AJAX" href="http://googlecodesamples.com/oauth_playground/">this interactive JS/AJAX app</a>.</p> <h3>The Code</h3> <p>First, let&rsquo;s setup some imports and definitions. You can also <a href="http://gist.github.com/380090">view this source code</a> on Github.</p> <pre class="highlight plaintext"><code>import urlparse
+import oauth2 as oauth
+
+#Unsecured http for testing, should be https for production
+scope = "http://www.google.com/reader/api"
+#Alphabetical list of a user's subscriptions
+sub_url = "%s/0/subscription/list" % scope
+#JSON list of a user's unread feed items
+reading_url = '%s/0/stream/contents/user/-/state/com.google/reading-list' % scope
+
+#Google Auth urls
+request_token_url = "https://www.google.com/accounts/OAuthGetRequestToken?scope=%s" % scope
+authorize_url = 'https://www.google.com/accounts/OAuthAuthorizeToken'
+access_token_url = 'https://www.google.com/accounts/OAuthGetAccessToken'
+</code></pre> <p>Now, you have to setup a consumer key with Google, for the future domain your webapp will run at. The url to manage your domains is <a title="Getting your OAuth key/secret" href="https://www.google.com/accounts/ManageDomains">https://www.google.com/accounts/ManageDomains</a></p> <pre class="highlight plaintext"><code>oauth_key = "www.asktherelic.com"
+oauth_secret = "XXXXXXXXXXXXXXXX"
+
+consumer = oauth.Consumer(oauth_key, oauth_secret)
+client = oauth.Client(consumer)
+</code></pre> <p>From here, most of the code mirrors the example code from the OAuth2 library, using a 3-step process to verify and get your required tokens from Google. In step 2, you have to manually open the link and authorize your script with Google.</p> <pre class="highlight plaintext"><code># Step 1: Get a request token. This is a temporary token that is used for 
+# having the user authorize an access token and to sign the request to obtain 
+# said access token.
+
+resp, content = client.request(request_token_url, "GET")
+request_token = dict(urlparse.parse_qsl(content))
+
+print "Request Token:"
+print "    - oauth_token        = %s" % request_token['oauth_token']
+print "    - oauth_token_secret = %s" % request_token['oauth_token_secret']
+print
+
+# Step 2: Redirect to the provider. Since this is a CLI script we do not
+# redirect. In a web application you would redirect the user to the URL
+# below.
+
+print "Go to the following link in your browser:"
+print "%s?oauth_token=%s" % (authorize_url, request_token['oauth_token'])
+print
+
+accepted = 'n'
+while accepted.lower() == 'n':
+    accepted = raw_input('Have you authorized me? (y/n) ')
+
+# Step 3: Once the consumer has redirected the user back to the oauth_callback
+# URL you can request the access token the user has approved. You use the
+# request token to sign this request. After this is done you throw away the
+# request token and use the access token returned. You should store this
+# access token somewhere safe, like a database, for future use.
+token = oauth.Token(request_token['oauth_token'], request_token['oauth_token_secret'])
+client = oauth.Client(consumer, token)
+
+resp, content = client.request(access_token_url, "POST")
+access_token = dict(urlparse.parse_qsl(content))
+
+print "Access Token:"
+print "    - oauth_token        = %s" % access_token['oauth_token']
+print "    - oauth_token_secret = %s" % access_token['oauth_token_secret']
+print
+print "You may now access protected resources using the access tokens above."
+</code></pre> <p>An annoying process, but once completed, you can create an authorized client which can hit any Google Reader url and access data. First, let&rsquo;s start off with the user&rsquo;s subscription list. Then the user&rsquo;s reading list.</p> <pre class="highlight plaintext"><code>#Authorized client using access tokens
+token = oauth.Token(access_token['oauth_token'], access_token['oauth_token_secret'])
+client = oauth.Client(consumer, token)
+
+#Get user's subscription list
+resp, content = client.request(sub_url, 'GET')
+print content
+print 
+
+#Get user's reading list
+resp, content = client.request(reading_url, 'GET')
+print content
+</code></pre> <p>In this CLI example, the user experience is pretty disjointed, but in a webapp setting, you would like for a more fluid experience. The way to do that is using a callback: a location that google will punt the user to after the 2nd step, when they have authorized your application. Checkout the code below for a simple example or the google docs for options.</p> <pre class="highlight plaintext"><code>#Google Auth using a callback
+callback = "http://www.asktherelic.com/thenextstep/"
+request_token_url = ("https://www.google.com/"
+    "accounts/OAuthGetRequestToken?scope=%s&amp;oauth_callback=%s" % (scope, callback))
+</code></pre> <h3>Possible Issues</h3> <p>The Google Reader API is still pretty undocumented, most knowledge comes from sniffing Google Reader traffic that their webapp generates or experimenting on your own. One difference between the ClientLogin and the OAuth login is that ClientLogin method requires your script to get a token from the Reader API. I haven&rsquo;t seen the OAuth method require that token in my testing, but it might be something that is still required.</p> <p>Another thing I noticed while testing, with the 2nd OAuth auth step that occurs when you have multiple Google accounts, is that Google Apps accounts don&rsquo;t seem to work with my code. I&rsquo;m using a regular gmail account but Google Apps appear to be a different affair.</p> <p>Goodluck with the Reader API.</p> </span> </div> </div> <div class=hr></div> <div> <h4>Recent Articles</h4> <div class="post frontpage"> <span class=linkdate>21 Apr 2014 »</span> <a href="/2014/04/21/upgrading-my-dotfiles-to-symlinks/">Upgrading My Dotfiles To Symlinks</a> </div> <div class="post frontpage"> <span class=linkdate>08 Feb 2014 »</span> <a href="/2014/02/08/another-year-another-set-of-backups/">Another Year, Another Set Of Backups</a> </div> <div class="post frontpage"> <span class=linkdate>02 Dec 2013 »</span> <a href="/2013/12/02/practical-lessons-learned-from-testing/">Practical Lessons Learned From Testing</a> </div> <div class="post frontpage"> <span class=linkdate>20 Nov 2013 »</span> <a href="/2013/11/20/streaming-small-http-responses-with-python/">Streaming Small HTTP Responses with Python</a> </div> <div class="post frontpage"> <span class=linkdate>03 Nov 2013 »</span> <a href="/2013/11/03/an-exploration-in-selecting-things/">An Exploration In Selecting Things</a> </div> <div class="post frontpage"> <span class=linkdate>22 Aug 2013 »</span> <a href="/2013/08/22/the-birthday-surprise/">The Birthday Surprise</a> </div> <div class="post frontpage"> <span class=linkdate>05 Aug 2013 »</span> <a href="/2013/08/05/a-newer-branch/">A Newer Branch</a> </div> </div> </div> <div class=hr></div> <p id=credits> Powered by <a href="http://middlemanapp.com/">Middleman</a>. <br/> <br/> </p> </div> <div id=right> <div id=right-header> <a href="/"><h1>Ask the Relic</h1></a> </div> </div> </div> </div> </div> <script>
+  var _gaq = _gaq || [];
+  _gaq.push(["_setAccount", "UA-1004202-1"]);
+  _gaq.push(["_trackPageview"]);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js?1455393827';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script> </body> </html>

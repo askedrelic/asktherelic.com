@@ -1,0 +1,26 @@
+<!doctype html> <html> <head> <meta charset=UTF-8 /> <meta http-equiv=Content-Type content="text/html"/> <title>/code - AsktheRelic.com</title> <link rel=alternate type="application/rss+xml" title="RSS 2.0" href="/code/feed/"/> <link rel=stylesheet media=screen href="/stylesheets/code.css?1455393826"/> <link rel=stylesheet href='/stylesheets/github.css?1455393826'/> <link rel="shortcut icon" href="/favicon.ico"> <script src="/javascripts/jquery-1.5.2.js?1455393826"></script> <script src="/javascripts/jquery.ui.widget-1.8.11.js?1455393826"></script> <script></script> </head> <body> <div id=container> <div id=container2> <div id=container1> <div id=left> <div id=left-header> <h2><a href="/code">/code - a blog</a></h2> </div> <div id=content> <div id=main_block> <div id=prose_block class=post> <a name=git-line-totals-per-author /> <h2 class="blog.post_title"><a href="/2009/10/24/git-line-totals-per-author/">GIT Line Totals Per Author</a></h2> <small>October 24, 2009 at 09:58 PM</small> <span class=post-prose> <p>I finally switched all of my projects over to git or git-svn and have never been happier. Everything has so many more options than svn, everything is faster, and the universe of software for git is way better than svn. Switch now!</p> <p>Awhile back I wrote a command to print the total number of lines contributed per author for my svn repository because I wanted to see how awesome I am. I decided to port this command over to git.</p> <pre class="highlight shell"><code>git ls-files | xargs -n1 -d<span class="s1">'\n'</span> -i git blame <span class="o">{}</span> <span class="se">\ </span>
+| perl -n -e <span class="s1">'/\s\((.*?)\s[0-9]{4}/ &amp;&amp; print "$1\n"'</span> <span class="se">\ </span>
+| sort -f | uniq -c -w3 | sort -r
+
+Output:
+    217167 mattb
+    11592  bob
+    3975   alice
+    1276   jim
+    358    tom
+    64     brad
+    13     Not Committed Yet
+</code></pre> <p>This output includes a bunch of binary files which throw off the total. If you mess with the ls-file options, you can remove them or only include specific source filestypes.</p> <pre class="highlight shell"><code><span class="c">#to remove really random binary files</span>
+git ls-files -x <span class="s2">"*pdf"</span> -x <span class="s2">"*psd"</span> -x <span class="s2">"*tif"</span>  
+<span class="c">#to only include specific file types</span>
+git ls-files <span class="s2">"*.py"</span> <span class="s2">"*.html"</span> <span class="s2">"*.css?1455393826"</span> 
+</code></pre> <p>I crossposted this over at <a href="http://www.commandlinefu.com/commands/view/3889/prints-per-line-contribution-per-author-for-a-git-repository">commndlinefu</a>, so there might be some helpful feedback over there too.</p> </span> </div> </div> <div class=hr></div> <div> <h4>Recent Articles</h4> <div class="post frontpage"> <span class=linkdate>21 Apr 2014 »</span> <a href="/2014/04/21/upgrading-my-dotfiles-to-symlinks/">Upgrading My Dotfiles To Symlinks</a> </div> <div class="post frontpage"> <span class=linkdate>08 Feb 2014 »</span> <a href="/2014/02/08/another-year-another-set-of-backups/">Another Year, Another Set Of Backups</a> </div> <div class="post frontpage"> <span class=linkdate>02 Dec 2013 »</span> <a href="/2013/12/02/practical-lessons-learned-from-testing/">Practical Lessons Learned From Testing</a> </div> <div class="post frontpage"> <span class=linkdate>20 Nov 2013 »</span> <a href="/2013/11/20/streaming-small-http-responses-with-python/">Streaming Small HTTP Responses with Python</a> </div> <div class="post frontpage"> <span class=linkdate>03 Nov 2013 »</span> <a href="/2013/11/03/an-exploration-in-selecting-things/">An Exploration In Selecting Things</a> </div> <div class="post frontpage"> <span class=linkdate>22 Aug 2013 »</span> <a href="/2013/08/22/the-birthday-surprise/">The Birthday Surprise</a> </div> <div class="post frontpage"> <span class=linkdate>05 Aug 2013 »</span> <a href="/2013/08/05/a-newer-branch/">A Newer Branch</a> </div> </div> </div> <div class=hr></div> <p id=credits> Powered by <a href="http://middlemanapp.com/">Middleman</a>. <br/> <br/> </p> </div> <div id=right> <div id=right-header> <a href="/"><h1>Ask the Relic</h1></a> </div> </div> </div> </div> </div> <script>
+  var _gaq = _gaq || [];
+  _gaq.push(["_setAccount", "UA-1004202-1"]);
+  _gaq.push(["_trackPageview"]);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js?1455393826';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script> </body> </html>

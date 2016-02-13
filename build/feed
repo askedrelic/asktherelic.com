@@ -1,0 +1,832 @@
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+ <id>http://asktherelic.com/</id>
+ <title>/code - asktherelic.com</title>
+ <link href="http://asktherelic.com/code/feed/" rel="self"/>
+ <link href="http://asktherelic.com/" />
+ <updated>2016-02-13T21:03:28+01:00</updated>
+
+ <author>
+    <name>Matt Behrens</name>
+ </author>
+
+ <entry>
+   <id>http://asktherelic.com/2014/04/21/upgrading-my-dotfiles-to-symlinks/</id>
+   <title>Upgrading My Dotfiles To Symlinks</title>
+   <link href="http://asktherelic.com/2014/04/21/upgrading-my-dotfiles-to-symlinks/?utm_source=RSS_Feed&amp;utm_medium=RSS&amp;utm_campaign=RSS_Syndication"/>
+   <published>2014-04-22T06:12:00+02:00</published>
+   <updated>2014-04-22T06:12:00+02:00</updated>
+   <author>
+       <name>Matt Behrens</name>
+   </author>
+   <content type="html"><![CDATA[
+    <p>Tinkering with my configuration and dotfiles is a never ending hobby. After
+finding Github&rsquo;s guide to <a href="http://dotfiles.github.io/">dotfile configurations</a>, I evaluated several of
+the repos and decided to upgrade <a href="https://github.com/askedrelic/dotfiles/">my own dotfiles</a>.</p>
+
+<p>For the longest time, my home directory (<code class="prettyprint">/home/askedrelic</code> on most systems) has
+been a git repo. This has mostly worked but has several problems:</p>
+
+<ul>
+<li>everything writes to your home directory; you wind up with many of untracked
+files, unless you ignore them, which is then a pain to keep updating your
+<code class="prettyprint">.gitignore</code></li>
+<li>easy to add files; mistype a filename or tab-complete and your whole <code class="prettyprint">.ssh</code>
+folder could get added with your private keys</li>
+<li>impossible to keep any sensitive files (atlhough this is mostly a side effect
+of keeping my dotfiles public on Github)</li>
+<li>hard to initialize on new machines; git likes to clone to an empty directory
+and your home directory is never empty, even on new machines</li>
+</ul>
+
+<p>Despite these complaints, this method has worked out me for several years. It
+has allowed me to use default git functionality (git-submodules) for my vim
+plugins and easily keep them up to date. I can git-pull and have the latest
+configurations by re-opening my shell.</p>
+
+<p>I wanted a way to upgrade my existing repo with minimal changes and keep my
+git-submodules. Several of the Github recommended dotfile repos were not
+interesting to me for their forced use of ZSH or complex Ruby/Rake scripts to
+handle updating. I have a bit of sunk cost with Bash and wanted the option to
+gradually upgrade to ZSH.</p>
+
+<p>Therefore <a href="https://github.com/holman/dotfiles">Zach Holman&rsquo;s dotfiles</a> looked best to me:</p>
+
+<ul>
+<li>easy upgrade/install using a Bash bootstrap script with no magic</li>
+<li>support for symlinked files or directories to allow my git-submodule use to
+continue</li>
+<li>no forced ZSH configuration</li>
+<li>great topic based organization of files</li>
+</ul>
+
+<p>It took a few tries to figure out copying his <code class="prettyprint">script/bootstrap</code> was mainly what
+I wanted. Moving my existing git-submodules to a new location was obtusely hard,
+until I found a script to handle it:
+<a href="https://github.com/iam-TJ/git-submodule-move">https://github.com/iam-TJ/git-submodule-move</a>.</p>
+
+<p>The upgrade was basically:</p>
+
+<ol>
+<li><code class="prettyprint">git clone https://github.com/askedrelic/dotfiles/ .dotfiles</code></li>
+<li><code class="prettyprint">cd .dotfiles &amp;&amp; script/bootstrap</code></li>
+<li>Follow the prompts and overwrite or backup any files I am trying to symlink</li>
+</ol>
+
+<p>This new layout allows for much better organization going forward. Check it out
+here and see your dotfiles could use an upgrade:
+<a href="https://github.com/askedrelic/dotfiles/">https://github.com/askedrelic/dotfiles/</a></p>
+
+   ]]></content>
+ </entry>
+ <entry>
+   <id>http://asktherelic.com/2014/02/08/another-year-another-set-of-backups/</id>
+   <title>Another Year, Another Set Of Backups</title>
+   <link href="http://asktherelic.com/2014/02/08/another-year-another-set-of-backups/?utm_source=RSS_Feed&amp;utm_medium=RSS&amp;utm_campaign=RSS_Syndication"/>
+   <published>2014-02-08T22:50:00+01:00</published>
+   <updated>2014-02-08T22:50:00+01:00</updated>
+   <author>
+       <name>Matt Behrens</name>
+   </author>
+   <content type="html"><![CDATA[
+    <p>You might not be able to call it a New Years Resolution anyone, but it&rsquo;s not too
+late to backup everything you did online last year. I usually get around <a href="/2012/01/02/backup-everything-you-did-last-year/">to
+doing this in December/January</a> over Christmas holiday, but this year I have
+been slacking. Maybe you have too. It&rsquo;s not too late, make a backup!</p>
+
+<h3>Files</h3>
+
+<p>I have a couple services that I use for my documents, my writing, my photos, and
+everything else that is a file. Files are easiest to deal with, as long you have
+them organized easily. You always want your files in two places (your current
+computer and online), since you will drop your laptop and your current HDD will
+fail randomly. You want your files in a simple file format that doesn&rsquo;t depend
+on a specific application: usually text, lossless image (PNG), or PDF. PDF might
+be a terrible format for technical reasons, but it&rsquo;s a great way to preserve
+websites or Word documents exactly how they currently are. Every application has
+&ldquo;Print as PDF&rdquo;.</p>
+
+<p><a href="https://db.tt/xduLbMk">Dropbox</a> is the natural choice for most temporary files. You can get 2GB to 5GB
+free starting out, it is constantly backed up when you are connected to the
+internet, and instantly available across all your devices. I keep most temporary
+files in my Dropbox folder, until I can organize them by date and archive them
+in a more permanent way.</p>
+
+<p>A more permanent home solution for large file backup is an external HDD or NAS.
+I finally invested in a consumer NAS last year, the <a href="https://www.amazon.com/gp/product/B008U68UHG?tag=thewire06-20&amp;linkCode=as2">Synology Diskstation
+DS213</a> for about $200. Drobo is a another well known consumer NAS, but way
+too expensive in my opinion, especially considering how cheap hardware has
+become. The Synology has really impressed me in ease of use, software quality,
+and overall value. Dual disk RAID support, gigabit ethernet, and &ldquo;app&rdquo; support
+with automatic AWS Glacier backup are some of the more technical features that
+really make it impressive. <a href="http://thewirecutter.com/reviews/synology-diskstation-ds21/">Here is another good review</a>, from the
+Wirecutter.</p>
+
+<p>To balance everything out, you want permanent offsite backups: <a href="https://www.backblaze.com">Backblaze</a> or
+<a href="https://www.code42.com/crashplan/">Crashplan</a> are both good. I&rsquo;ve used Backblaze for years at work, but am
+considering Crashplan personally, since <a href="https://www.backblaze.com/edrive.html">Backblaze does not support backing up
+NAS</a>. These programs are similar to Dropbox, but offer a longterm backup for
+around $50/year, which is a great price for safety and value of an offsite
+backup.</p>
+
+<h3>Important Online Services</h3>
+
+<p>Now that you have someplace to backup files, backup every important online
+service you used last year into a simple file format.</p>
+
+<ul>
+<li><strong>Email</strong>: most online email providers are now offering simple backup
+solutions, <a href="https://gmailblog.blogspot.com/2013/12/download-copy-of-your-gmail-and-google.html">even Gmail</a>.</li>
+<li><strong>Passwords</strong>: I also switched this year to religiously using <a href="https://agilebits.com/onepassword">1Password</a>,
+an application that stores all of your passwords and automatically fills them
+in, like when you need to access your bank account website. This has not only
+made my life easier, but improved the overall security of my passwords, since
+1Password can generate a unique password for each website you use. I can write
+volumes about this topic, but for now, get some application that stores your
+passwords for you.</li>
+<li><strong>Bank account and credit card statements</strong>: all my banking is done online
+with e-paper statements. It saves time and paper. At the end of the year, most
+banks offer a Year End Summary, which you should download and store as a PDF.
+Most banks store these statements for up to seven years, but why not keep the
+copy locally? It makes keeping financial records much easier.</li>
+<li><strong>Bookmarks</strong>: Pinboard is an online bookmark service I use, which <a href="https://pinboard.in/export/">offers an
+export here</a>. If you just use Firefox or Chrome bookmarks and have
+hundreds or thousands of bookmarks, back them up!</li>
+<li><strong>Social media services</strong>: I used to find value in Twitter, Facebook,
+LinkedIn, but lately, I don&rsquo;t think the value is worth longterm backing up.
+JWZ argues for backing these services up and <a href="http://www.jwz.org/blog/2014/01/psa-back-up-your-shit/">offers some helpful
+exporters</a>. Facebook offers an <a href="https://www.facebook.com/settings">export under Settings</a> and <a href="https://twitter.com/settings/account">Twitter
+does also</a>.</li>
+</ul>
+
+<h3>Physical Things</h3>
+
+<p>Another project I started last year was backing up my childhood photo albums and
+VHS tapes! Well, I called my mom and asked her to mail them to me, but it&rsquo;s
+a first step. How many boxes of tapes or old photographs do you have at your
+parent&rsquo;s house? Convert them to a digital format today, before they fall apart.</p>
+
+<p><span class="aligncenter">
+<img alt="Legoland 1994" src="/pic/legoland94.jpg" />
+</span></p>
+
+<p>I&rsquo;ve looked at local video conversion places and have been quoted $25/tape for
+VHS to digital conversions, which seems pricey. I think I will wait to find
+a VCR and manually convert the videos myself with an <a href="https://www.amazon.com/gp/product/B0029U2YSA/ref=as_li_ss_tl?ie=UTF8&amp;camp=1789&amp;creative=390957&amp;creativeASIN=B0029U2YSA&amp;linkCode=as2&amp;tag=asktherelic-20">Elgato USB recorder</a>,
+which seems to offer a good value/quality trade off.</p>
+
+<p>That&rsquo;s my recommendation for the year. Everything that is physical fades
+eventually and everything that is digital can instantly disappear if you aren&rsquo;t
+careful. Understand the digital world and do what is necessary to preserve your
+important memories and documents!</p>
+
+   ]]></content>
+ </entry>
+ <entry>
+   <id>http://asktherelic.com/2013/12/02/practical-lessons-learned-from-testing/</id>
+   <title>Practical Lessons Learned From Testing</title>
+   <link href="http://asktherelic.com/2013/12/02/practical-lessons-learned-from-testing/?utm_source=RSS_Feed&amp;utm_medium=RSS&amp;utm_campaign=RSS_Syndication"/>
+   <published>2013-12-03T06:21:00+01:00</published>
+   <updated>2013-12-03T06:21:00+01:00</updated>
+   <author>
+       <name>Matt Behrens</name>
+   </author>
+   <content type="html"><![CDATA[
+    <p>After recently <a href="/2013/08/22/the-birthday-surprise/">joining a much larger company</a> and taking a look at my team&rsquo;s
+product from different perspectives, I&rsquo;ve found new value from testing. While
+running a small startup exploring a business market, trying new features was
+a daily or weekly affair; you have to make tradeoffs with code quality, feature
+set, or speed of delivery. Code testing, especially in quantity of unit tests,
+had been something I usually traded for speed of delivery. If I can deliver
+a feature that looks correct from a high-level business perspective, then the
+code is probably correct based upon my experience with the programming language.
+However, no programmer is perfect and preparing for failure is a good idea.</p>
+
+<h3>Basic Testing</h3>
+
+<p>Testing can be approached from many different ways, with different goals. At the
+unit test level, you are essentially testing your API:</p>
+
+<ul>
+<li>is the API easy to use; how hard is the code to test (a great smell for bad
+code)</li>
+<li>did I really build what I wanted to build</li>
+<li>is it extensible; how many dependencies does the code have</li>
+</ul>
+
+<p>This what many developers think tests are. I have always felt these were
+important from an academic standpoint, but definitely never gave them their due
+respect. Unit tests are a great way to explore your code and reflect whether it
+still makes sense on a second glance. No matter how trivial or simple the code
+may be, having the ability to change your mind repeatably, with verified
+results, is useful.</p>
+
+<p>Moving to a higher level, functional or system tests are good to determine if
+3rd-party libraries and your application as a whole is working correctly, and
+usually where I have spent much of my time from a return on time investment.
+Either the system works or it doesn&rsquo;t and this can be traced down quickly. This
+is something I have begun to focus less on, due to getting better gains from
+improved unit testing. This is basically the debate over <a href="http://superprofundo.com/2010/12/13/top-down-and-bottom-up-pros-and-cons/">top-down versus
+bottom-up</a> design and I think testing at both ends of the spectrum is
+important.</p>
+
+<h3>Communicating The Code</h3>
+
+<p>This point has been one of the bigger breakthroughs I&rsquo;ve made: tests communicate
+the spec. When I&rsquo;m building a feature, I usually iteratively write code until
+I say it works. I&rsquo;m continually running the code and I am doing the evaluating
+of the output to determine that the computer is generating correct output. But
+moving that evaluation step into into code and automating is a big, very useful,
+step. This is essentially <a href="http://en.wikipedia.org/wiki/Business-driven_development">BDD</a>; letting business people write a code spec
+and having to match that spec.</p>
+
+<p>Once a feature has been communicated into a code spec, changing that feature
+later becomes a migration; not having to start from scratch to ensure all my
+assumptions still work with subtle changes.</p>
+
+<p>As my team has gotten larger, being able to say my code does something and then
+have a test to prove it helps with async communication and increases the speed
+of integration. Having a second source of code truth keeps everyone on the same
+page about what the code is doing and helps smooth the merge process.</p>
+
+<p>For an open source project, having public tests helps show your concern for code
+quality and is an easy way for knowledgeable developers to jump into your code:
+how do I use your code? Well, I can always check out the tests because they
+better work. Across many projects, documentation is pretty rare or of poor
+quality. Both tests and documentation are important for your project, but while
+documentation fades with time, test code has a very binary usefulness.</p>
+
+<h3>Check Yo Self Before You Wreck Yo Self</h3>
+
+<p>Coming from doing most of my coding in Python and dynamic languages, this
+concern may not be as important in static languages like C#/Java, but I think it
+is still important.</p>
+
+<p>Tests help verify your assumptions. Returning to my original point, failure will
+happen and trying to plan for is a much better solution than waiting until it
+happens. Dynamic typing makes it faster to write code and but pushes many errors
+to become runtime errors. The number of times I&rsquo;ve run into date/time/datetime
+conversion errors in Python has definitely pushed me to test more. I can assume
+what code is doing all day long, until I actually test it and find that one
+instance when the API does something you weren&rsquo;t expecting. Even assuming that
+you really understand dates or <a title="Seriously, what the hell" href="http://blog.counsyl.com/2013/09/27/true-facts-about-time-zones/">timezones</a> is often incorrect.</p>
+
+<p>When you run into a new problem, having a test environment setup that you can
+easily jump into will save time and get you fixing things quicker. The more you
+invest in the test environment, the easier it is to solve new types of problems
+and quickly diagnose problems when they arise.</p>
+
+<h3>In Closing</h3>
+
+<p>How much to test, what areas to test, what type of testing to use: these
+questions are always up for debate. Any level of testing is good and you can
+probably improve. In the world of <a href="http://github.com/askedrelic/">GitHub</a>, you rarely code &ldquo;alone&rdquo;; someone will
+always read your code and making it easier for them to read and analyze is
+a good thing. Finally, double checking yourself is a good thing. Testing is an
+investment, sometimes the return may take awhile to surface, but improving your
+testing ability is one step to becoming a better programmer.</p>
+
+   ]]></content>
+ </entry>
+ <entry>
+   <id>http://asktherelic.com/2013/11/20/streaming-small-http-responses-with-python/</id>
+   <title>Streaming Small HTTP Responses with Python</title>
+   <link href="http://asktherelic.com/2013/11/20/streaming-small-http-responses-with-python/?utm_source=RSS_Feed&amp;utm_medium=RSS&amp;utm_campaign=RSS_Syndication"/>
+   <published>2013-11-20T18:39:00+01:00</published>
+   <updated>2013-11-20T18:39:00+01:00</updated>
+   <author>
+       <name>Matt Behrens</name>
+   </author>
+   <content type="html"><![CDATA[
+    <p>For a recent hackathon project, I wanted to setup a client/server
+configuration, all in Python, so that the server could run shell commands and
+stream the output back to the client. The client was a Raspberry Pi and the
+server was my laptop, which already had my real project setup.</p>
+
+<p>My first thought was to do this over HTTP, with <a href="http://docs.python-requests.org/en/latest/index.html">Requests</a> for the client
+and <a href="http://bottlepy.org/docs/dev/">Bottle</a> for the server. I started writing some code, checked the Bottle
+docs for <a href="http://bottlepy.org/docs/dev/tutorial.html#generating-content">sending a streaming response</a>, and was running with a few lines.</p>
+<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">bottle</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+
+<span class="nd">@bottle.route</span><span class="p">(</span><span class="s">'/stream'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">stream</span><span class="p">():</span>
+    <span class="n">proc</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span>
+        <span class="s">'echo 1 &amp;&amp; sleep 3 &amp;&amp; echo 2 &amp;&amp; sleep 3 &amp;&amp; echo 3'</span><span class="p">,</span>
+        <span class="n">shell</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">while</span> <span class="n">proc</span><span class="o">.</span><span class="n">poll</span><span class="p">()</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">proc</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+        <span class="k">yield</span> <span class="n">output</span> <span class="o">+</span> <span class="s">"</span><span class="se">\r\n</span><span class="s">"</span>
+
+<span class="n">bottle</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">bottle</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">'0.0.0.0'</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">8000</span><span class="p">,</span> <span class="n">reloader</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre>
+
+<p>This code worked great in Chrome; console output was streamed with pauses and
+the connection was not dropped.</p>
+
+<p>Then I started on a client in Python. Requests also <a href="http://docs.python-requests.org/en/latest/user/advanced/#streaming-requests">supports streaming
+responses</a>, just a parameter to the standard <code class="prettyprint">requests.get()</code>, nothing too
+major.</p>
+<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'http://0.0.0.0:8000'</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">r</span><span class="o">.</span><span class="n">iter_lines</span><span class="p">():</span>
+    <span class="k">print</span> <span class="n">line</span>
+</code></pre>
+
+<h3>The First Mistake</h3>
+
+<p>After running the client a few times, the output wasn&rsquo;t getting streamed.
+Output would pop in, as if the response was fully downloading before printing.
+I tried increasing the sleep amount, to see if the response was too short and
+tweaking the python handling of output, trying to find some sort of implicit
+stdout buffering with <code class="prettyprint">export PYTHONUNBUFFERED=True</code>. I rewrote the server in
+<a href="http://flask.pocoo.org/docs/">Flask</a>, which offers the same streaming capabilities as Bottle, but
+encountered the same situation with the client not streaming the response.
+After consulting with teammates, we couldn&rsquo;t see the problem and moved on to
+trying to stream a local SSH connection instead, which had its own host of
+environment problems.</p>
+
+<p>The one variable I didn&rsquo;t tweak in these examples was the response size, which
+seems obviously when looking back now. My first mistake was not testing
+boundary cases: all the minimum viable tests were extremely small and not
+extremely different. I moved on too quickly without diving deep enough into the
+problem: the docs and samples were all so simple, so I assumed nothing could be
+wrong with the libraries I&rsquo;m using.</p>
+
+<h3>The Second Mistake</h3>
+
+<p>This hackathon was all for fun, so I gave up and moved onto the next problem,
+but I returned the next day and dived deeper. My second mistake was trusting
+the docs: documentation is a great resource, but code never lies.</p>
+
+<p>After looking at the function declaration for the <a href="https://github.com/kennethreitz/requests/blob/v2.0.0/requests/models.py#L593"><code class="prettyprint">response.iter_lines()</code></a>,
+it quickly made sense: the default chunk size for the lines in the response was
+512 bytes, which <code class="prettyprint">1 2 3</code> would never get chunked into multiple pieces. I was
+also not sending <code class="prettyprint">\r\n</code>, the standard <a href="http://en.wikipedia.org/wiki/Chunked_transfer_encoding">HTTP chunked terminator</a>.</p>
+<pre class="highlight python"><code><span class="n">ITER_CHUNK_SIZE</span> <span class="o">=</span> <span class="mi">512</span>
+<span class="k">def</span> <span class="nf">iter_lines</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chunk_size</span><span class="o">=</span><span class="n">ITER_CHUNK_SIZE</span><span class="p">,</span> <span class="n">decode_unicode</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+</code></pre>
+
+<p>Setting <code class="prettyprint">chunk_size=1</code> made my client immediately print output, solving all my
+problems.</p>
+
+<h3>For Next Time</h3>
+
+<p>To make testing easier, I&rsquo;ve created a Github repo to demo all this code:
+<a href="https://github.com/askedrelic/streaming-demo">https://github.com/askedrelic/streaming-demo</a>.</p>
+
+<p>While debugging this situation, I remembered to try HTTPie, <a href="https://github.com/jkbr/httpie">a cURL replacement
+written in Python using Requests</a>, which handled the streaming response
+correctly. Looking at HTTPie&rsquo;s code for consuming responses, led to me look at
+Request&rsquo;s code and figure everything out. Definitely recommend this tool!</p>
+
+<p>Lastly, always check the code and don&rsquo;t be afraid to dive deep.</p>
+
+   ]]></content>
+ </entry>
+ <entry>
+   <id>http://asktherelic.com/2013/11/03/an-exploration-in-selecting-things/</id>
+   <title>An Exploration In Selecting Things</title>
+   <link href="http://asktherelic.com/2013/11/03/an-exploration-in-selecting-things/?utm_source=RSS_Feed&amp;utm_medium=RSS&amp;utm_campaign=RSS_Syndication"/>
+   <published>2013-11-04T01:44:00+01:00</published>
+   <updated>2013-11-04T01:44:00+01:00</updated>
+   <author>
+       <name>Matt Behrens</name>
+   </author>
+   <content type="html"><![CDATA[
+    <p>Sometime last year, I remember finding a code snippet <a href="http://mrcoles.com/menu-shortcut-activating-virtualenv/">to help switch between
+Python virtual environments</a>, which I added to my <code class="prettyprint">.bashrc</code>.</p>
+<pre class="highlight shell"><code>menuvirtualenv<span class="o">()</span> <span class="o">{</span>
+    <span class="k">select </span>env <span class="k">in</span> <span class="sb">`</span>lsvirtualenv -b<span class="sb">`</span>; <span class="k">do
+        if</span> <span class="o">[</span> -n <span class="s2">"</span><span class="nv">$env</span><span class="s2">"</span> <span class="o">]</span>; <span class="k">then
+            </span>workon <span class="s2">"</span><span class="nv">$env</span><span class="s2">"</span>
+        <span class="k">fi</span>;
+        <span class="nb">break</span>;
+    <span class="k">done</span>;
+<span class="o">}</span>
+<span class="nb">alias </span>v.menu<span class="o">=</span><span class="s1">'menuvirtualenv'</span>
+
+12:54:26 pcoles@peters_air:~ &gt; v.menu
+1<span class="o">)</span> category-cms
+2<span class="o">)</span> collect
+3<span class="o">)</span> mrcoles
+4<span class="o">)</span> readmd
+<span class="c">#? 3</span>
+<span class="o">(</span>mrcoles<span class="o">)</span>12:54:33 pcoles@peters_air:~/projects/mrcoles &gt;
+</code></pre>
+
+<p>This method for selecting an input stood out to me for being so simple: just
+a numbered list. Many command line applications make input too complex, making
+the user think about <em>what</em> they want to select, making them type it in
+again, while many don&rsquo;t even support tab complete.</p>
+
+<p>Several months ago, I was on an airplane with no internet and decided to
+challenge myself to implement that select interface in Python. When looking at
+the code again, I found it was just a Bash builtin function:</p>
+<pre class="highlight shell"><code><span class="k">select </span>name <span class="o">[</span> <span class="k">in </span>word <span class="o">]</span> ; <span class="k">do </span>list ; <span class="k">done
+    </span>The list of words following <span class="k">in </span>is expanded, generating a list of items. The
+    <span class="nb">set </span>of expanded words is printed on the standard error, each preceded by
+    a number. If the <span class="k">in </span>word is omitted, the positional parameters are printed
+    <span class="o">(</span>see PARAMETERS below<span class="o">)</span>. The PS3 prompt is <span class="k">then </span>displayed and a line <span class="nb">read
+    </span>from the standard input. If the line consists of a number corresponding to
+    one of the displayed words, <span class="k">then </span>the value of name is <span class="nb">set </span>to that word. If
+    the line is empty, the words and prompt are displayed again. If EOF is <span class="nb">read</span>,
+    the <span class="nb">command </span>completes. Any other value <span class="nb">read </span>causes name to be <span class="nb">set </span>to null.
+    The line <span class="nb">read </span>is saved <span class="k">in </span>the variable REPLY. The list is executed after
+    each selection <span class="k">until </span>a <span class="nb">break command </span>is executed. The <span class="nb">exit </span>status of <span class="k">select
+    </span>is the <span class="nb">exit </span>status of the last <span class="nb">command </span>executed <span class="k">in </span>list, or zero <span class="k">if </span>no
+    commands were executed.
+</code></pre>
+
+<p>I started hacking, got it working, then forgot it about. Now coming back to the
+code with an internet connection, I&rsquo;ve released it on <a href="https://pypi.python.org/pypi/pyselect">PyPI</a> and <a href="https://github.com/askedrelic/pyselect">Github</a>.</p>
+
+<h3>Pyselect</h3>
+
+<p>Pyselect wraps <code class="prettyprint">raw_input()</code>, more or less:</p>
+<pre class="highlight python"><code><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">pyselect</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">pyselect</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s">'apples'</span><span class="p">,</span> <span class="s">'oranges'</span><span class="p">,</span> <span class="s">'bananas'</span><span class="p">])</span>
+<span class="mi">1</span><span class="p">)</span> <span class="n">apples</span>
+<span class="mi">2</span><span class="p">)</span> <span class="n">oranges</span>
+<span class="mi">3</span><span class="p">)</span> <span class="n">bananas</span>
+<span class="c">#? 2</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="s">'oranges'</span>
+</code></pre>
+
+<p>But can also be used as a Python module, when scripting:</p>
+<pre class="highlight shell"><code><span class="gp">$ </span>python -m pyselect <span class="k">$(</span>ls<span class="k">)</span>
+1<span class="o">)</span> LICENSE.txt
+2<span class="o">)</span> build/
+3<span class="o">)</span> dist/
+4<span class="o">)</span> pyselect.egg-info/
+5<span class="o">)</span> pyselect.py
+6<span class="o">)</span> pyselect.pyc
+7<span class="o">)</span> setup.py
+8<span class="o">)</span> test.py
+<span class="c">#? 4</span>
+pyselect.egg-info/
+</code></pre>
+
+<p>Or in a Bash pipe:</p>
+<pre class="highlight shell"><code><span class="gp">$ </span>ls | xargs python -m pyselect
+1<span class="o">)</span> LICENSE.txt
+2<span class="o">)</span> build/
+3<span class="o">)</span> dist/
+4<span class="o">)</span> pyselect.egg-info/
+5<span class="o">)</span> pyselect.py
+6<span class="o">)</span> pyselect.pyc
+7<span class="o">)</span> setup.py
+8<span class="o">)</span> test.py
+<span class="c">#? 5</span>
+pyselect.py
+</code></pre>
+
+<p>But that&rsquo;s where things kind of fall apart. Within a standard interactive Python
+application, stdin and stdout are simple and pyselect just works. Getting the
+pipe-in to work required a bit more work, hooking in/out up the user&rsquo;s tty,
+which the pipe drops. My holy grail would be a pipe-in and pipe-out to make
+selecting anything much easier:</p>
+<pre class="highlight plaintext"><code>$ ls | xargs python -m pyselect | cp $0 test.txt
+</code></pre>
+
+<p>Or display all your git branches and jump to one. Or virtualenvs. Or
+directories. Double pipe redirects the pyselect output/input and doesn&rsquo;t work.
+I&rsquo;ve read up on named pipes that might be able to solve this, but I haven&rsquo;t
+found a Python solution yet.</p>
+
+<p>To jump between git branches with bash select, I used this:</p>
+<pre class="highlight shell"><code><span class="k">function </span>gobranch<span class="o">()</span> <span class="o">{</span>
+    <span class="k">select </span>branch <span class="k">in</span> <span class="k">$(</span>git <span class="k">for</span>-each-ref --sort<span class="o">=</span>-committerdate refs/heads/ --format<span class="o">=</span><span class="s1">'%(refname)'</span> | sed <span class="s1">'s/refs\/heads\///g'</span><span class="k">)</span>; <span class="k">do
+        </span>git checkout <span class="s2">"</span><span class="nv">$branch</span><span class="s2">"</span>
+        <span class="nb">break</span>;
+    <span class="k">done</span>;
+<span class="o">}</span>
+</code></pre>
+
+<h3>Moving Forward</h3>
+
+<p>For now, I have some other ideas to try with selecting things:</p>
+
+<ul>
+<li>Auto-select an option when you have less than 9 options and enter 1-9, no need
+to hit the enter key</li>
+<li>A-Z input, maybe default to home row, ala <a href="https://github.com/Lokaltog/vim-easymotion">vim-easymotion</a></li>
+<li>Multi-option select, 1-4 ala <code class="prettyprint">git add --interactive</code> mode</li>
+<li>Integration with Fabric perhaps, which has <a href="http://fabric.readthedocs.org/en/1.8/api/contrib/console.html">some simple input functions</a></li>
+</ul>
+
+<p>Ideally, pyselect could become &ldquo;input for humans&rdquo;, ala <a href="http://docs.python-requests.org/en/latest/">Requests</a>, because
+<code class="prettyprint">raw_input()</code> could always use a more friendly API.</p>
+
+   ]]></content>
+ </entry>
+ <entry>
+   <id>http://asktherelic.com/2013/08/22/the-birthday-surprise/</id>
+   <title>The Birthday Surprise</title>
+   <link href="http://asktherelic.com/2013/08/22/the-birthday-surprise/?utm_source=RSS_Feed&amp;utm_medium=RSS&amp;utm_campaign=RSS_Syndication"/>
+   <published>2013-08-23T05:41:00+02:00</published>
+   <updated>2013-08-23T05:41:00+02:00</updated>
+   <author>
+       <name>Matt Behrens</name>
+   </author>
+   <content type="html"><![CDATA[
+    <p>It has now been several weeks since my twenty-seventh birthday. A birthday is
+generally always a reason to celebrate, but this birthday, my <a href="http://officialblog.yelp.com/2013/07/welcoming-seatme-to-yelp.html">startup was
+acquired by Yelp</a> several days beforehand, which makes this birthday extra
+special!</p>
+
+<p>Startups are hard work. Finding a market, building a product, <a href="http://www.paulgraham.com/growth.html">growing that
+product</a>, figuring out which corners to cut, or not cut; it&rsquo;s all hard work,
+even though some may make it look easy. I was lucky to be one of the early
+engineers at SeatMe and am proud of the team and product we helped build, while
+learning some new things along the way. Yelp is a great company with a great
+culture and I&rsquo;m looking forward now to continuing to grow the product. </p>
+
+<p>While it was a busy week with that announcement, there was still time to reflect
+and evaluate the last year. I think it&rsquo;s good to have milestones and evaluate
+your progress along the way. I don&rsquo;t mean that life is a race, but I do find
+value in judging where I am in life. <a href="http://6thfloor.blogs.nytimes.com/2013/07/31/george-saunderss-advice-to-graduates/">Am I a better person than last year?</a>
+Have I learned new skills? What skills do I want to learn? <a href="http://online.wsj.com/article/SB122178211966454607.html">How have I helped
+others?</a> These may seem like platitudes, but I genuinely hope to improve
+myself year over year.</p>
+
+<p>Here&rsquo;s to a good next year.</p>
+
+   ]]></content>
+ </entry>
+ <entry>
+   <id>http://asktherelic.com/2013/08/05/a-newer-branch/</id>
+   <title>A Newer Branch</title>
+   <link href="http://asktherelic.com/2013/08/05/a-newer-branch/?utm_source=RSS_Feed&amp;utm_medium=RSS&amp;utm_campaign=RSS_Syndication"/>
+   <published>2013-08-06T08:08:00+02:00</published>
+   <updated>2013-08-06T08:08:00+02:00</updated>
+   <author>
+       <name>Matt Behrens</name>
+   </author>
+   <content type="html"><![CDATA[
+    <p>This blog is now being built using <a href="http://middlemanapp.com/">Middleman</a>, a well documented and quite
+flexible Ruby static site generator. I had a pretty good run with
+<a href="http://blogofile.com/">Blogofile</a>, the previous engine used to build this blog: <a href="/2010/02/25/a-new-branch/">over three
+years</a>. I&rsquo;m well aware I spend too much time <a href="https://github.com/askedrelic/homedir">bike-shedding</a> and
+re-tooling sometimes, but the Ruby community keeps pushing things forward and
+Middleman has some great features worth upgrading for.</p>
+
+<h3>The Great Solution</h3>
+
+<p>Middleman&rsquo;s smart idea is to break everything about a website into a mix of
+files, folders, and data. Files can be any format and rendered using any of
+a dozen different formats, so if you want to use Markdown or any other format
+for writing blog articles, you can. But you can use do Coffeescript for JS files
+or Less/SASS for CSS files; they are all just files to be rendered.</p>
+
+<p>The blog is the nicest part: it just picks up specific files that match a date
+string format (&ldquo;Year-Month-Date-Blog-Post-Title&rdquo;) and makes them available as
+data to blog rendering templates. You just have BlogArticle objects in the
+template and you can use them anywhere in your site. Blogofile and other static
+blog rendering engines I&rsquo;ve looked at focus on the &ldquo;blog&rdquo; abstraction: the
+articles and then how the blog is rendered in a specific way. The Middleman
+abstraction of &ldquo;blog&rdquo; data and &ldquo;blog&rdquo; templates makes much more sense to me, but
+also opens the doors to building much more powerful and different sites than
+just blogs. Well, as long as they are static!</p>
+
+<h3>Other Great Things</h3>
+
+<p>Here is my laundry list of thoughts while exploring Middleman:</p>
+
+<ul>
+<li>Easy to use, flexible rendering system. Doing manual CSS was a pain, but now
+I will probably switch everything to SASS. Dynamic CSS is the only way I think
+about CSS anymore.</li>
+<li>Live reload of pages, via Rack and websockets. Very easy to live edit: web
+browser on half screen, editor on half screen.</li>
+<li>Great docs explaining everything about Middleman; there aren&rsquo;t many options,
+but they are explained well.</li>
+<li>Self introspection to figure out problems: while developing you can goto
+<code class="prettyprint">http://localhost:4567/__middleman/</code> and view your dynamic configuration or
+sitemap</li>
+<li>Great built in support for build time site optimizations: auto-gzip of all
+files, auto CSS/HTML minification, auto image shrinking, all ensuring your
+built static site is very fast.</li>
+<li>Since everything is just files and folders, you can have a folder for each
+blog article, to keep related, like source code or presentations mentioned in
+the article. It makes it really easy to setup a &ldquo;code example&rdquo; HTML page as
+a sub-directory of the blog post, which is great to keep everything on the
+blog itself.</li>
+</ul>
+
+<p>I&rsquo;ve also disabled comments on this blog. It&rsquo;s been a few fun years with Disqus,
+but it&rsquo;s easier to me if people reach out on <a href="https://github.com/askedrelic">Github</a> or <a href="https://twitter.com/askedrelic/">Twitter</a>, while
+I can focus on writing on the blog, which I continually hope that I find more
+time for.</p>
+
+<p>If you want to check out the source, <a href="https://github.com/askedrelic/asktherelic.com">it&rsquo;s always on Github</a>.</p>
+
+   ]]></content>
+ </entry>
+ <entry>
+   <id>http://asktherelic.com/2013/06/16/goruck-light-experiences/</id>
+   <title>GoRuck Light Experiences</title>
+   <link href="http://asktherelic.com/2013/06/16/goruck-light-experiences/?utm_source=RSS_Feed&amp;utm_medium=RSS&amp;utm_campaign=RSS_Syndication"/>
+   <published>2013-06-16T19:32:56+02:00</published>
+   <updated>2013-06-16T19:32:56+02:00</updated>
+   <author>
+       <name>Matt Behrens</name>
+   </author>
+   <content type="html"><![CDATA[
+    <p>Several months ago, I had the pleasure of completing a GoRuck Light event. It
+involved a seven-ish mile hike through the Presidio area of San Francisco,
+getting a little wet, and finding some new limits for what I know I can
+accomplish.</p>
+
+<p><span class="aligncenter">
+<img alt="Me during the GoRuck" src="/pic/goruck1.jpg" />
+</span></p>
+
+<h3>What is GoRuck?</h3>
+
+<p>For a little backstory, <a href="http://www.goruck.com/">GoRuck</a> is an American company founded by some
+ex-special forces folks (the Cadre) that makes pretty durable backpacks and has
+started doing a series of military style events that physically and mentally
+challenge you, while training you to work together with a random group of
+people.</p>
+
+<p>The &ldquo;Challenge&rdquo; is <a href="http://news.goruck.com/videos/goruck-light-video/">their main event</a>, which involves a six, twelve,
+twenty-four, or, of course, forty-eight hour hike (or ruck) while only carrying
+your backpack. Your backpack must contain four bricks if you are under 150lbs,
+six bricks if you are over. During the hike, there is a series of calisthenics
+and physical challenges, which usually involves carrying heavy things around.</p>
+
+<h3>Quite A Challenge</h3>
+
+<p>My hike started at 7AM in the <a href="https://www.google.com/maps/preview#!q=Presidio%2C+San+Francisco%2C+CA&amp;data=!4m11!1m10!2i4!4m8!1m3!1d3908!2d-122.4651311!3d37.7995559!3m2!1i1680!2i952!4f13.1">Presidio field</a>. After roll call, we did
+several drills in the fresh morning dew, learning to work together as a team and
+getting &ldquo;warmed up.&rdquo;</p>
+
+<p>As a team, we headed down to Chrissy Field, where we were dipped into the San
+Francisco Bay, to &ldquo;cool down.&rdquo; The general motto of the Challenge is a smile
+will help you through the toughest things and the smiles on everyone&rsquo;s faces
+definitely reflected how cold it was. This was probably the first time I had
+doubts about what I was doing but I refocused and kept going.</p>
+
+<p>We found several logs and the Cadre decided to that the logs would be better
+positioned several miles away under the Golden Gate Bridge. We had several false
+starts trying to carry them, but eventually figuring out a reasonable efficient
+way of carrying the three logs as a team, rotating out tired folks and making
+good progress.</p>
+
+<p>We dropped the logs and then went in the water to cool off again. After several
+rounds of pushups in the water, we were quite cooled down. We took a short
+bathroom break at the hut under the bridge, and then started hiking over to the
+Baker Beach. Once there, we took one final dip in the water and by this point,
+I was beginning to like it!</p>
+
+<p>The worst was over, another hike back to the starting point was all that was
+left and then it was over. I was pushed to some new mental limits by this
+challenge. There were several points I felt like giving up, but I pushed through
+with the help of my team. I am grateful that I am healthy and fit enough to
+survive something like this.</p>
+
+<iframe width="560" height="315" src="http://www.youtube.com/embed/pVaOgwc06uk"
+frameborder="0" class="aligncenter" allowfullscreen></iframe>
+
+<h3>Looking Forward To Next Time</h3>
+
+<p>A point repeated during the challenge is that you should be useful; you should
+be prepared. My next event is in five days, a twelve hour Challenge going
+overnight, starting at 9PM. In the time since my last challenge, I&rsquo;ve made
+a much better packing list and more prepared this time:</p>
+
+<ul>
+<li>I have better shorts and long underwear to prevent chaffing</li>
+<li>I&rsquo;m bringing multiple pairs of sock in a waterproof bag, to swap out once my
+current socks get wet</li>
+<li>I&rsquo;m bringing more snacks</li>
+<li>I have more water, with electrolyte tablets to better prevent dehydration</li>
+<li>I have a yoga block for the bottom of my backpack, to shift the weight of
+bricks to the top of the backpack</li>
+</ul>
+
+<p>Much of this preparation was based on my experiences and these experiences:</p>
+
+<ul>
+<li><a href="http://community.active.com/blogs/superfiend/2011/05/05/the-goruck-challenge">http://community.active.com/blogs/superfiend/2011/05/05/the-goruck-challenge</a></li>
+<li><a href="http://briangreen.net/2012/07/goruck-challenge-gear-loadout.html">http://briangreen.net/2012/07/goruck-challenge-gear-loadout.html</a></li>
+</ul>
+
+<p>Here&rsquo;s to being prepared!</p>
+
+   ]]></content>
+ </entry>
+ <entry>
+   <id>http://asktherelic.com/2013/04/19/write-the-docs-2013/</id>
+   <title>Write The Docs 2013</title>
+   <link href="http://asktherelic.com/2013/04/19/write-the-docs-2013/?utm_source=RSS_Feed&amp;utm_medium=RSS&amp;utm_campaign=RSS_Syndication"/>
+   <published>2013-04-19T19:37:00+02:00</published>
+   <updated>2013-04-19T19:37:00+02:00</updated>
+   <author>
+       <name>Matt Behrens</name>
+   </author>
+   <content type="html"><![CDATA[
+    <p>There is definite value to moving where you work and frequently changing your
+perspective on your work, when you are looking for ideas. I have gotten some of
+my best ideas recently from conferences, traveling to PyCon in Santa Clara and
+this past weekend, Write the Docs in Portland.</p>
+
+<h3>The What</h3>
+
+<p><a href="http://conf.writethedocs.org/">Write the Docs</a> is a conference organized to talk about documentation, for
+those who document, organize, and share information. It originated as a crazy
+idea over beers, but the founders kept investigating and figured out how they
+could actually make a conference happen. I found out about it via Hacker News
+and decided to sign up as a cheap and fun trip to Portland.</p>
+
+<p>The conference was on a Monday/Tuesday. I fly up from San Francisco the Saturday
+before and hung out for the weekend. On Sunday, there was a meet and greet hike,
+followed by a meet and greet beer bash. I had a great time: from meeting so many
+cool people, to getting exposed to many different new ideas about why or how to
+write. The conference was held in a theatre with a single track of talks and it
+was a great format to be able to sit back and focus on a talk, without having to
+worry about missing anything.</p>
+
+<h3>The Talks</h3>
+
+<p>If anything, there were too many great talks to process in two short days, but
+I think everyone managed. There seemed to be a good fifty/fifty mix of
+programmers to technical writers. <a href="http://docs.writethedocs.org/en/2013/conference/talks.html#kenneth-reitz">Kenneth Reitz</a> was the keynote (or just
+the first speaker) and gave an excellent argument for the importance of
+documenting and was . an excellent speaker, as always. <a href="http://docs.writethedocs.org/en/2013/conference/talks.html#brandon-philips">Brandon Philips</a> had
+a great talk on single page documentation that made solid sense to me. <a href="http://docs.writethedocs.org/en/2013/conference/talks.html#kevin-hale">Kevin Hale</a>
+also had a very well presented talk on reaching out to your customers
+and keeping communication open.</p>
+
+<p>The writing and literary talks were different from what I&rsquo;m used to as
+a programmer, but I found them quite refreshing. One talk that stood out was
+from <a href="http://docs.writethedocs.org/en/2013/conference/talks.html#matthew-butterick-typography-for-docs">Matthew Butterick</a>, on the importance of having a succinct message when
+writing. He then gave out free copies of his book <a href="http://www.typographyforlawyers.com/">&ldquo;Typography for Lawyers,&rdquo;</a>
+which after finishing, is a very informative and succinct
+reference on the technical elements of writing.</p>
+
+<h3>The Future</h3>
+
+<p>Hopefully next year, I will have something to present. The organizers said they
+were looking to hold the conference again next year and I would be very keen on
+attending, Portland is a great venue. Thanks to <a href="http://conf.writethedocs.org/#crew">the Erics and Troy</a> for
+a great conference.</p>
+
+   ]]></content>
+ </entry>
+ <entry>
+   <id>http://asktherelic.com/2013/03/25/pycon-2013-wrapup/</id>
+   <title>PyCon 2013 Wrapup</title>
+   <link href="http://asktherelic.com/2013/03/25/pycon-2013-wrapup/?utm_source=RSS_Feed&amp;utm_medium=RSS&amp;utm_campaign=RSS_Syndication"/>
+   <published>2013-03-26T06:40:20+01:00</published>
+   <updated>2013-03-26T06:40:20+01:00</updated>
+   <author>
+       <name>Matt Behrens</name>
+   </author>
+   <content type="html"><![CDATA[
+    <p>This year was my second PyCon and I wanted to share some thoughts from the
+experience. Although it is quite a large event running well over a week,
+I attended for just a few days and took away a good amount of information. The
+two big themes I noticed, maybe just from the selection of talks I attended,
+were Python 3 and IPython.</p>
+
+<h3>Python 3</h3>
+
+<p>Python 3 was originally slated to have something around a five-year
+rollout, which would put us in 2013. Last year, I noticed a few talks for Python
+3 and focus still on porting, but this year I felt Python 3 was being used as
+the default in most talks. Many (most?) major libraries and tools seem to have
+switched over to Python 3.3 and it seems like the community is moving on.  Jacob
+Kaplan-Moss&rsquo;s talk on Django and Python 3 was pretty straightforward and useful.
+With Django 1.5 now having Python 3 support, the work has moved to upgrading Django
+libraries. The vibe to me is that most people have accepted and started using it
+where possible.</p>
+
+<h3>IPython Notebook</h3>
+
+<p>The IPython Notebook was something just released last year
+with 0.12, but this year, several people gave talks using the IPython Notebook
+and I was very impressed. It seems like a very polished tool for sharing and
+demonstrating Python code and I&rsquo;ve definitely started using more when hacking
+around. The <a href="https://github.com/ipython/ipython/wiki/A-gallery-of-interesting-IPython-Notebooks">selection of available notebooks</a> is quite interesting.</p>
+
+<h3>Overall</h3>
+
+<p>The vendor area was well laid out for wandering and meeting new
+companies, while the lunch buffet seemed better organized this year. Everyone
+also received a free Raspberry Pi this year, which I&rsquo;m still figuring out what
+to do with, but am glad to have something fun to hack with. On the last day of
+talks, many people were excited with the announcement of 20% female attendance
+ratio, but that was dampened in the following days with the <a href="https://amandablumwords.wordpress.com/2013/03/21/3/">&ldquo;dongle&rdquo; harassment</a>
+incident. In my experience, PyCon and Python is a very welcoming community and
+I hope everyone can use better judgement in the future. PyCon 2014 will be
+in Montreal and while that is quite far away from SF, I hope I can make it!</p>
+
+   ]]></content>
+ </entry>
+</feed>
+  

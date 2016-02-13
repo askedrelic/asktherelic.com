@@ -1,0 +1,131 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body, #container, #container1, #container2 { height: 100%; }
+
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    color: #000;
+    background-color: #fdfdfd;
+}
+
+#container {
+    margin: 0 auto;
+    width: 980px;
+}
+#container2 {
+    float: left;
+    width: 100%;
+    position: relative;
+    right: 0%;
+    overflow: hidden;
+    background: #1A5496;
+}
+#container1 {
+    float: left;
+    width: 100%;
+    position: relative;
+    right: 140px;
+    background-color: #fdfdfd;
+}
+
+#left {
+    float: left;
+    width: 800px;
+    position: relative;
+    left: 140px;
+    overflow: hidden;
+}
+#right {
+    float: left;
+    width: 140px;
+    position: relative;
+    left: 180px;
+    overflow: hidden;
+}
+#left-header {
+    margin: 100px 20px 0 0;
+    border-bottom: 3px solid #1A5496;
+}
+#left-header * {
+    display: inline;
+}
+#right-header {
+    margin: 100px 0 0 10px;
+    color: white;
+}
+#right-header p {
+    margin: 16px 0 16px 0;
+    color: white;
+}
+#content {
+    clear: both;
+    display: block;
+    margin: 40px 40px 0 0;
+    line-height: 1.5em;
+}
+
+h1, h2 {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Helvetica, Arial, sans-serif;
+    color: #A7C4E5;
+}
+h1 {
+    font-size: 40px;
+    /* line-height: 61px; */
+    text-transform: uppercase;
+}
+h2 {
+    text-transform: uppercase;
+    font-size: 40px;
+    line-height: 43px;
+}
+h3 {
+    font-size: 21px;
+    margin-bottom: 10px;
+}
+#right-header a:link, #right-header a:visited {
+    text-decoration: none;
+}
+#right-header a:hover, #right-header a:active {
+    text-decoration: underline;
+    color: white;
+}
+
+#content p {
+    font-size: 16px;
+}
+#content ul {
+    margin-left: 40px;
+}
+#right p, #right ul, .displaybox {
+    margin-bottom: 12px;
+}
+
+#content a, #content a:visited {
+    color: black;
+}
+#content a:hover, #content a:active {
+    text-decoration: underline;
+}
+
+.hidden {
+    display:none;
+}
+
+#footer {
+    clear: both;
+    margin: 200px 0 25px 25px;
+    font-size: 12px;
+    color: black;
+}
+#footer a, #footer a:visited {
+    color: black;
+}
+.linkdate {
+    font-family: 'Lucida Console', 'Andale Mono', monospace;
+    color: #888;
+    font-size: 14px;
+    padding: 14px 0;
+}
