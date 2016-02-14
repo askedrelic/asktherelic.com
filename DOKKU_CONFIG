@@ -1,2 +1,3 @@
-dokku config:set ask.apps.asktherelic.com ROOT=build
-dokku domains:add test test.apps.asktherelic.com
+dokku apps:create atr
+dokku config:set atr ROOT=build
+dokku domains:add atr www.asktherelic.com

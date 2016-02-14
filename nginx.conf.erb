@@ -10,6 +10,12 @@ events {
 http {
   types_hash_max_size 2048;
   include mime.types;
+  # force www version
+  server {
+    listen <%= ENV["PORT"] %>;
+    server_name  asktherelic.com;
+    rewrite ^/(.*) http://www.asktherelic.com/$1 permanent;
+  }
   server {
     listen <%= ENV["PORT"] %>;
     server_name  _;
