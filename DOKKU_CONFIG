@@ -1,3 +1,7 @@
+# keep the project simple
 dokku apps:create atr
+# fix the nginx root
 dokku config:set atr ROOT=build
+# handle both domains, but deal with it inside the container
+dokku domains:add atr asktherelic.com
 dokku domains:add atr www.asktherelic.com
