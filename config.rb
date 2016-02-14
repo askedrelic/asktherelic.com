@@ -46,7 +46,7 @@ page "/code.html", :layout => "blog_index"
 
 
 # Make used RSS feed works
-proxy "/feed/", "/feed.xml"
+proxy "/feed", "/feed.xml"
 proxy "/code/feed/index.xml", "/feed.xml"
 
 activate :google_analytics do |ga|
