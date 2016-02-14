@@ -17,27 +17,30 @@ variable in your bashrc. That variable is used to format the output from
     export HISTTIMEFORMAT='%Y-%m-%d %H:%M:%S - '
 
 With a timestamped `.bash_history` file, you can figure out when you were using
-your terminal! Someone else had <a
-href="http://dustin.github.com/2009/01/11/timecard.html">already come up with
-this idea</a> using git history data, so I borrowed most of their code and
-created a new project on github.
+your terminal! Someone else had [already come up with this idea][1] using git
+history data, so I borrowed most of their code and created a new project on
+github.
 
-<a
-href="http://github.com/askedrelic/Bash-History-Punchcard">http://github.com/askedrelic/Bash-History-Punchcard</a>
+[github.com/askedrelic/Bash-History-Punchcard][2]
 
-Sample output from my account on this server (thebehrensventure.com) <a
-href="http://thebehrensventure.com/wp-content/uploads/2009/11/asktherelic-historychart.png"><img
-src="http://thebehrensventure.com/wp-content/uploads/2009/11/asktherelic-historychart-500x187.png"
-alt="asktherelic-historychart" title="asktherelic-historychart" width="500"
-height="187" class="aligncenter size-medium wp-image-736" /></a>
+Sample output from my account on this server (thebehrensventure.com)
 
-Sample output from my main machine (jofur) <a
-href="http://thebehrensventure.com/wp-content/uploads/2009/11/jofur-historychart.png"><img
-src="http://thebehrensventure.com/wp-content/uploads/2009/11/jofur-historychart-500x187.png"
-alt="jofur-historychart" title="jofur-historychart" width="500" height="187"
-class="aligncenter size-medium wp-image-737" /></a>
+<span class="aligncenter">
+[![asktherelic history chart][3]][3]
+</span>
+
+Sample output from my main machine (jofur)
+
+<span class="aligncenter">
+[![jofur history chart][4]][4]
+</span>
 
 So for both of these, my bash history goes back about 7 months, when I turned on
 the variable. It's not 100% accurate either because I have duplicates being
 ignored and some other settings altering my bash history. It looks like
 Tue/Wed/Thur are my big days for getting stuff done!
+
+[1]: http://dustin.github.com/2009/01/11/timecard.html
+[2]: http://github.com/askedrelic/Bash-History-Punchcard
+[3]: /pic/asktherelic-historychart.png
+[4]: /pic/jofur-historychart.png
