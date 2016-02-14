@@ -10,12 +10,14 @@ events {
 http {
   types_hash_max_size 2048;
   include mime.types;
-  # force www version
+
+  # Force canonical www version
   server {
     listen <%= ENV["PORT"] %>;
     server_name  asktherelic.com;
     rewrite ^/(.*) http://www.asktherelic.com/$1 permanent;
   }
+
   server {
     listen <%= ENV["PORT"] %>;
     server_name  www.asktherelic.com;
@@ -24,7 +26,12 @@ http {
     <% else %>
       root /app/www;
     <% end %>
+
     index index.html index.xml;
+
+    # More RSS feed fixing
+    location /feed/ { rewrite ^ $scheme://$http_host/code/feed/index.xml permanent;}
+
     # Fix trailing slash 301 behavior; nginx was redirecting to host:port
     if (-d $request_filename) {
         rewrite [^/]$ $scheme://$http_host$uri/ permanent;
