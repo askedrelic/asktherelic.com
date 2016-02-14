@@ -18,7 +18,8 @@ http {
     <% else %>
       root /app/www;
     <% end %>
-    index index.html;
+    index index.html index.xml;
+    # Fix trailing slash 301 behavior; nginx was redirecting to host:port
     if (-d $request_filename) {
         rewrite [^/]$ $scheme://$http_host$uri/ permanent;
     }
