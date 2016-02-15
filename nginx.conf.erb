@@ -26,6 +26,8 @@ http {
     <% else %>
       root /app/www;
     <% end %>
+    access_log  /tmp/access.log;
+    error_log   /tmp/error.log;
 
     index index.html index.xml;
 
