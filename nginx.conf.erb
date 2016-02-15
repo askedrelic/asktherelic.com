@@ -12,11 +12,11 @@ http {
   include mime.types;
 
   # Force canonical https www version
-  server {
-    listen <%= ENV["PORT"] %>;
-    server_name  asktherelic.com;
-    rewrite ^/(.*) $scheme://www.asktherelic.com/$1 permanent;
-  }
+  #server {
+  #  listen <%= ENV["PORT"] %>;
+  #  server_name  asktherelic.com;
+  #  rewrite ^/(.*) $scheme://www.asktherelic.com/$1 permanent;
+  #}
 
   server {
     listen <%= ENV["PORT"] %>;
