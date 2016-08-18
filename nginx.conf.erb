@@ -21,7 +21,7 @@ http {
 
   server {
     listen <%= ENV["PORT"] %>;
-    server_name  www.asktherelic.com;
+    server_name  asktherelic.com www.asktherelic.com;
     <% if ENV["ROOT"] %>
       root /app/www/<%= ENV["ROOT"] %>;
     <% else %>
