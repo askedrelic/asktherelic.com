@@ -8,7 +8,7 @@
 server {
   listen      [::]:{{ $listen_port }};
   listen      {{ $listen_port }};
-  {{ if $.NOSSL_SERVER_NAME }}server_name {{ $.NOSSL_SERVER_NAME }}; {{ end }}
+  server_name asktherelic.com www.asktherelic.com
   access_log  /var/log/nginx/{{ $.APP }}-access.log;
   error_log   /var/log/nginx/{{ $.APP }}-error.log;
 
