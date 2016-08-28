@@ -22,11 +22,8 @@ http {
   server {
     listen <%= ENV["PORT"] %>;
     server_name  asktherelic.com www.asktherelic.com;
-    <% if ENV["ROOT"] %>
-      root /app/www/<%= ENV["ROOT"] %>;
-    <% else %>
-      root /app/www;
-    <% end %>
+    # NOTE: using custom 'build' dir to serve this app
+    root /app/www/build;
     access_log  /tmp/access.log;
     error_log   /tmp/error.log;
 
