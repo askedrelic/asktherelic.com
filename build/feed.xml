@@ -3,7 +3,7 @@
  <title>/code - asktherelic.com</title>
  <link href="http://asktherelic.com/code/feed/" rel="self"/>
  <link href="http://asktherelic.com/" />
- <updated>2016-09-04T14:23:01+02:00</updated>
+ <updated>2016-09-04T16:03:49+02:00</updated>
 
  <author>
     <name>Matt Behrens</name>
@@ -166,7 +166,7 @@ a first step. How many boxes of tapes or old photographs do you have at your
 parent&rsquo;s house? Convert them to a digital format today, before they fall apart.</p>
 
 <p><span class="aligncenter">
-<img alt="Legoland 1994" src="/pic/legoland94.jpg" />
+<img src="/pic/legoland94.jpg" alt="Legoland 1994" />
 </span></p>
 
 <p>I&rsquo;ve looked at local video conversion places and have been quoted $25/tape for
@@ -268,7 +268,7 @@ to become runtime errors. The number of times I&rsquo;ve run into date/time/date
 conversion errors in Python has definitely pushed me to test more. I can assume
 what code is doing all day long, until I actually test it and find that one
 instance when the API does something you weren&rsquo;t expecting. Even assuming that
-you really understand dates or <a title="Seriously, what the hell" href="http://blog.counsyl.com/2013/09/27/true-facts-about-time-zones/">timezones</a> is often incorrect.</p>
+you really understand dates or <a href="http://blog.counsyl.com/2013/09/27/true-facts-about-time-zones/" title="Seriously, what the hell">timezones</a> is often incorrect.</p>
 
 <p>When you run into a new problem, having a test environment setup that you can
 easily jump into will save time and get you fixing things quicker. The more you
@@ -322,7 +322,6 @@ docs for <a href="http://bottlepy.org/docs/dev/tutorial.html#generating-content"
 <span class="n">bottle</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
 <span class="n">bottle</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">'0.0.0.0'</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">8000</span><span class="p">,</span> <span class="n">reloader</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </code></pre>
-
 <p>This code worked great in Chrome; console output was streamed with pauses and
 the connection was not dropped.</p>
 
@@ -335,7 +334,6 @@ major.</p>
 <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">r</span><span class="o">.</span><span class="n">iter_lines</span><span class="p">():</span>
     <span class="k">print</span> <span class="n">line</span>
 </code></pre>
-
 <h3>The First Mistake</h3>
 
 <p>After running the client a few times, the output wasn&rsquo;t getting streamed.
@@ -369,7 +367,6 @@ also not sending <code class="prettyprint">\r\n</code>, the standard <a href="ht
 <pre class="highlight python"><code><span class="n">ITER_CHUNK_SIZE</span> <span class="o">=</span> <span class="mi">512</span>
 <span class="k">def</span> <span class="nf">iter_lines</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chunk_size</span><span class="o">=</span><span class="n">ITER_CHUNK_SIZE</span><span class="p">,</span> <span class="n">decode_unicode</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
 </code></pre>
-
 <p>Setting <code class="prettyprint">chunk_size=1</code> made my client immediately print output, solving all my
 problems.</p>
 
@@ -417,7 +414,6 @@ Python virtual environments</a>, which I added to my <code class="prettyprint">.
 <span class="c">#? 3</span>
 <span class="o">(</span>mrcoles<span class="o">)</span>12:54:33 pcoles@peters_air:~/projects/mrcoles &gt;
 </code></pre>
-
 <p>This method for selecting an input stood out to me for being so simple: just
 a numbered list. Many command line applications make input too complex, making
 the user think about <em>what</em> they want to select, making them type it in
@@ -440,7 +436,6 @@ the code again, I found it was just a Bash builtin function:</p>
     </span>is the <span class="nb">exit </span>status of the last <span class="nb">command </span>executed <span class="k">in </span>list, or zero <span class="k">if </span>no
     commands were executed.
 </code></pre>
-
 <p>I started hacking, got it working, then forgot it about. Now coming back to the
 code with an internet connection, I&rsquo;ve released it on <a href="https://pypi.python.org/pypi/pyselect">PyPI</a> and <a href="https://github.com/askedrelic/pyselect">Github</a>.</p>
 
@@ -455,7 +450,6 @@ code with an internet connection, I&rsquo;ve released it on <a href="https://pyp
 <span class="c">#? 2</span>
 <span class="n">Out</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="s">'oranges'</span>
 </code></pre>
-
 <p>But can also be used as a Python module, when scripting:</p>
 <pre class="highlight shell"><code><span class="gp">$ </span>python -m pyselect <span class="k">$(</span>ls<span class="k">)</span>
 1<span class="o">)</span> LICENSE.txt
@@ -469,7 +463,6 @@ code with an internet connection, I&rsquo;ve released it on <a href="https://pyp
 <span class="c">#? 4</span>
 pyselect.egg-info/
 </code></pre>
-
 <p>Or in a Bash pipe:</p>
 <pre class="highlight shell"><code><span class="gp">$ </span>ls | xargs python -m pyselect
 1<span class="o">)</span> LICENSE.txt
@@ -483,7 +476,6 @@ pyselect.egg-info/
 <span class="c">#? 5</span>
 pyselect.py
 </code></pre>
-
 <p>But that&rsquo;s where things kind of fall apart. Within a standard interactive Python
 application, stdin and stdout are simple and pyselect just works. Getting the
 pipe-in to work required a bit more work, hooking in/out up the user&rsquo;s tty,
@@ -491,7 +483,6 @@ which the pipe drops. My holy grail would be a pipe-in and pipe-out to make
 selecting anything much easier:</p>
 <pre class="highlight plaintext"><code>$ ls | xargs python -m pyselect | cp $0 test.txt
 </code></pre>
-
 <p>Or display all your git branches and jump to one. Or virtualenvs. Or
 directories. Double pipe redirects the pyselect output/input and doesn&rsquo;t work.
 I&rsquo;ve read up on named pipes that might be able to solve this, but I haven&rsquo;t
@@ -505,7 +496,6 @@ found a Python solution yet.</p>
     <span class="k">done</span>;
 <span class="o">}</span>
 </code></pre>
-
 <h3>Moving Forward</h3>
 
 <p>For now, I have some other ideas to try with selecting things:</p>
@@ -642,7 +632,7 @@ getting a little wet, and finding some new limits for what I know I can
 accomplish.</p>
 
 <p><span class="aligncenter">
-<img alt="Me during the GoRuck" src="/pic/goruck1.jpg" />
+<img src="/pic/goruck1.jpg" alt="Me during the GoRuck" />
 </span></p>
 
 <h3>What is GoRuck?</h3>
