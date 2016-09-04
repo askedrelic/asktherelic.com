@@ -1,5 +1,6 @@
 ###
 # Blog settings
+# Docs: https://middlemanapp.com/basics/install/
 ###
 
 activate :syntax
