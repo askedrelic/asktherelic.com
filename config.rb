@@ -40,6 +40,7 @@ end
 activate :directory_indexes
 
 page "/", :layout => "index"
+# /feed is a 301 in nginx
 page "/feed.xml", :layout => false
 page "/projects.html", :layout => false
 page "/code.html", :layout => "blog_index"
