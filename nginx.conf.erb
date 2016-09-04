@@ -19,9 +19,16 @@ http {
   #  rewrite ^/(.*) $scheme://www.asktherelic.com/$1 permanent;
   #}
 
+  # Catch default server requests
   server {
     listen <%= ENV["PORT"] %>;
     server_name _;
+    return      442;
+  }
+
+  server {
+    listen <%= ENV["PORT"] %>;
+    server_name www.asktherelic.com;
     # NOTE: using custom 'build' dir to serve this app
     root /app/www/build;
     access_log  /tmp/access.log;
