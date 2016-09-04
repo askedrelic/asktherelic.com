@@ -1,4 +1,4 @@
-# INTERNAL nginx app config
+# docker app INTERNAL nginx config
 worker_processes 1;
 error_log stderr;
 pid nginx.pid;
@@ -21,20 +21,20 @@ http {
 
   server {
     listen <%= ENV["PORT"] %>;
-    server_name  asktherelic.com www.asktherelic.com;
+    server_name _;
     # NOTE: using custom 'build' dir to serve this app
     root /app/www/build;
     access_log  /tmp/access.log;
     error_log   /tmp/error.log;
 
-    index index.html index.xml;
+    index index.html index.htm index.xml;
 
     # More RSS feed fixing
     location /feed/ { rewrite ^ $scheme://$http_host/code/feed/ permanent;}
 
     # Fix trailing slash 301 behavior; nginx was redirecting to host:port
-    if (-d $request_filename) {
-        rewrite [^/]$ $scheme://$http_host$uri/ permanent;
-    }
+    #if (-d $request_filename) {
+    #    rewrite [^/]$ $scheme://$http_host$uri/ permanent;
+    #}
   }
 }
