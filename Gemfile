@@ -15,3 +15,6 @@ gem "middleman-syntax"
 gem 'rouge'
 gem "middleman-more"
 gem "middleman-minify-html"
+
+gem 'therubyracer' # faster JS compiles
+gem 'oj' # faster JS compiles
