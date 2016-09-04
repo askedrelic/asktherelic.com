@@ -40,8 +40,9 @@ http {
     location /feed/ { rewrite ^ $scheme://$http_host/code/feed/ permanent;}
 
     # Fix trailing slash 301 behavior; nginx was redirecting to host:port
-    #if (-d $request_filename) {
-    #    rewrite [^/]$ $scheme://$http_host$uri/ permanent;
-    #}
+    # IE; https://www.asktherelic.com/code
+    if (-d $request_filename) {
+        rewrite [^/]$ $scheme://$http_host$uri/ permanent;
+    }
   }
 }
