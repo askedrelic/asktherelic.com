@@ -20,11 +20,11 @@ http {
   #}
 
   # Catch default server requests
-  server {
-    listen <%= ENV["PORT"] %>;
-    server_name _;
-    return      442;
-  }
+  # server {
+  #   listen <%= ENV["PORT"] %>;
+  #   server_name _;
+  #   return      442;
+  # }
 
   server {
     listen <%= ENV["PORT"] %>;
