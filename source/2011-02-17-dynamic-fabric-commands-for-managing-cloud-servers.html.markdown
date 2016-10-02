@@ -72,7 +72,7 @@ library][3] using that api, which I can use to used to get a list of
 all currently running Linode servers and their IPs. Extending my code above,
 you can get a dynamic list of your Linode servers in Fabric!
 
-```
+```python
 def _createHost(hostName, hostSize, hostList):
     moduleObj = sys.modules[__name__]
     def setHost():
