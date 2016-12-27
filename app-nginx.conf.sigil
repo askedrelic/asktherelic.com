@@ -13,12 +13,12 @@ http {
   server {
     listen {{ $.PORT }};
 
-    /* default server */
-    /* server_name  _; */
-    /* NOTE: force servername, for some reason */
+    {{/* default server */}}
+    {{/* server_name  _; */}}
+    {{/* NOTE: force servername, for some reason */}}
     server_name www.asktherelic.com;
 
-    /* NOTE: custom build directory, for middleman */
+    {{/* NOTE: custom build directory, for middleman */}}
     root /app/www/build;
 
     index index.html;
@@ -27,11 +27,13 @@ http {
       try_files $uri $uri/ /index.html;
     }
 
-    /* More RSS feed fixing */
+    {{/* More RSS feed fixing */}}
     location /feed/ { rewrite ^ $scheme://$http_host/code/feed/ permanent;}
 
-    /* Fix trailing slash 301 behavior; nginx was redirecting to host:port */
-    /* IE; https://www.asktherelic.com/code */
+    {{/* 
+    Fix trailing slash 301 behavior; nginx was redirecting to host:port
+    IE; https://www.asktherelic.com/code 
+    */}}
     if (-d $request_filename) {
         rewrite [^/]$ $scheme://$http_host$uri/ permanent;
     }
