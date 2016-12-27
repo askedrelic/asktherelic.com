@@ -3,6 +3,9 @@
 # Docs: https://middlemanapp.com/basics/install/
 ###
 
+# ooooh ruby https://github.com/middleman/middleman/issues/2002
+Tilt::SYMBOL_ARRAY_SORTABLE = false
+
 activate :syntax
 
 set :markdown_engine, :redcarpet
