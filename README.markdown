@@ -6,7 +6,9 @@ It's a blog.
 Built using Middleman. See docs here https://middlemanapp.com/basics/install/
 
 ```
-# latest gems
+# confirm ruby env
+$ gem env
+# install latest gems
 $ bundle
 # run dev server
 $ bundle exec middleman
