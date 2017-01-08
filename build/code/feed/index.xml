@@ -3,18 +3,95 @@
  <title>/code - asktherelic.com</title>
  <link href="http://www.asktherelic.com/code/feed/" rel="self"/>
  <link href="http://www.asktherelic.com/" />
- <updated>2017-01-08T13:05:10+01:00</updated>
+ <updated>2017-01-08T15:26:11+01:00</updated>
 
  <author>
     <name>Matt Behrens</name>
  </author>
 
  <entry>
+   <id>http://asktherelic.com/2017/01/08/hosting-with-dokku/</id>
+   <title>Hosting with Dokku</title>
+   <link href="http://www.asktherelic.com/2017/01/08/hosting-with-dokku/?utm_source=RSS_Feed&amp;utm_medium=RSS&amp;utm_campaign=RSS_Syndication"/>
+   <published>2017-01-08T22:03:00+01:00</published>
+   <updated>2017-01-08T22:03:00+01:00</updated>
+   <author>
+       <name>Matt Behrens</name>
+   </author>
+   <content type="html"><![CDATA[
+    <p>Having a platform to share my thoughts and work has always been important to me,
+even when I only have time to use it sparingly. <a href="http://waxy.org/2016/11/redesigning-waxy-2016-edition/">I still like blogging.</a> This
+blog also has been a great learning opportunity and with its latest upgrade:
+it’s now running 100% over HTTPS (thanks to <a href="https://letsencrypt.org/)">Let’s Encypt</a> and being being
+deployed by Dokku and Docker.</p>
+
+<h3>Dokku?</h3>
+
+<p><a href="https://github.com/dokku/dokku">Dokku</a> is a free replacement for Heroku, that you can run on your own
+server. Without using too many acronyms, it&rsquo;s an app management tool built
+around Docker. I started <a href="/2011/11/05/unix-style-cron-on-heroku-s-cedar-stack/">using Heroku</a> back in 2011, when they added support
+for Python. The simple command line interface for app deployment and free CPU
+time was a great selling point.</p>
+
+<p>But as costs lowered for servers and with a personal desire to control more of
+my own tools, for privacy and security reasons, the option to run my own became
+really interesting.</p>
+
+<h3>Some History</h3>
+
+<p>There have been three major versions of my blog, with different goals at
+different times (although using three different programming languages wasn&rsquo;t
+been goal, just a coincidence):</p>
+
+<ul>
+<li><a href="https://wordpress.com/">WordPress</a>, PHP, 2006 - 2010ish</li>
+<li><a href="http://www.blogofile.com/">Blogofile</a>, Python, 2010 - 2013</li>
+<li><a href="https://middlemanapp.com/">Middleman</a>, Ruby, 2013 - present</li>
+</ul>
+
+<p>Middleman is still currently being used to <a href="/2013/08/05/a-newer-branch/">generate this blog as a static
+website</a>, but now with Dokku, it can be deployed and updated via git push,
+which it really easy and convenient!</p>
+
+<h3>Dokku Details</h3>
+
+<p>Docker is new hotness that makes deploying code really easy, but it’s still
+a very manual tool, which is where Dokku comes in.
+<a href="http://dokku.viewdocs.io/dokku/">Dokku</a> controls Docker and makes it easy to
+deploy whole applications; connecting databases,  caching servers, or multiple
+servers together easily. It has a a simple command line interface and support
+for plugins.</p>
+
+<p>So what this means to me:</p>
+
+<ul>
+<li>It’s easier to deploy a new server now. Dokku manages app configs, so I closer
+to having a <a href="https://12factor.net/">12 factor app</a>, where configuration is part of the
+environment (server) and not part of the app. This makes it easier to keep my
+source code open.</li>
+<li>I can use plugins to setup SSL or databases correctly. The
+<a href="https://github.com/dokku/dokku-letsencrypt">Let&rsquo;s Encrypt</a> plugin is really easy to use and makes an already easy
+process foolproof. I&rsquo;m a big fan of <a href="https://github.com/dokku/dokku-postgres">PostgreSQL</a> but I still have some
+legacy LAMP apps I&rsquo;m running that need <a href="https://github.com/dokku/dokku-mysql">MySQL</a>. These plugins make it so
+easy to boot a database and have it backed up automatically to S3. More things
+are automated, hopefully leaving more time to create new things.</li>
+<li>Best practices and examples are easily shared. The nginx config that is
+running this blog comes from <a href="https://github.com/dokku/buildpack-nginx">a github fork</a>, that has continued to be
+improved overtime.</li>
+</ul>
+
+<p>So I recommend Dokku if you are interested in running webapps easily and
+controlling your server. You can see this blog&rsquo;s <a href="https://github.com/askedrelic/asktherelic.com">code on github</a>, if you
+want to learn more.</p>
+
+   ]]></content>
+ </entry>
+ <entry>
    <id>http://asktherelic.com/2016/09/18/testing-the-layers-of-your-application-at-pyconuk-2016/</id>
    <title>Testing the Layers of Your Application at PyConUK 2016</title>
    <link href="http://www.asktherelic.com/2016/09/18/testing-the-layers-of-your-application-at-pyconuk-2016/?utm_source=RSS_Feed&amp;utm_medium=RSS&amp;utm_campaign=RSS_Syndication"/>
-   <published>2016-09-19T03:00:00+02:00</published>
-   <updated>2016-09-19T03:00:00+02:00</updated>
+   <published>2016-09-19T04:00:00+02:00</published>
+   <updated>2016-09-19T04:00:00+02:00</updated>
    <author>
        <name>Matt Behrens</name>
    </author>
@@ -60,8 +137,8 @@ everything. It’s as easy as cake!</em></p>
    <id>http://asktherelic.com/2014/04/21/upgrading-my-dotfiles-to-symlinks/</id>
    <title>Upgrading My Dotfiles To Symlinks</title>
    <link href="http://www.asktherelic.com/2014/04/21/upgrading-my-dotfiles-to-symlinks/?utm_source=RSS_Feed&amp;utm_medium=RSS&amp;utm_campaign=RSS_Syndication"/>
-   <published>2014-04-22T06:12:00+02:00</published>
-   <updated>2014-04-22T06:12:00+02:00</updated>
+   <published>2014-04-22T07:12:00+02:00</published>
+   <updated>2014-04-22T07:12:00+02:00</updated>
    <author>
        <name>Matt Behrens</name>
    </author>
@@ -754,64 +831,6 @@ bricks to the top of the backpack</li>
 </ul>
 
 <p>Here&rsquo;s to being prepared!</p>
-
-   ]]></content>
- </entry>
- <entry>
-   <id>http://asktherelic.com/2013/04/19/write-the-docs-2013/</id>
-   <title>Write The Docs 2013</title>
-   <link href="http://www.asktherelic.com/2013/04/19/write-the-docs-2013/?utm_source=RSS_Feed&amp;utm_medium=RSS&amp;utm_campaign=RSS_Syndication"/>
-   <published>2013-04-19T19:37:00+02:00</published>
-   <updated>2013-04-19T19:37:00+02:00</updated>
-   <author>
-       <name>Matt Behrens</name>
-   </author>
-   <content type="html"><![CDATA[
-    <p>There is definite value to moving where you work and frequently changing your
-perspective on your work, when you are looking for ideas. I have gotten some of
-my best ideas recently from conferences, traveling to PyCon in Santa Clara and
-this past weekend, Write the Docs in Portland.</p>
-
-<h3>The What</h3>
-
-<p><a href="http://conf.writethedocs.org/">Write the Docs</a> is a conference organized to talk about documentation, for
-those who document, organize, and share information. It originated as a crazy
-idea over beers, but the founders kept investigating and figured out how they
-could actually make a conference happen. I found out about it via Hacker News
-and decided to sign up as a cheap and fun trip to Portland.</p>
-
-<p>The conference was on a Monday/Tuesday. I fly up from San Francisco the Saturday
-before and hung out for the weekend. On Sunday, there was a meet and greet hike,
-followed by a meet and greet beer bash. I had a great time: from meeting so many
-cool people, to getting exposed to many different new ideas about why or how to
-write. The conference was held in a theatre with a single track of talks and it
-was a great format to be able to sit back and focus on a talk, without having to
-worry about missing anything.</p>
-
-<h3>The Talks</h3>
-
-<p>If anything, there were too many great talks to process in two short days, but
-I think everyone managed. There seemed to be a good fifty/fifty mix of
-programmers to technical writers. <a href="http://docs.writethedocs.org/en/2013/conference/talks.html#kenneth-reitz">Kenneth Reitz</a> was the keynote (or just
-the first speaker) and gave an excellent argument for the importance of
-documenting and was . an excellent speaker, as always. <a href="http://docs.writethedocs.org/en/2013/conference/talks.html#brandon-philips">Brandon Philips</a> had
-a great talk on single page documentation that made solid sense to me. <a href="http://docs.writethedocs.org/en/2013/conference/talks.html#kevin-hale">Kevin Hale</a>
-also had a very well presented talk on reaching out to your customers
-and keeping communication open.</p>
-
-<p>The writing and literary talks were different from what I&rsquo;m used to as
-a programmer, but I found them quite refreshing. One talk that stood out was
-from <a href="http://docs.writethedocs.org/en/2013/conference/talks.html#matthew-butterick-typography-for-docs">Matthew Butterick</a>, on the importance of having a succinct message when
-writing. He then gave out free copies of his book <a href="http://www.typographyforlawyers.com/">&ldquo;Typography for Lawyers,&rdquo;</a>
-which after finishing, is a very informative and succinct
-reference on the technical elements of writing.</p>
-
-<h3>The Future</h3>
-
-<p>Hopefully next year, I will have something to present. The organizers said they
-were looking to hold the conference again next year and I would be very keen on
-attending, Portland is a great venue. Thanks to <a href="http://conf.writethedocs.org/#crew">the Erics and Troy</a> for
-a great conference.</p>
 
    ]]></content>
  </entry>

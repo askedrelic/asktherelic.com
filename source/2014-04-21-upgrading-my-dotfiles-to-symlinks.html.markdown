@@ -1,7 +1,6 @@
 ---
 title: Upgrading My Dotfiles To Symlinks
-date: 2014-04-21 21:12 PDT
-tags:
+date: 2014-04-21 21:12 PST
 ---
 
 Tinkering with my configuration and dotfiles is a never ending hobby. After

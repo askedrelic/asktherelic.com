@@ -1,7 +1,6 @@
 ---
 title: Testing the Layers of Your Application at PyConUK 2016
-date: 2016-09-18 18:00 PDT
-tags:
+date: 2016-09-18 18:00 PST
 ---
 
 This weekend, I presented at [PyConUK 2016][1],
