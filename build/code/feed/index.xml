@@ -3,7 +3,7 @@
  <title>/code - asktherelic.com</title>
  <link href="http://www.asktherelic.com/code/feed/" rel="self"/>
  <link href="http://www.asktherelic.com/" />
- <updated>2017-01-08T15:26:11+01:00</updated>
+ <updated>2017-01-09T15:50:42+01:00</updated>
 
  <author>
     <name>Matt Behrens</name>
@@ -41,7 +41,7 @@ really interesting.</p>
 
 <p>There have been three major versions of my blog, with different goals at
 different times (although using three different programming languages wasn&rsquo;t
-been goal, just a coincidence):</p>
+the goal, just a coincidence):</p>
 
 <ul>
 <li><a href="https://wordpress.com/">WordPress</a>, PHP, 2006 - 2010ish</li>
@@ -51,7 +51,7 @@ been goal, just a coincidence):</p>
 
 <p>Middleman is still currently being used to <a href="/2013/08/05/a-newer-branch/">generate this blog as a static
 website</a>, but now with Dokku, it can be deployed and updated via git push,
-which it really easy and convenient!</p>
+which is really easy and convenient!</p>
 
 <h3>Dokku Details</h3>
 
