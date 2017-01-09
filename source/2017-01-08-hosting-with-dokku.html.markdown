@@ -25,7 +25,7 @@ really interesting.
 
 There have been three major versions of my blog, with different goals at
 different times (although using three different programming languages wasn't
-been goal, just a coincidence):
+the goal, just a coincidence):
 
 * [WordPress][5], PHP, 2006 - 2010ish
 * [Blogofile][6], Python, 2010 - 2013
@@ -33,7 +33,7 @@ been goal, just a coincidence):
 
 Middleman is still currently being used to [generate this blog as a static
 website][8], but now with Dokku, it can be deployed and updated via git push,
-which it really easy and convenient!
+which is really easy and convenient!
 
 ### Dokku Details
 
