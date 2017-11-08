@@ -40,7 +40,7 @@ all of that and more. Want to try a new plugin? Download it to your vim bundle
 directory and give it a try. Git status will show you that it's an untracked
 directory and you haven't added it your dotfiles yet. When you decide you like
 it, you can add it as a submodule and checkout version X, which you know works
-correctly with your system. 
+correctly with your system.
 
 Want to try out the latest dev version? Is there even a newer version to try?
 Pull latest in that plugin's git repo and see if there are updates. If you like

@@ -4,7 +4,7 @@ date: 2013/03/25 22:40:20
 tags: ''
 title: PyCon 2013 Wrapup
 ---
-    
+
 This year was my second PyCon and I wanted to share some thoughts from the
 experience. Although it is quite a large event running well over a week,
 I attended for just a few days and took away a good amount of information. The
