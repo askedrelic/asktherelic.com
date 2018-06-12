@@ -10,7 +10,7 @@ to try and save some money monthly. One of the final pieces of rebuilding the
 server was to add a server status page. I tried at first with some php exec
 calls and command one-liners, but that was pretty limited functionally and
 required me to handle all the formatting. Then I found
-[Munin](http://munin.projects.linpro.no/), a script-based monitoring tool that
+[Munin](http://munin-monitoring.org/), a script-based monitoring tool that
 uses RRDTool to create static graphs that you can view through your web server.
 
 Several different monitoring tools popped up during my initial search, most
@@ -25,7 +25,7 @@ server-farms, you can run the server and node on the same server without
 a problem. It's taken me only a few hours to setup and tweak things over the
 last few days and I'm quite happy with it. While I'm not going to leave my
 server stats visible to the public, you can [view example output
-here](http://munin.ping.uio.no/ping.uio.no/bimbo.ping.uio.no.html).
+here](http://munin.ping.uio.no/).
 
 After tweaking, the coolest things I have running right now are:
 
