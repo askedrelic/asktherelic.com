@@ -11,17 +11,17 @@ body {
 }
 
 #left {
+    min-height: 100%;
+    float: left;
+    width: 50%;
+    background: #1A5496;
+}
+#right {
     position: absolute;
     top: 250px;
     left: 50%;
-    width: 200px;
-    margin-left: -260px;
-}
-#right {
-    min-height: 100%;
-    float: right;
-    width: 50%;
-    background: #1A5496;
+    width: 220px;
+    margin-left: 40px;
 }
 #headshot {
     width: 200px;
@@ -38,6 +38,7 @@ body {
     display: block;
     margin: 88px 40px 0 40px;
     line-height: 1.5em;
+    width: 600px;
 }
 
 h1, h2 {
@@ -59,7 +60,7 @@ h2 {
 #content ul {
     margin-left: 40px;
 }
-h2, #right p, #right ul, .displaybox {
+h2, #left p, #left ul, .displaybox {
     margin-bottom: 18px;
 }
 

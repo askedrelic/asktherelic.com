@@ -4,7 +4,7 @@
 ###
 
 # ooooh ruby https://github.com/middleman/middleman/issues/2002
-Tilt::SYMBOL_ARRAY_SORTABLE = false
+#Tilt::SYMBOL_ARRAY_SORTABLE = false
 
 activate :syntax
 
@@ -53,10 +53,6 @@ page "/code.html", :layout => "blog_index"
 
 # Make used RSS feed works
 proxy "/code/feed/index.xml", "/feed.xml"
-
-activate :google_analytics do |ga|
-  ga.tracking_id = 'UA-1004202-1'
-end
 
 set :css_dir, 'stylesheets'
 set :js_dir, 'javascripts'
