@@ -11,22 +11,23 @@ body {
 }
 
 #left {
-    min-height: 100%;
-    float: left;
-    width: 50%;
-    background: #1A5496;
-}
-#right {
     position: absolute;
     top: 250px;
     left: 50%;
-    width: 220px;
-    margin-left: 40px;
+    width: 200px;
+    margin-left: -260px;
+}
+#right {
+    min-height: 100%;
+    float: right;
+    width: 50%;
+    /* background: #1A5496; */
+    background: #0077b7;
 }
 #headshot {
     width: 200px;
     height: 300px;
-    border: 10px solid #2D445E;
+    border: 10px solid #0077b7;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
@@ -38,12 +39,14 @@ body {
     display: block;
     margin: 88px 40px 0 40px;
     line-height: 1.5em;
-    width: 600px;
 }
 
 h1, h2 {
     font-family: "Lucida Sans Unicode", "Lucida Grande", Helvetica, Arial, sans-serif;
-    color: #A7C4E5;
+    /* color: #195495; */
+    /* color: #A7C4E5; */
+    /* color: #f47d66; */
+    color: #ffc2ac;
 }
 h1 {
     font-size: 40px;
@@ -60,7 +63,7 @@ h2 {
 #content ul {
     margin-left: 40px;
 }
-h2, #left p, #left ul, .displaybox {
+h2, #right p, #right ul, .displaybox {
     margin-bottom: 18px;
 }
 

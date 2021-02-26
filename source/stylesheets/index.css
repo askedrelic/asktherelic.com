@@ -21,12 +21,13 @@ body {
     min-height: 100%;
     float: right;
     width: 50%;
-    background: #1A5496;
+    /* background: #1A5496; */
+    background: #0077b7;
 }
 #headshot {
     width: 200px;
     height: 300px;
-    border: 10px solid #2D445E;
+    border: 10px solid #0077b7;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
@@ -42,7 +43,10 @@ body {
 
 h1, h2 {
     font-family: "Lucida Sans Unicode", "Lucida Grande", Helvetica, Arial, sans-serif;
-    color: #A7C4E5;
+    /* color: #195495; */
+    /* color: #A7C4E5; */
+    /* color: #f47d66; */
+    color: #ffc2ac;
 }
 h1 {
     font-size: 40px;
