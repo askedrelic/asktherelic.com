@@ -6,10 +6,12 @@ It's a blog.
 Built using Middleman. See docs here https://middlemanapp.com/basics/install/
 
 ```
+# get the right ruby version
+rbenv install -s $(cat .ruby-version)
 # confirm ruby env
-$ gem env
+gem env
 # install latest gems
-$ bundle
+bundle
 # run dev server
-$ bundle exec middleman
+bundle exec middleman
 ```
