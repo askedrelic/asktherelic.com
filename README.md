@@ -5,9 +5,12 @@ It's a blog.
 
 Built using Middleman. See docs here https://middlemanapp.com/basics/install/
 
+# Bootstrap
 ```
 # get the right ruby version
 rbenv install -s $(cat .ruby-version)
+# make sure bundle installed
+gem install bundler
 # confirm ruby env
 gem env
 # install latest gems
