@@ -130,15 +130,16 @@ PLATFORMS
 
 DEPENDENCIES
   builder (~> 3.0)
+  eventmachine (= 1.2.7)
   middleman
   middleman-blog
-  middleman-livereload
+  middleman-livereload (= 3.4.7)
   middleman-minify-html
   middleman-more
   middleman-syntax
   oj
-  redcarpet (~> 3.3, >= 3.3.3)
+  redcarpet
   rouge
 
 BUNDLED WITH
-   2.2.21
+   2.3.22

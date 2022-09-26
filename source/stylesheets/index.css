@@ -9,6 +9,13 @@ body {
     font-family: Helvetica, Arial, sans-serif;
     color: white;
 }
+html {
+  max-width: 70ch;
+  /* padding: 3em 1em; */
+  margin: auto;
+  line-height: 1.75;
+  font-size: 1.25em;
+}
 
 #left {
     position: absolute;

@@ -1,10 +1,11 @@
 source "https://rubygems.org"
 
+gem "eventmachine", "1.2.7"
 gem 'middleman'
-gem "middleman-livereload"
+gem "middleman-livereload", "3.4.7"
 gem "middleman-blog"
 
-gem 'redcarpet', '~> 3.3', '>= 3.3.3'
+gem 'redcarpet' #, '~> 3.3', '>= 3.3.3'
 
 # For feed.xml.builder
 gem "builder", "~> 3.0"
