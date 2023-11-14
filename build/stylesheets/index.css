@@ -9,6 +9,13 @@ body {
     font-family: Helvetica, Arial, sans-serif;
     color: white;
 }
+html {
+  max-width: 70ch;
+  /* padding: 3em 1em; */
+  margin: auto;
+  line-height: 1.75;
+  font-size: 1.25em;
+}
 
 #left {
     position: absolute;
@@ -33,7 +40,7 @@ body {
     border-radius: 5px;
 }
 #header {
-    margin: 100px 0 0 40px;
+    margin: 40px 40px 0 40px;
 }
 #content {
     display: block;
@@ -49,16 +56,16 @@ h1, h2 {
     color: #ffc2ac;
 }
 h1 {
-    font-size: 40px;
+    font-size: 2em;
     line-height: 61px;
     text-transform: uppercase;
     /* border-bottom: 3px solid white; */
 }
 h2 {
-    font-size: 22px;
+    /* font-size: 22px; */
 }
 #content p {
-    font-size: 16px;
+    /* font-size: 16px; */
 }
 #content ul {
     margin-left: 40px;
