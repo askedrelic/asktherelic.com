@@ -9,5 +9,5 @@ vendor/
 /.sass-cache
 /.cache
 
-# Ignore .DS_store file
 .DS_Store
+tags
