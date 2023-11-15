@@ -3,10 +3,7 @@ body {
     font-family: Helvetica, Arial, sans-serif;
     margin: 0 8px;
     line-height: 1.75;
-    font-size: 1.25em;
-
-    /* padding: 0; */
-    /* background-color: #fdfdfd; */
+    font-size: 1.1em;
 }
 
 #container {
