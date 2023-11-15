@@ -1,35 +1,37 @@
-html, body {
+html,
+body {
     font-family: Helvetica, Arial, sans-serif;
-    /* margin: 0; */
+    margin: 0 8px;
+    line-height: 1.75;
+    font-size: 1.25em;
+
     /* padding: 0; */
     /* background-color: #fdfdfd; */
 }
-html {
-  max-width: 70ch;
-  padding: 3em 1em;
-  margin: auto;
-  line-height: 1.75;
-  font-size: 1.25em;
-}
+
 #container {
     margin: 0 auto;
     width: 980px;
 }
+
 #container2 {
     float: left;
     width: 100%;
     position: relative;
     right: 0%;
     overflow: hidden;
-    background: #1A5496;
+    background: #0077b7;
 }
+
 #container1 {
     float: left;
     width: 100%;
     position: relative;
     right: 140px;
+    margin-right: -140px;
     background-color: #fdfdfd;
 }
+
 #left {
     float: left;
     width: 800px;
@@ -37,13 +39,16 @@ html {
     left: 140px;
     overflow: hidden;
 }
+
 #left-header {
     margin: 100px 20px 0 0;
     border-bottom: 3px solid #1A5496;
 }
+
 #left-header * {
     display: inline;
 }
+
 #right {
     float: left;
     width: 140px;
@@ -51,22 +56,27 @@ html {
     left: 180px;
     overflow: hidden;
 }
+
 #right-header {
     margin: 100px 0 0 10px;
     color: white;
 }
+
 #right-header p {
     margin: 16px 0 16px 0;
     color: white;
 }
+
 #content {
     word-spacing: .1em;
     line-height: 1.5em;
     padding-top: 35px;
 }
+
 #footer {
     margin-bottom: 40px;
 }
+
 .hr {
     margin-top: 40px;
     margin-bottom: 40px;
@@ -74,6 +84,7 @@ html {
     border-bottom: 3px solid #1A5496;
     width: 100%;
 }
+
 .linkdate {
     font-family: 'Lucida Console', 'Andale Mono', monospace;
     color: #AAA;
@@ -82,42 +93,47 @@ html {
 
 
 a img {
-    border:medium none;
+    border: medium none;
 }
+
 img.noborder {
-    border:medium none !important;
+    border: medium none !important;
 }
+
 .blog_post img {
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
-    background-color:#F3F3F3;
-    border:2px solid #DDDDDD;
-    padding:3px;
-    text-align:center;
+    background-color: #F3F3F3;
+    border: 2px solid #DDDDDD;
+    padding: 3px;
+    text-align: center;
 }
+
 .blog_post a:hover img {
-    background-color:#317DDA;
-    background-color:#F3F3F3;
-    border:2px solid #316598;
+    background-color: #317DDA;
+    background-color: #F3F3F3;
+    border: 2px solid #316598;
 }
 
 
 .aligncenter {
-    display:block;
-    margin-left:auto;
-    margin-right:auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
     text-align: center;
 }
+
 .alignright {
-    display:block;
-    float:right;
-    margin:0 0 4px 8px;
+    display: block;
+    float: right;
+    margin: 0 0 4px 8px;
 }
+
 .alignleft {
-    display:block;
-    float:left;
-    margin:0 8px 4px 0;
+    display: block;
+    float: left;
+    margin: 0 8px 4px 0;
 }
 
 
@@ -125,93 +141,128 @@ div.pygments_pastie {
     border-left: 5px solid #ccc;
     padding-left: 3px;
 }
+
 /* If regular pygments code table, pad 20 to the left */
 div.pygments_pastie {
     margin-left: 0px;
 }
+
 /* Fix extra padding on empty lines in code tag */
 .pygments_pastie p {
     margin: 0;
 }
+
 /* If numerated pygments code table, pad 20 to the left, but pull the text back
  * to look right */
 .pygments_pastie pre {
     overflow: auto;
     width: 760px;
 }
+
 .pygments_pastietable {
     margin-left: 0px;
 }
-.pygments_pastietable tbody tr td .pygments_pastie{
+
+.pygments_pastietable tbody tr td .pygments_pastie {
     margin-left: 0px;
 }
 
 
-h1 a, h1 a:visited {
+h1 a,
+h1 a:visited {
     color: #A7C4E5;
     text-decoration: none;
 }
-h1 a:hover, h2 a:hover, h1 a:active, h2 a:active {
+
+h1 a:hover,
+h2 a:hover,
+h1 a:active,
+h2 a:active {
     color: black;
     text-decoration: underline;
 }
-#left-header h2 a, #left-header h2 a:visited {
-    color: #A7C4E5;
+
+#left-header h2 a,
+#left-header h2 a:visited {
+    color: #ffc2ac;
     text-decoration: none;
 }
-#content h2 a, #content h2 a:visited {
+
+#content h2 a,
+#content h2 a:visited {
     color: #000;
     text-decoration: none;
 }
-#content h2 a:hover, #content h2 a:active {
+
+#content h2 a:hover,
+#content h2 a:active {
     text-decoration: underline;
 }
-#left-header a:link, #left-header a:visited {
+
+#left-header a:link,
+#left-header a:visited {
     text-decoration: none;
 }
-#left-header a:hover, #left-header a:active {
+
+#left-header a:hover,
+#left-header a:active {
     text-decoration: underline;
 }
-#right-header a:link, #right-header a:visited {
+
+#right-header a:link,
+#right-header a:visited {
     text-decoration: none;
 }
-#right-header a:hover, #right-header a:active {
+
+#right-header a:hover,
+#right-header a:active {
     text-decoration: underline;
     color: white;
 }
-.frontpage a, .frontpage a:visited {
+
+.frontpage a,
+.frontpage a:visited {
     color: #111;
     text-decoration: underline;
 }
-.blog_post_title a, .blog_post_title a:visited {
+
+.blog_post_title a,
+.blog_post_title a:visited {
     font-size: 28px;
     color: #A7C4E5;
     font-variant: small-caps;
     text-decoration: none;
 }
+
 .blog_post_title a:hover {
     text-decoration: underline;
 }
-#content a, #content a:visited {
+
+#content a,
+#content a:visited {
     color: #000;
     text-decoration: underline;
 }
 
 
-h1, h2 {
+h1,
+h2 {
     font-family: "Lucida Sans Unicode", "Lucida Grande", Helvetica, Arial, sans-serif;
-    color: #A7C4E5;
+    color: #ffc2ac;
 }
+
 h1 {
     font-size: 40px;
     /* line-height: 61px; */
     text-transform: uppercase;
 }
+
 h2 {
     text-transform: uppercase;
     font-size: 40px;
     line-height: 43px;
 }
+
 .post h2 {
     text-transform: none;
     font-size: 28px;
@@ -240,6 +291,7 @@ pre.highlight code {
     padding: 2px;
     display: block;
 }
+
 code {
     background-color: #EAEAEA;
     margin: 2px;
