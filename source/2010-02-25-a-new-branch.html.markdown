@@ -26,6 +26,6 @@ I've split up most of my travel/tech posts and moved them to their respective
 sites. I'm still cleaning up AskTheRelic, but I hope to keep moving things
 forward slowly. This is all work in progress, bear with me!
 
-[1]: http://www.asktherelic.com
-[2]: http://www.thebehrensventure.com
-[3]: http://blogofile.com/
+[1]: https://www.asktherelic.com
+[2]: https://www.thebehrensventure.com
+[3]: https://blogofile.com/

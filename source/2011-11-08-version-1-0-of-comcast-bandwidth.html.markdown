@@ -61,5 +61,5 @@ Until bandwidth limits disappear, enjoy the script!
 [3]: https://github.com/askedrelic/comcast-bw/zipball/v1.0
 [4]: https://github.com/Adalan
 [5]: http://nma.usk.bz/
-[6]: /2011/11/05/unix-style-cron-on-heroku's-cedar-stack
+[6]: /2011/11/05/unix-style-cron-on-heroku-s-cedar-stack
 [7]: https://github.com/askedrelic/comcast-bw/blob/master/HEROKU_USAGE.markdown
