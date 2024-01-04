@@ -50,9 +50,10 @@ page "/feed.xml", :layout => false
 page "/projects.html", :layout => false
 page "/code.html", :layout => "blog_index"
 
-
-# Make used RSS feed works
+# Make previous RSS feed works
 proxy "/code/feed/index.xml", "/feed.xml"
+# 2024 feed location
+proxy "/code/feed.xml", "/feed.xml"
 
 set :css_dir, 'stylesheets'
 set :js_dir, 'javascripts'
