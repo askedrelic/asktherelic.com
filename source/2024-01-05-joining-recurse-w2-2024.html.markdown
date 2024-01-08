@@ -3,8 +3,8 @@ title: Joining Recurse Center for W2 2024
 date: 2024-01-05 14:00 PST
 ---
 
-I’m thrilled to announce that I've joined the Recurse Center for the Winter 2
-batch, where I'll be immersed in a 12-week community-focused retreat dedicated
+I’m thrilled to announce that I've joined the [Recurse Center](https://recurse.com) 
+for the Winter 2 batch, where I'll be immersed in a 12-week community-focused retreat dedicated
 to programming and self-improvement. In their words, it’s a “retreat where
 curious programmers recharge and grow.”
 
