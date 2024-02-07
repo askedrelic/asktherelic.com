@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta http-equiv="Content-Type" content="text/html" />
 
-        <title>/code - AsktheRelic.com</title>
+        <title><%= is_blog_article? ? current_article.title + " - " : "" %>AskTheRelic.com</title>
         <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="/code/feed.xml" />
 
         <link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/code.css" />
