@@ -3,12 +3,168 @@
  <title>/code - asktherelic.com</title>
  <link href="http://www.asktherelic.com/code/feed/" rel="self"/>
  <link href="http://www.asktherelic.com/" />
- <updated>2024-02-07T15:41:48-08:00</updated>
+ <updated>2024-02-23T16:04:45-08:00</updated>
 
  <author>
     <name>Matt Behrens</name>
  </author>
 
+ <entry>
+   <id>http://asktherelic.com/2024/02/23/exploring-the-tailscale-kubernetes-operator-part1/</id>
+   <title>Exploring the Tailscale Kubernetes Operator - Part 1</title>
+   <link href="http://www.asktherelic.com/2024/02/23/exploring-the-tailscale-kubernetes-operator-part1/?utm_source=RSS_Feed&amp;utm_medium=RSS&amp;utm_campaign=RSS_Syndication"/>
+   <published>2024-02-23T12:00:00-08:00</published>
+   <updated>2024-02-23T12:00:00-08:00</updated>
+   <author>
+       <name>Matt Behrens</name>
+   </author>
+   <content type="html"><![CDATA[
+    <p>I’m a big fan of <a href="http://tailscale.com">Tailscale</a> (TS) and the ease of use it brings to using Wireguard to securely connect servers and apps. They’ve recently been working on a <a href="https://github.com/tailscale/tailscale/tree/main/cmd/k8s-operator">Kubernetes Operator</a> that makes it easy to integrate TS into Kubernetes (K8S). As I’ve personally been moving my internal self-hosted apps and public web apps to K8S, I’ve been curious to integrate the two.</p>
+
+<p>Two big features I’m interested in and I&rsquo;ll cover today:</p>
+
+<ul>
+<li>securely connecting to the K8S apiserver over TS, for managing K8S</li>
+<li>connecting apps over TS, for internal access via the TS network</li>
+</ul>
+
+<p>Preface:</p>
+
+<ul>
+<li>I&rsquo;m doing this all locally via <a href="https://kind.sigs.k8s.io">kind</a>, but it should work on any K8S setup</li>
+<li>Tailscale has this all documented here as well <a href="https://tailscale.com/kb/1236/kubernetes-operator">https://tailscale.com/kb/1236/kubernetes-operator</a></li>
+</ul>
+
+<h3>Access via Tailscale</h3>
+
+<p>Assuming you already have working k8s cluster and context, you need to install the TS Operator. Installing via Helm is also an option, but I chose static files.</p>
+
+<p>Get the latest development version:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>wget https://raw.githubusercontent.com/tailscale/tailscale/main/cmd/k8s-operator/deploy/manifests/operator.yaml
+</code></pre></div>
+<p>Create a new TS Oauth app, for the Operator: 
+<a href="https://login.tailscale.com/admin/settings/oauth">https://login.tailscale.com/admin/settings/oauth</a></p>
+
+<p>Then configure the OAuth secret in the file:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>client_id: XXXXXXXXXX
+client_secret: tskey-XXXXX
+</code></pre></div>
+<p>I&rsquo;m also also choosing to use the TS proxy in auth mode, which &ldquo;impersonates requests from tailnet to the Kubernetes API server&rdquo;. This requires some additional configuration, but seems a bit more flexible versus the &ldquo;noauth&rdquo; mode, which only proxies requests and requires a bit more lower-level work to have your TLS certs configured correctly.</p>
+
+<p>Configure the Operator section in the file:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>name: APISERVER_PROXY 
+value: "true"
+</code></pre></div>
+<p>Apply the file to your cluster</p>
+<div class="highlight"><pre class="highlight plaintext"><code>$ k apply -f operator.yaml
+namespace/tailscale created
+secret/operator-oauth created
+serviceaccount/operator created
+serviceaccount/proxies created
+customresourcedefinition.apiextensions.k8s.io/connectors.tailscale.com created
+customresourcedefinition.apiextensions.k8s.io/proxyclasses.tailscale.com created
+clusterrole.rbac.authorization.k8s.io/tailscale-operator created
+clusterrolebinding.rbac.authorization.k8s.io/tailscale-operator created
+role.rbac.authorization.k8s.io/operator created
+role.rbac.authorization.k8s.io/proxies created
+rolebinding.rbac.authorization.k8s.io/operator created
+rolebinding.rbac.authorization.k8s.io/proxies created
+deployment.apps/operator created
+ingressclass.networking.k8s.io/tailscale created
+</code></pre></div>
+<p>Then for auth proxy, apply the RBAC roles in the most insecure fashion:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>curl -s https://raw.githubusercontent.com/tailscale/tailscale/main/cmd/k8s-operator/deploy/manifests/authproxy-rbac.yaml | k apply -f -
+clusterrole.rbac.authorization.k8s.io/tailscale-auth-proxy unchanged
+clusterrolebinding.rbac.authorization.k8s.io/tailscale-auth-proxy unchanged
+</code></pre></div>
+<p>I&rsquo;m using my own private tailscale network, so auth-ing myself with all privileges is easiest:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>kubectl create clusterrolebinding askedrelic --user="askedrelic@github" --clusterrole=cluster-admin
+</code></pre></div>
+<p>Lastly, you can use Tailscale to create your K8S context and use it!</p>
+<div class="highlight"><pre class="highlight plaintext"><code>tailscale configure kubeconfig tailscale-operator
+</code></pre></div>
+<p>You should have K8S access using the TS context now!</p>
+
+<p>There are other options for getting secure access to your apiserver via ssh forwarding or tailscale subnets on the server itself, but consolidating more configuration like this into K8S makes sense for me.</p>
+
+<h3>Connecting to Internal Apps via Tailscale</h3>
+
+<p>Lets run an app (only internally available to K8S) and connect to it over Tailscale. I&rsquo;ll use the default nginx image:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>k create deployment nginx --image=nginx
+</code></pre></div>
+<p>There are several options TS exposes. The first is creating via a Service:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>kind: Service
+apiVersion: v1
+metadata:
+  name: nginx-ts
+spec:
+  type: LoadBalancer
+  loadBalancerClass: tailscale
+  selector:
+    app: nginx
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 80
+</code></pre></div>
+<p>Assuming that creates successfully, you can get the Service details:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>$ k get service nginx-ts
+NAME       TYPE           CLUSTER-IP      EXTERNAL-IP                                       PORT(S)        AGE
+nginx-ts   LoadBalancer   10.96.207.167   100.121.9.15,default-nginx-ts-2.bee-hake.ts.net   80:30697/TCP   9s
+</code></pre></div>
+<p>And it should be available via the TS IP:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>$ curl 100.121.9.15
+...
+&lt;h1&gt;Welcome to nginx!&lt;/h1&gt;
+...
+</code></pre></div>
+<p>or generated TS device name, assuming you have TS DNS enabled locally:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>$ curl default-nginx-ts-2.bee-hake.ts.net
+</code></pre></div>
+<p>The other option is via Ingress, which can make the app available via HTTPS with a Lets Encrypt generated cert, assuming you have HTTPS enabled in your TS settings.</p>
+<div class="highlight"><pre class="highlight plaintext"><code>---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-ts
+spec:
+  defaultBackend:
+    service:
+      name: nginx
+      port:
+        number: 80
+  ingressClassName: tailscale
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-ts
+spec:
+  ports:
+  - name: http
+    port: 80
+    targetPort: 80
+  selector:
+    app: nginx
+  type: ClusterIP
+</code></pre></div>
+<p>While testing this, Service/Ingress changes didn&rsquo;t seem to be reconciled by the Operator, so delete/re-creating seems required for now.</p>
+
+<p>And now it should be available via HTTPS:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>$ curl https://default-nginx-ingress.bee-hake.ts.net
+...
+&lt;h1&gt;Welcome to nginx!&lt;/h1&gt;
+...
+</code></pre></div>
+<h3>Convience Delivered Securely</h3>
+
+<p>Overall, the Operator has worked smoothly for me in testing and it has made things more convenient and secure for my network.</p>
+
+<p>In Part 2, I&rsquo;ll explore connecting apps together over the TS network.</p>
+
+   ]]></content>
+ </entry>
  <entry>
    <id>http://asktherelic.com/2024/02/05/quarterly-calendar-project/</id>
    <title>Quarterly Calendar Project</title>
@@ -764,40 +920,6 @@ to hit the enter key</li>
 
 <p>Ideally, pyselect could become &ldquo;input for humans&rdquo;, ala <a href="http://docs.python-requests.org/en/latest/">Requests</a>, because
 <code class="prettyprint">raw_input()</code> could always use a more friendly API.</p>
-
-   ]]></content>
- </entry>
- <entry>
-   <id>http://asktherelic.com/2013/08/22/the-birthday-surprise/</id>
-   <title>The Birthday Surprise</title>
-   <link href="http://www.asktherelic.com/2013/08/22/the-birthday-surprise/?utm_source=RSS_Feed&amp;utm_medium=RSS&amp;utm_campaign=RSS_Syndication"/>
-   <published>2013-08-22T20:41:00-07:00</published>
-   <updated>2013-08-22T20:41:00-07:00</updated>
-   <author>
-       <name>Matt Behrens</name>
-   </author>
-   <content type="html"><![CDATA[
-    <p>It has now been several weeks since my twenty-seventh birthday. A birthday is
-generally always a reason to celebrate, but this birthday, my <a href="http://officialblog.yelp.com/2013/07/welcoming-seatme-to-yelp.html">startup was
-acquired by Yelp</a> several days beforehand, which makes this birthday extra
-special!</p>
-
-<p>Startups are hard work. Finding a market, building a product, <a href="http://www.paulgraham.com/growth.html">growing that
-product</a>, figuring out which corners to cut, or not cut; it&rsquo;s all hard work,
-even though some may make it look easy. I was lucky to be one of the early
-engineers at SeatMe and am proud of the team and product we helped build, while
-learning some new things along the way. Yelp is a great company with a great
-culture and I&rsquo;m looking forward now to continuing to grow the product. </p>
-
-<p>While it was a busy week with that announcement, there was still time to reflect
-and evaluate the last year. I think it&rsquo;s good to have milestones and evaluate
-your progress along the way. I don&rsquo;t mean that life is a race, but I do find
-value in judging where I am in life. <a href="http://6thfloor.blogs.nytimes.com/2013/07/31/george-saunderss-advice-to-graduates/">Am I a better person than last year?</a>
-Have I learned new skills? What skills do I want to learn? <a href="http://online.wsj.com/article/SB122178211966454607.html">How have I helped
-others?</a> These may seem like platitudes, but I genuinely hope to improve
-myself year over year.</p>
-
-<p>Here&rsquo;s to a good next year.</p>
 
    ]]></content>
  </entry>
