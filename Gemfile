@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem "eventmachine", "1.2.7"
+gem "eventmachine" #, "1.2.7"
 gem 'middleman'
 gem "middleman-livereload", "3.4.7"
 gem "middleman-blog"
