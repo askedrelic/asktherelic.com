@@ -92,13 +92,14 @@ There are other options for getting secure access to your apiserver via ssh forw
 
 Lets run an app (only internally available to K8S) and connect to it over Tailscale. I'll use the default nginx image:
 
-```
+```shell
 k create deployment nginx --image=nginx
 ```
 
 There are several options TS exposes. The first is creating via a Service:
 
-```
+```yaml
+---
 kind: Service
 apiVersion: v1
 metadata:
@@ -117,7 +118,7 @@ spec:
 
 Assuming that creates successfully, you can get the Service details:
 
-```
+```shell
 $ k get service nginx-ts
 NAME       TYPE           CLUSTER-IP      EXTERNAL-IP                                       PORT(S)        AGE
 nginx-ts   LoadBalancer   10.96.207.167   100.121.9.15,default-nginx-ts-2.bee-hake.ts.net   80:30697/TCP   9s
@@ -125,7 +126,7 @@ nginx-ts   LoadBalancer   10.96.207.167   100.121.9.15,default-nginx-ts-2.bee-ha
 
 And it should be available via the TS IP:
 
-```
+```shell
 $ curl 100.121.9.15
 ...
 <h1>Welcome to nginx!</h1>
@@ -134,13 +135,13 @@ $ curl 100.121.9.15
 
 or generated TS device name, assuming you have TS DNS enabled locally:
 
-```
+```shell
 $ curl default-nginx-ts-2.bee-hake.ts.net
 ```
 
 The other option is via Ingress, which can make the app available via HTTPS with a Lets Encrypt generated cert, assuming you have HTTPS enabled in your TS settings.
 
-```
+```yaml
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -172,7 +173,7 @@ While testing this, Service/Ingress changes didn't seem to be reconciled by the 
 
 And now it should be available via HTTPS:
 
-```
+```shell
 $ curl https://default-nginx-ingress.bee-hake.ts.net
 ...
 <h1>Welcome to nginx!</h1>

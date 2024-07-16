@@ -3,12 +3,166 @@
  <title>/code - asktherelic.com</title>
  <link href="http://www.asktherelic.com/code/feed/" rel="self"/>
  <link href="http://www.asktherelic.com/" />
- <updated>2024-07-12T11:29:54-07:00</updated>
+ <updated>2024-07-15T23:13:08-07:00</updated>
 
  <author>
     <name>Matt Behrens</name>
  </author>
 
+ <entry>
+   <id>http://asktherelic.com/2024/07/15/connecting-apps-with-the-tailscale-kubernetes-operator-part-2/</id>
+   <title>Connecting Apps with the Tailscale Kubernetes Operator - Part 2</title>
+   <link href="http://www.asktherelic.com/2024/07/15/connecting-apps-with-the-tailscale-kubernetes-operator-part-2/?utm_source=RSS_Feed&amp;utm_medium=RSS&amp;utm_campaign=RSS_Syndication"/>
+   <published>2024-07-15T13:00:00-07:00</published>
+   <updated>2024-07-15T13:00:00-07:00</updated>
+   <author>
+       <name>Matt Behrens</name>
+   </author>
+   <content type="html"><![CDATA[
+    <p>In <a href="/2024/02/23/exploring-the-tailscale-kubernetes-operator-part1/">Part 1</a>, I explored installing the Tailscale (TS) K8S operator and adding an Ingress object to make a K8S Service available to the TS network over HTTP.</p>
+
+<p>In this post, I want to cover different Egress and Ingress options and ways to connect apps on the TS network.</p>
+
+<p>For more context, while I&rsquo;ve been experimenting with kind and a virtual Kubernetes (K8S) cluster, I run a personal server running at home with plenty of resources and a virtual server that hosts my public web apps. Being able to connect the two servers over TS is one of my goals. It allows me to do more permanent and resource intensive things on my personal server, but also make them available publicly when I want.</p>
+
+<p>For example:
+<span class="aligncenter">
+<img src="/pic/2024-07-15-networks.png" alt="" />
+</span></p>
+
+<p><strong>Caveat: Under Active Development</strong></p>
+
+<p>The TS K8S Operator is under active development and some of these capabilities were add in <a href="https://tailscale.com/changelog#2024-05-15">v1.66</a>. Make sure you are running the latest version. </p>
+
+<p>There is even a Helm chart now for easier updating - <a href="https://tailscale.com/kb/1236/kubernetes-operator#helm">https://tailscale.com/kb/1236/kubernetes-operator#helm</a></p>
+
+<h3>Exposing TS Apps to your Cluster</h3>
+
+<p>To expose existing TS Apps to your K8S cluster, you can use the ExternalName Service, which creates an TS Pod to proxy traffic.</p>
+
+<p>For example, to expose the Home Server to K8S, you could create this Service:</p>
+<div class="highlight"><pre class="highlight yaml"><code><span class="nn">---</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Service</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">home-server</span>
+  <span class="na">annotations</span><span class="pi">:</span>
+    <span class="na">tailscale.com/tailnet-ip</span><span class="pi">:</span> <span class="s2">"</span><span class="s">100.X.X.1"</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">externalName</span><span class="pi">:</span> <span class="s">placeholder</span>
+  <span class="na">type</span><span class="pi">:</span> <span class="s">ExternalName</span>
+</code></pre></div>
+<p>Then you would get a K8S Service and could curl <code class="prettyprint">ts-home-server-lmc8s.tailscale.svc.cluster.local</code> within your cluster:</p>
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span>kubectl get service tower
+NAME          TYPE           CLUSTER-IP  EXTERN   
+home-server   ExternalName   &lt;none&gt;      ts-home-server-lmc8s.tailscale.svc.cluster.local
+</code></pre></div>
+<h3>Now with TS DNS names</h3>
+
+<p>Now with v1.66 of the Operator, using full TS domain names are supported instead of TS IPs, by running a TS managed DNS server. <a href="https://tailscale.com/kb/1236/kubernetes-operator#exposing-a-tailnet-service-to-your-kubernetes-cluster-cluster-egress">Official docs here</a>.</p>
+
+<p>First, add the DNS component:</p>
+<div class="highlight"><pre class="highlight yaml"><code><span class="nn">---</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">tailscale.com/v1alpha1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">DNSConfig</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">ts-dns</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">nameserver</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span>
+      <span class="na">repo</span><span class="pi">:</span> <span class="s">tailscale/k8s-nameserver</span>
+      <span class="na">tag</span><span class="pi">:</span> <span class="s">unstable</span>
+</code></pre></div>
+<p>Then get the Pod IP and add it to your Cluster DNS config. In my K8S setup, I use coredns.</p>
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span>kubectl get dnsconfig ts-dns <span class="nt">-o</span> json | jq .status.nameserver.ip <span class="nt">-r</span>
+10.43.239.128
+
+<span class="nv">$ </span>kubectl edit configmaps <span class="nt">-n</span> kube-system coredns
+...
+ts.net <span class="o">{</span>
+    errors
+    cache 30
+    forward <span class="nb">.</span> 10.43.239.128
+<span class="o">}</span>
+...
+
+<span class="nv">$ </span>kubectl rollout restart <span class="nt">-n</span> kube-system deployment coredns
+</code></pre></div>
+<p>Now you can create your Service with a FQDN. And another new feature recently
+added is the <code class="prettyprint">tailscale.com/hostname</code> annotation, that allows you to name the TS
+Proxy instead of using a random prefix, to keep things more organized on the TS
+side.</p>
+<div class="highlight"><pre class="highlight yaml"><code><span class="nn">---</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Service</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">homeserver-fqdn</span>
+  <span class="na">annotations</span><span class="pi">:</span>
+    <span class="na">tailscale.com/tailnet-fqdn</span><span class="pi">:</span> <span class="s2">"</span><span class="s">homeserver.bee-haka.ts.net"</span>
+    <span class="na">tailscale.com/hostname</span><span class="pi">:</span> <span class="s2">"</span><span class="s">homeserver-fqdn"</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">externalName</span><span class="pi">:</span> <span class="s">placeholder</span>
+  <span class="na">type</span><span class="pi">:</span> <span class="s">ExternalName</span>
+</code></pre></div>
+<h3>Creating a TS Proxy with Subnet Routes</h3>
+
+<p>Another TS feature is subnet routing; sharing entire CIDR routes to TS. </p>
+
+<p>In my example, even though I have my Home Server directly shared on TS, I can also get to it via the Apple TV that is sharing the <code class="prettyprint">192.168.1.X/24</code> route. <a href="https://www.youtube.com/watch?v=hYd5etBpsO0">Apple TV subnet routing release here</a>.</p>
+
+<p>To create a TS Proxy with subnet routings, one of the other new objects is a ProxyClass, for configuring the TS Proxy:</p>
+<div class="highlight"><pre class="highlight yaml"><code><span class="nn">---</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">tailscale.com/v1alpha1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">ProxyClass</span>
+<span class="na">metadata</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s">acceptroutes</span>
+<span class="na">spec</span><span class="pi">:</span>
+    <span class="na">tailscale</span><span class="pi">:</span>
+        <span class="na">acceptRoutes</span><span class="pi">:</span> <span class="no">true</span>
+<span class="nn">---</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Service</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">home-server-via-apple-tv</span>
+  <span class="na">labels</span><span class="pi">:</span>
+    <span class="na">tailscale.com/proxy-class</span><span class="pi">:</span> <span class="s">acceptroutes</span>
+  <span class="na">annotations</span><span class="pi">:</span>
+    <span class="na">tailscale.com/tailnet-ip</span><span class="pi">:</span> <span class="s2">"</span><span class="s">192.168.1.1"</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">externalName</span><span class="pi">:</span> <span class="s">placeholder</span>
+  <span class="na">type</span><span class="pi">:</span> <span class="s">ExternalName</span>
+</code></pre></div>
+<h3>Expose HTTPS services with TS SSL</h3>
+
+<p>Lastly, you can also expose TS Apps with FQDNs and automatically generated LetsEncrypt certs. I believe you could generate and download the certs manually before, this is another convenient primitive for apps that need to know their address.</p>
+
+<p>For example, given an existing &ldquo;registry&rdquo; Service, you can expose it with an Ingress and tls params.</p>
+<div class="highlight"><pre class="highlight yaml"><code><span class="nn">---</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">networking.k8s.io/v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Ingress</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">registry</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">defaultBackend</span><span class="pi">:</span>
+    <span class="na">service</span><span class="pi">:</span>
+      <span class="na">name</span><span class="pi">:</span> <span class="s">registry</span>
+      <span class="na">port</span><span class="pi">:</span>
+        <span class="na">number</span><span class="pi">:</span> <span class="m">80</span>
+  <span class="na">ingressClassName</span><span class="pi">:</span> <span class="s">tailscale</span>
+  <span class="na">tls</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">hosts</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s">registry</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span>kubectl get ingress
+NAME       CLASS       HOSTS   ADDRESS                                 PORTS     AGE
+nginx      tailscale   <span class="k">*</span>       default-nginx-ingress.bee-hake.ts.net   80        3d3h
+registry   tailscale   <span class="k">*</span>       registry.bee-hake.ts.net                80, 443   3d2h
+</code></pre></div>
+<p>So this is the Docker Registry service that I&rsquo;m running, so I can build Docker Images on my Home Server and then use them in K8S. It&rsquo;s more convenient than other ways to push a Docker Image to a central shared point on TS.</p>
+
+<p>Overall, these are useful primitives for bi-directional sharing between the TS network and K8S. The TS Operator has made it easier to connect my apps together securely and I&rsquo;ll continue to watch for new capabilties!</p>
+
+   ]]></content>
+ </entry>
  <entry>
    <id>http://asktherelic.com/2024/02/23/exploring-the-tailscale-kubernetes-operator-part1/</id>
    <title>Exploring the Tailscale Kubernetes Operator - Part 1</title>
@@ -90,69 +244,70 @@ clusterrolebinding.rbac.authorization.k8s.io/tailscale-auth-proxy unchanged
 <h3>Connecting to Internal Apps via Tailscale</h3>
 
 <p>Lets run an app (only internally available to K8S) and connect to it over Tailscale. I&rsquo;ll use the default nginx image:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>k create deployment nginx --image=nginx
+<div class="highlight"><pre class="highlight shell"><code>k create deployment nginx <span class="nt">--image</span><span class="o">=</span>nginx
 </code></pre></div>
 <p>There are several options TS exposes. The first is creating via a Service:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>kind: Service
-apiVersion: v1
-metadata:
-  name: nginx-ts
-spec:
-  type: LoadBalancer
-  loadBalancerClass: tailscale
-  selector:
-    app: nginx
-  ports:
-  - name: http
-    port: 80
-    protocol: TCP
-    targetPort: 80
+<div class="highlight"><pre class="highlight yaml"><code><span class="nn">---</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Service</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">nginx-ts</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">type</span><span class="pi">:</span> <span class="s">LoadBalancer</span>
+  <span class="na">loadBalancerClass</span><span class="pi">:</span> <span class="s">tailscale</span>
+  <span class="na">selector</span><span class="pi">:</span>
+    <span class="na">app</span><span class="pi">:</span> <span class="s">nginx</span>
+  <span class="na">ports</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">http</span>
+    <span class="na">port</span><span class="pi">:</span> <span class="m">80</span>
+    <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+    <span class="na">targetPort</span><span class="pi">:</span> <span class="m">80</span>
 </code></pre></div>
 <p>Assuming that creates successfully, you can get the Service details:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>$ k get service nginx-ts
-NAME       TYPE           CLUSTER-IP      EXTERNAL-IP                                       PORT(S)        AGE
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span>k get service nginx-ts
+NAME       TYPE           CLUSTER-IP      EXTERNAL-IP                                       PORT<span class="o">(</span>S<span class="o">)</span>        AGE
 nginx-ts   LoadBalancer   10.96.207.167   100.121.9.15,default-nginx-ts-2.bee-hake.ts.net   80:30697/TCP   9s
 </code></pre></div>
 <p>And it should be available via the TS IP:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>$ curl 100.121.9.15
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span>curl 100.121.9.15
 ...
 &lt;h1&gt;Welcome to nginx!&lt;/h1&gt;
 ...
 </code></pre></div>
 <p>or generated TS device name, assuming you have TS DNS enabled locally:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>$ curl default-nginx-ts-2.bee-hake.ts.net
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span>curl default-nginx-ts-2.bee-hake.ts.net
 </code></pre></div>
 <p>The other option is via Ingress, which can make the app available via HTTPS with a Lets Encrypt generated cert, assuming you have HTTPS enabled in your TS settings.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>---
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: nginx-ts
-spec:
-  defaultBackend:
-    service:
-      name: nginx
-      port:
-        number: 80
-  ingressClassName: tailscale
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: nginx-ts
-spec:
-  ports:
-  - name: http
-    port: 80
-    targetPort: 80
-  selector:
-    app: nginx
-  type: ClusterIP
+<div class="highlight"><pre class="highlight yaml"><code><span class="nn">---</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">networking.k8s.io/v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Ingress</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">nginx-ts</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">defaultBackend</span><span class="pi">:</span>
+    <span class="na">service</span><span class="pi">:</span>
+      <span class="na">name</span><span class="pi">:</span> <span class="s">nginx</span>
+      <span class="na">port</span><span class="pi">:</span>
+        <span class="na">number</span><span class="pi">:</span> <span class="m">80</span>
+  <span class="na">ingressClassName</span><span class="pi">:</span> <span class="s">tailscale</span>
+<span class="nn">---</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Service</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">nginx-ts</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">ports</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">http</span>
+    <span class="na">port</span><span class="pi">:</span> <span class="m">80</span>
+    <span class="na">targetPort</span><span class="pi">:</span> <span class="m">80</span>
+  <span class="na">selector</span><span class="pi">:</span>
+    <span class="na">app</span><span class="pi">:</span> <span class="s">nginx</span>
+  <span class="na">type</span><span class="pi">:</span> <span class="s">ClusterIP</span>
 </code></pre></div>
 <p>While testing this, Service/Ingress changes didn&rsquo;t seem to be reconciled by the Operator, so delete/re-creating seems required for now.</p>
 
 <p>And now it should be available via HTTPS:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>$ curl https://default-nginx-ingress.bee-hake.ts.net
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span>curl https://default-nginx-ingress.bee-hake.ts.net
 ...
 &lt;h1&gt;Welcome to nginx!&lt;/h1&gt;
 ...
@@ -791,135 +946,6 @@ correctly. Looking at HTTPie&rsquo;s code for consuming responses, led to me loo
 Request&rsquo;s code and figure everything out. Definitely recommend this tool!</p>
 
 <p>Lastly, always check the code and don&rsquo;t be afraid to dive deep.</p>
-
-   ]]></content>
- </entry>
- <entry>
-   <id>http://asktherelic.com/2013/11/03/an-exploration-in-selecting-things/</id>
-   <title>An Exploration In Selecting Things</title>
-   <link href="http://www.asktherelic.com/2013/11/03/an-exploration-in-selecting-things/?utm_source=RSS_Feed&amp;utm_medium=RSS&amp;utm_campaign=RSS_Syndication"/>
-   <published>2013-11-03T16:44:00-08:00</published>
-   <updated>2013-11-03T16:44:00-08:00</updated>
-   <author>
-       <name>Matt Behrens</name>
-   </author>
-   <content type="html"><![CDATA[
-    <p>Sometime last year, I remember finding a code snippet <a href="http://mrcoles.com/menu-shortcut-activating-virtualenv/">to help switch between
-Python virtual environments</a>, which I added to my <code class="prettyprint">.bashrc</code>.</p>
-<div class="highlight"><pre class="highlight shell"><code>menuvirtualenv<span class="o">()</span> <span class="o">{</span>
-    <span class="k">select </span><span class="nb">env </span><span class="k">in</span> <span class="sb">`</span>lsvirtualenv <span class="nt">-b</span><span class="sb">`</span><span class="p">;</span> <span class="k">do
-        if</span> <span class="o">[</span> <span class="nt">-n</span> <span class="s2">"</span><span class="nv">$env</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
-            </span>workon <span class="s2">"</span><span class="nv">$env</span><span class="s2">"</span>
-        <span class="k">fi</span><span class="p">;</span>
-        <span class="nb">break</span><span class="p">;</span>
-    <span class="k">done</span><span class="p">;</span>
-<span class="o">}</span>
-<span class="nb">alias </span>v.menu<span class="o">=</span><span class="s1">'menuvirtualenv'</span>
-
-12:54:26 pcoles@peters_air:~ <span class="o">&gt;</span> v.menu
-1<span class="o">)</span> category-cms
-2<span class="o">)</span> collect
-3<span class="o">)</span> mrcoles
-4<span class="o">)</span> readmd
-<span class="c">#? 3</span>
-<span class="o">(</span>mrcoles<span class="o">)</span>12:54:33 pcoles@peters_air:~/projects/mrcoles <span class="o">&gt;</span>
-</code></pre></div>
-<p>This method for selecting an input stood out to me for being so simple: just
-a numbered list. Many command line applications make input too complex, making
-the user think about <em>what</em> they want to select, making them type it in
-again, while many don&rsquo;t even support tab complete.</p>
-
-<p>Several months ago, I was on an airplane with no internet and decided to
-challenge myself to implement that select interface in Python. When looking at
-the code again, I found it was just a Bash builtin function:</p>
-<div class="highlight"><pre class="highlight shell"><code><span class="k">select </span>name <span class="o">[</span> <span class="k">in </span>word <span class="o">]</span> <span class="p">;</span> <span class="k">do </span>list <span class="p">;</span> <span class="k">done
-    </span>The list of words following <span class="k">in </span>is expanded, generating a list of items. The
-    <span class="nb">set </span>of expanded words is printed on the standard error, each preceded by
-    a number. If the <span class="k">in </span>word is omitted, the positional parameters are printed
-    <span class="o">(</span>see PARAMETERS below<span class="o">)</span><span class="nb">.</span> The PS3 prompt is <span class="k">then </span>displayed and a line <span class="nb">read
-    </span>from the standard input. If the line consists of a number corresponding to
-    one of the displayed words, <span class="k">then </span>the value of name is <span class="nb">set </span>to that word. If
-    the line is empty, the words and prompt are displayed again. If EOF is <span class="nb">read</span>,
-    the <span class="nb">command </span>completes. Any other value <span class="nb">read </span>causes name to be <span class="nb">set </span>to null.
-    The line <span class="nb">read </span>is saved <span class="k">in </span>the variable REPLY. The list is executed after
-    each selection <span class="k">until </span>a <span class="nb">break command </span>is executed. The <span class="nb">exit </span>status of <span class="k">select
-    </span>is the <span class="nb">exit </span>status of the last <span class="nb">command </span>executed <span class="k">in </span>list, or zero <span class="k">if </span>no
-    commands were executed.
-</code></pre></div>
-<p>I started hacking, got it working, then forgot it about. Now coming back to the
-code with an internet connection, I&rsquo;ve released it on <a href="https://pypi.python.org/pypi/pyselect">PyPI</a> and <a href="https://github.com/askedrelic/pyselect">Github</a>.</p>
-
-<h3>Pyselect</h3>
-
-<p>Pyselect wraps <code class="prettyprint">raw_input()</code>, more or less:</p>
-<div class="highlight"><pre class="highlight python"><code><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">pyselect</span>
-<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">pyselect</span><span class="p">.</span><span class="n">select</span><span class="p">([</span><span class="s">'apples'</span><span class="p">,</span> <span class="s">'oranges'</span><span class="p">,</span> <span class="s">'bananas'</span><span class="p">])</span>
-<span class="mi">1</span><span class="p">)</span> <span class="n">apples</span>
-<span class="mi">2</span><span class="p">)</span> <span class="n">oranges</span>
-<span class="mi">3</span><span class="p">)</span> <span class="n">bananas</span>
-<span class="c1">#? 2
-</span><span class="n">Out</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="s">'oranges'</span>
-</code></pre></div>
-<p>But can also be used as a Python module, when scripting:</p>
-<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span>python <span class="nt">-m</span> pyselect <span class="si">$(</span><span class="nb">ls</span><span class="si">)</span>
-1<span class="o">)</span> LICENSE.txt
-2<span class="o">)</span> build/
-3<span class="o">)</span> dist/
-4<span class="o">)</span> pyselect.egg-info/
-5<span class="o">)</span> pyselect.py
-6<span class="o">)</span> pyselect.pyc
-7<span class="o">)</span> setup.py
-8<span class="o">)</span> test.py
-<span class="c">#? 4</span>
-pyselect.egg-info/
-</code></pre></div>
-<p>Or in a Bash pipe:</p>
-<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span><span class="nb">ls</span> | xargs python <span class="nt">-m</span> pyselect
-1<span class="o">)</span> LICENSE.txt
-2<span class="o">)</span> build/
-3<span class="o">)</span> dist/
-4<span class="o">)</span> pyselect.egg-info/
-5<span class="o">)</span> pyselect.py
-6<span class="o">)</span> pyselect.pyc
-7<span class="o">)</span> setup.py
-8<span class="o">)</span> test.py
-<span class="c">#? 5</span>
-pyselect.py
-</code></pre></div>
-<p>But that&rsquo;s where things kind of fall apart. Within a standard interactive Python
-application, stdin and stdout are simple and pyselect just works. Getting the
-pipe-in to work required a bit more work, hooking in/out up the user&rsquo;s tty,
-which the pipe drops. My holy grail would be a pipe-in and pipe-out to make
-selecting anything much easier:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>$ ls | xargs python -m pyselect | cp $0 test.txt
-</code></pre></div>
-<p>Or display all your git branches and jump to one. Or virtualenvs. Or
-directories. Double pipe redirects the pyselect output/input and doesn&rsquo;t work.
-I&rsquo;ve read up on named pipes that might be able to solve this, but I haven&rsquo;t
-found a Python solution yet.</p>
-
-<p>To jump between git branches with bash select, I used this:</p>
-<div class="highlight"><pre class="highlight shell"><code><span class="k">function </span>gobranch<span class="o">()</span> <span class="o">{</span>
-    <span class="k">select </span>branch <span class="k">in</span> <span class="si">$(</span>git <span class="k">for</span><span class="nt">-each-ref</span> <span class="nt">--sort</span><span class="o">=</span><span class="nt">-committerdate</span> refs/heads/ <span class="nt">--format</span><span class="o">=</span><span class="s1">'%(refname)'</span> | <span class="nb">sed</span> <span class="s1">'s/refs\/heads\///g'</span><span class="si">)</span><span class="p">;</span> <span class="k">do
-        </span>git checkout <span class="s2">"</span><span class="nv">$branch</span><span class="s2">"</span>
-        <span class="nb">break</span><span class="p">;</span>
-    <span class="k">done</span><span class="p">;</span>
-<span class="o">}</span>
-</code></pre></div>
-<h3>Moving Forward</h3>
-
-<p>For now, I have some other ideas to try with selecting things:</p>
-
-<ul>
-<li>Auto-select an option when you have less than 9 options and enter 1-9, no need
-to hit the enter key</li>
-<li>A-Z input, maybe default to home row, ala <a href="https://github.com/Lokaltog/vim-easymotion">vim-easymotion</a></li>
-<li>Multi-option select, 1-4 ala <code class="prettyprint">git add --interactive</code> mode</li>
-<li>Integration with Fabric perhaps, which has <a href="http://fabric.readthedocs.org/en/1.8/api/contrib/console.html">some simple input functions</a></li>
-</ul>
-
-<p>Ideally, pyselect could become &ldquo;input for humans&rdquo;, ala <a href="http://docs.python-requests.org/en/latest/">Requests</a>, because
-<code class="prettyprint">raw_input()</code> could always use a more friendly API.</p>
 
    ]]></content>
  </entry>

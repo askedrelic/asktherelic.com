@@ -23,56 +23,57 @@ clusterrole.rbac.authorization.k8s.io/tailscale-auth-proxy unchanged
 clusterrolebinding.rbac.authorization.k8s.io/tailscale-auth-proxy unchanged
 </code></pre></div> <p>I&rsquo;m using my own private tailscale network, so auth-ing myself with all privileges is easiest:</p> <div class=highlight><pre class="highlight plaintext"><code>kubectl create clusterrolebinding askedrelic --user="askedrelic@github" --clusterrole=cluster-admin
 </code></pre></div> <p>Lastly, you can use Tailscale to create your K8S context and use it!</p> <div class=highlight><pre class="highlight plaintext"><code>tailscale configure kubeconfig tailscale-operator
-</code></pre></div> <p>You should have K8S access using the TS context now!</p> <p>There are other options for getting secure access to your apiserver via ssh forwarding or tailscale subnets on the server itself, but consolidating more configuration like this into K8S makes sense for me.</p> <h3>Connecting to Internal Apps via Tailscale</h3> <p>Lets run an app (only internally available to K8S) and connect to it over Tailscale. I&rsquo;ll use the default nginx image:</p> <div class=highlight><pre class="highlight plaintext"><code>k create deployment nginx --image=nginx
-</code></pre></div> <p>There are several options TS exposes. The first is creating via a Service:</p> <div class=highlight><pre class="highlight plaintext"><code>kind: Service
-apiVersion: v1
-metadata:
-  name: nginx-ts
-spec:
-  type: LoadBalancer
-  loadBalancerClass: tailscale
-  selector:
-    app: nginx
-  ports:
-  - name: http
-    port: 80
-    protocol: TCP
-    targetPort: 80
-</code></pre></div> <p>Assuming that creates successfully, you can get the Service details:</p> <div class=highlight><pre class="highlight plaintext"><code>$ k get service nginx-ts
-NAME       TYPE           CLUSTER-IP      EXTERNAL-IP                                       PORT(S)        AGE
+</code></pre></div> <p>You should have K8S access using the TS context now!</p> <p>There are other options for getting secure access to your apiserver via ssh forwarding or tailscale subnets on the server itself, but consolidating more configuration like this into K8S makes sense for me.</p> <h3>Connecting to Internal Apps via Tailscale</h3> <p>Lets run an app (only internally available to K8S) and connect to it over Tailscale. I&rsquo;ll use the default nginx image:</p> <div class=highlight><pre class="highlight shell"><code>k create deployment nginx <span class="nt">--image</span><span class="o">=</span>nginx
+</code></pre></div> <p>There are several options TS exposes. The first is creating via a Service:</p> <div class=highlight><pre class="highlight yaml"><code><span class="nn">---</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Service</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">nginx-ts</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">type</span><span class="pi">:</span> <span class="s">LoadBalancer</span>
+  <span class="na">loadBalancerClass</span><span class="pi">:</span> <span class="s">tailscale</span>
+  <span class="na">selector</span><span class="pi">:</span>
+    <span class="na">app</span><span class="pi">:</span> <span class="s">nginx</span>
+  <span class="na">ports</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">http</span>
+    <span class="na">port</span><span class="pi">:</span> <span class="m">80</span>
+    <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+    <span class="na">targetPort</span><span class="pi">:</span> <span class="m">80</span>
+</code></pre></div> <p>Assuming that creates successfully, you can get the Service details:</p> <div class=highlight><pre class="highlight shell"><code><span class="nv">$ </span>k get service nginx-ts
+NAME       TYPE           CLUSTER-IP      EXTERNAL-IP                                       PORT<span class="o">(</span>S<span class="o">)</span>        AGE
 nginx-ts   LoadBalancer   10.96.207.167   100.121.9.15,default-nginx-ts-2.bee-hake.ts.net   80:30697/TCP   9s
-</code></pre></div> <p>And it should be available via the TS IP:</p> <div class=highlight><pre class="highlight plaintext"><code>$ curl 100.121.9.15
+</code></pre></div> <p>And it should be available via the TS IP:</p> <div class=highlight><pre class="highlight shell"><code><span class="nv">$ </span>curl 100.121.9.15
 ...
 &lt;h1&gt;Welcome to nginx!&lt;/h1&gt;
 ...
-</code></pre></div> <p>or generated TS device name, assuming you have TS DNS enabled locally:</p> <div class=highlight><pre class="highlight plaintext"><code>$ curl default-nginx-ts-2.bee-hake.ts.net
-</code></pre></div> <p>The other option is via Ingress, which can make the app available via HTTPS with a Lets Encrypt generated cert, assuming you have HTTPS enabled in your TS settings.</p> <div class=highlight><pre class="highlight plaintext"><code>---
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: nginx-ts
-spec:
-  defaultBackend:
-    service:
-      name: nginx
-      port:
-        number: 80
-  ingressClassName: tailscale
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: nginx-ts
-spec:
-  ports:
-  - name: http
-    port: 80
-    targetPort: 80
-  selector:
-    app: nginx
-  type: ClusterIP
-</code></pre></div> <p>While testing this, Service/Ingress changes didn&rsquo;t seem to be reconciled by the Operator, so delete/re-creating seems required for now.</p> <p>And now it should be available via HTTPS:</p> <div class=highlight><pre class="highlight plaintext"><code>$ curl https://default-nginx-ingress.bee-hake.ts.net
+</code></pre></div> <p>or generated TS device name, assuming you have TS DNS enabled locally:</p> <div class=highlight><pre class="highlight shell"><code><span class="nv">$ </span>curl default-nginx-ts-2.bee-hake.ts.net
+</code></pre></div> <p>The other option is via Ingress, which can make the app available via HTTPS with a Lets Encrypt generated cert, assuming you have HTTPS enabled in your TS settings.</p> <div class=highlight><pre class="highlight yaml"><code><span class="nn">---</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">networking.k8s.io/v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Ingress</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">nginx-ts</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">defaultBackend</span><span class="pi">:</span>
+    <span class="na">service</span><span class="pi">:</span>
+      <span class="na">name</span><span class="pi">:</span> <span class="s">nginx</span>
+      <span class="na">port</span><span class="pi">:</span>
+        <span class="na">number</span><span class="pi">:</span> <span class="m">80</span>
+  <span class="na">ingressClassName</span><span class="pi">:</span> <span class="s">tailscale</span>
+<span class="nn">---</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Service</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">nginx-ts</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">ports</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">http</span>
+    <span class="na">port</span><span class="pi">:</span> <span class="m">80</span>
+    <span class="na">targetPort</span><span class="pi">:</span> <span class="m">80</span>
+  <span class="na">selector</span><span class="pi">:</span>
+    <span class="na">app</span><span class="pi">:</span> <span class="s">nginx</span>
+  <span class="na">type</span><span class="pi">:</span> <span class="s">ClusterIP</span>
+</code></pre></div> <p>While testing this, Service/Ingress changes didn&rsquo;t seem to be reconciled by the Operator, so delete/re-creating seems required for now.</p> <p>And now it should be available via HTTPS:</p> <div class=highlight><pre class="highlight shell"><code><span class="nv">$ </span>curl https://default-nginx-ingress.bee-hake.ts.net
 ...
 &lt;h1&gt;Welcome to nginx!&lt;/h1&gt;
 ...
-</code></pre></div> <h3>Convience Delivered Securely</h3> <p>Overall, the Operator has worked smoothly for me in testing and it has made things more convenient and secure for my network.</p> <p>In Part 2, I&rsquo;ll explore connecting apps together over the TS network.</p> </span> </div> </div> <div class=hr></div> <div> <h4>Recent Articles</h4> <div class="post frontpage"> <span class=linkdate>23 Feb 2024 »</span> <a href="/2024/02/23/exploring-the-tailscale-kubernetes-operator-part1/">Exploring the Tailscale Kubernetes Operator - Part 1</a> </div> <div class="post frontpage"> <span class=linkdate>05 Feb 2024 »</span> <a href="/2024/02/05/quarterly-calendar-project/">Quarterly Calendar Project</a> </div> <div class="post frontpage"> <span class=linkdate>05 Jan 2024 »</span> <a href="/2024/01/05/joining-recurse-w2-2024/">Joining Recurse Center for W2 2024</a> </div> <div class="post frontpage"> <span class=linkdate>08 Jan 2017 »</span> <a href="/2017/01/08/hosting-with-dokku/">Hosting with Dokku</a> </div> <div class="post frontpage"> <span class=linkdate>18 Sep 2016 »</span> <a href="/2016/09/18/testing-the-layers-of-your-application-at-pyconuk-2016/">Testing the Layers of Your Application at PyConUK 2016</a> </div> <div class="post frontpage"> <span class=linkdate>21 Apr 2014 »</span> <a href="/2014/04/21/upgrading-my-dotfiles-to-symlinks/">Upgrading My Dotfiles To Symlinks</a> </div> <div class="post frontpage"> <span class=linkdate>08 Feb 2014 »</span> <a href="/2014/02/08/another-year-another-set-of-backups/">Another Year, Another Set Of Backups</a> </div> </div> </div> <div class=hr></div> <p id=credits> Powered by <a href="https://middlemanapp.com/">Middleman</a>. <br/> <br/> </p> </div> <div id=right> <div id=right-header> <a href="/"><h1>Ask the Relic</h1></a> </div> </div> </div> </div> </div> </body> </html>
+</code></pre></div> <h3>Convience Delivered Securely</h3> <p>Overall, the Operator has worked smoothly for me in testing and it has made things more convenient and secure for my network.</p> <p>In Part 2, I&rsquo;ll explore connecting apps together over the TS network.</p> </span> </div> </div> <div class=hr></div> <div> <h4>Recent Articles</h4> <div class="post frontpage"> <span class=linkdate>15 Jul 2024 »</span> <a href="/2024/07/15/connecting-apps-with-the-tailscale-kubernetes-operator-part-2/">Connecting Apps with the Tailscale Kubernetes Operator - Part 2</a> </div> <div class="post frontpage"> <span class=linkdate>23 Feb 2024 »</span> <a href="/2024/02/23/exploring-the-tailscale-kubernetes-operator-part1/">Exploring the Tailscale Kubernetes Operator - Part 1</a> </div> <div class="post frontpage"> <span class=linkdate>05 Feb 2024 »</span> <a href="/2024/02/05/quarterly-calendar-project/">Quarterly Calendar Project</a> </div> <div class="post frontpage"> <span class=linkdate>05 Jan 2024 »</span> <a href="/2024/01/05/joining-recurse-w2-2024/">Joining Recurse Center for W2 2024</a> </div> <div class="post frontpage"> <span class=linkdate>08 Jan 2017 »</span> <a href="/2017/01/08/hosting-with-dokku/">Hosting with Dokku</a> </div> <div class="post frontpage"> <span class=linkdate>18 Sep 2016 »</span> <a href="/2016/09/18/testing-the-layers-of-your-application-at-pyconuk-2016/">Testing the Layers of Your Application at PyConUK 2016</a> </div> <div class="post frontpage"> <span class=linkdate>21 Apr 2014 »</span> <a href="/2014/04/21/upgrading-my-dotfiles-to-symlinks/">Upgrading My Dotfiles To Symlinks</a> </div> </div> </div> <div class=hr></div> <p id=credits> Powered by <a href="https://middlemanapp.com/">Middleman</a>. <br/> <br/> </p> </div> <div id=right> <div id=right-header> <a href="/"><h1>Ask the Relic</h1></a> </div> </div> </div> </div> </div> </body> </html>
