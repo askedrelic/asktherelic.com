@@ -10,12 +10,6 @@ body {
   height: auto;
 }
 
-.sidebar-nav {
-  list-style: none;
-  padding: 0;
-  margin: 2rem 0;
-}
-
 .sidebar-sticky {
   padding: 0 1.5rem;
 }

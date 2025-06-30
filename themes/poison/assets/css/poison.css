@@ -54,6 +54,16 @@ body.layout-reverse .wrapper {
         height: 20px;
         color: black;
     }
+    /* Shrink header on mobile */
+    .sidebar {
+        padding: 0;
+    }
+    .lead {
+        margin: 0;
+    }
+    .sidebar-nav {
+        margin: 0.5em 0;
+    }
 }
 
  /* Handles dark/light themes */
