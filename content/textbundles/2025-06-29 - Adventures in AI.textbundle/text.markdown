@@ -2,8 +2,6 @@
 
 Recently, while waiting in the drive-through at McDonalds, I started thinking about how much I was really spending there. Mint used to have this information readily available, and my credit card company's website probably has a spending chart somewhere, but I also knew that McDonald's sent pretty detailed email receipts. It had become a common stop for me, and while this could have been just an idle thought, I decided to use the opportunity to try out Claude Code and MCP to find an answer. In the age of AI, anything is possible.
 
-
-
 *Mmm HTML formatted emails*
 
 ![mcdonalds.jpeg](assets/mcdonalds.jpeg)
@@ -21,8 +19,7 @@ The [GYB first time setup](https://github.com/GAM-team/got-your-back/wiki#genera
 I like this command to download a single year at a time:
 
 ```other
-gyb --email email@gmail.com --action backup \
-    --search "after:2025/12/31 before:2026/01/01"
+gyb --email email@gmail.com --action backup --search "after:2025/12/31 before:2026/01/01"
 ```
 
 Now we have thousands of local emails to work with:
@@ -53,7 +50,7 @@ $ rg -l "mcdonalds"
 2025/1/19/1948037a64b788cc.eml
 ```
 
-# Failed attempt: Claude Desktop with an MCP
+## Failed attempt: Claude Desktop with an MCP
 
 Following [the MCP docs](https://modelcontextprotocol.io/quickstart/user#2-add-the-filesystem-mcp-server), I tried the [filesystem example MCP server](https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem), which is pretty easy to configure Node server that has basic filesystem commands like `list_directory` and `search_files` . Editing random JSON configs isn't the best interface, but works and reflects the freshness of the MCP ecosystem to me.
 
@@ -126,7 +123,7 @@ Code had a similar approach blunt force approach of trying to add all emails to 
 
 After finding the correct set of working email receipts, it also performed some useful adhoc analysis in the terminal, but this where I manually directed it toward writing a Python script to parse the data and find useful information. Moving beyond the LLM context and working with real code and data is where Code really shines. I did a bit more cycles back and forth, but we quickly had a working Python script.
 
-# Emoji Summary
+## Emoji Summary
 
 It's not an LLM artifact without emoji.
 
@@ -164,7 +161,7 @@ It's not an LLM artifact without emoji.
 
 Source: [https://gist.github.com/askedrelic/0f605ab5c0923541a4c1df2bc1dcd385](https://gist.github.com/askedrelic/0f605ab5c0923541a4c1df2bc1dcd385)
 
-# Next Steps
+## Next Steps
 
 I generated useful data in under hour and had my answer: while my spending on McDonalds has stabilized (and my spending on Claude will probably take its place).
 
