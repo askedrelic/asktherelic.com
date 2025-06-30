@@ -1,0 +1,35 @@
+{{/*
+Hugo shortcode to render textbundle content
+Usage: {{< textbundle "bundle-name.textbundle" >}}
+*/}}
+
+{{ $bundlePath := .Get 0 }}
+{{ $bundleDir := printf "content/textbundles/%s" $bundlePath }}
+
+{{/* Read the markdown content */}}
+{{ $textPath := printf "%s/text.markdown" $bundleDir }}
+{{ $content := "" }}
+{{ if fileExists $textPath }}
+  {{ $content = readFile $textPath }}
+{{ else }}
+  {{ errorf "Textbundle text.markdown not found: %s" $textPath }}
+{{ end }}
+
+{{/* Process the content to update asset paths */}}
+{{ $processedContent := $content }}
+{{ $assetsDir := printf "%s/assets" $bundleDir }}
+
+{{/* Replace assets/ references with proper static paths */}}
+{{ if fileExists $assetsDir }}
+  {{ range readDir $assetsDir }}
+    {{ if not .IsDir }}
+      {{ $oldRef := printf "assets/%s" .Name }}
+      {{ $newRef := printf "/textbundles/%s/assets/%s" $bundlePath .Name }}
+      {{ $processedContent = replace $processedContent $oldRef $newRef }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+
+{{/* Render the processed content */}}
+{{ $processedContent | markdownify }}

@@ -1,0 +1,19 @@
+{{/* Override for textbundle posts */}}
+
+{{ define "main" -}}
+<div class="post">
+  {{ partial "post/info.html" . }}
+  {{ .Content }}
+  {{ partial "post/navigation.html" . }}
+</div>
+{{- end }}
+{{ define "sidebar" }}
+  {{ if and (not .Params.hideToc) (not .Site.Params.hideToc) }}
+    {{ $textbundleHeadings := .Page.Store.Get "textbundle_headings" }}
+    {{ if $textbundleHeadings }}
+      {{ partial "textbundle-toc.html" . }}
+    {{ else }}
+      {{ partial "table_of_contents.html" . }}
+    {{ end }}
+  {{ end }}
+{{ end }}

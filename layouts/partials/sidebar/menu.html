@@ -1,0 +1,26 @@
+<nav>
+    <ul class="sidebar-nav">
+        {{ range .Site.Params.menu }}
+        {{ $menu_item := . }}
+        
+        <li class="nav-item">
+            <a href="{{ $menu_item.URL }}">{{ $menu_item.Name }}</a>
+        </li>
+        
+        {{ if and $menu_item.HasChildren (eq $menu_item.URL "/posts/") }}
+            {{ $recentPosts := first $menu_item.Limit (where site.RegularPages "Section" "posts") }}
+            {{ if $recentPosts }}
+                <li class="recent-posts">
+                    {{ range $recentPosts }}
+                        <div class="recent-post">
+                            <a href="{{ .Permalink }}">{{ .Title }}</a>
+                            <time class="post-date">{{ .Date.Format "Jan 2006" }}</time>
+                        </div>
+                    {{ end }}
+                </li>
+            {{ end }}
+        {{ end }}
+        
+        {{ end }}
+    </ul>
+</nav>

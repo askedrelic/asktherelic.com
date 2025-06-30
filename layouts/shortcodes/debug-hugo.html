@@ -1,0 +1,42 @@
+{{/*
+Debug Hugo shortcode - shows internal Hugo data
+Usage: {{< debug-hugo >}}
+*/}}
+
+<h3>Hugo Debug Information</h3>
+
+<h4>Site Variables:</h4>
+<ul>
+<li>Hugo Version: {{ hugo.Version }}</li>
+<li>Base URL: {{ .Site.BaseURL }}</li>
+<li>Title: {{ .Site.Title }}</li>
+<li>Language Code: {{ .Site.LanguageCode }}</li>
+</ul>
+
+<h4>Page Variables:</h4>
+<ul>
+<li>Page Title: {{ .Page.Title }}</li>
+<li>Page Type: {{ .Page.Type }}</li>
+<li>Page Kind: {{ .Page.Kind }}</li>
+<li>Page Date: {{ .Page.Date }}</li>
+<li>Page RelPermalink: {{ .Page.RelPermalink }}</li>
+<li>Page Permalink: {{ .Page.Permalink }}</li>
+</ul>
+
+<h4>Resources:</h4>
+<ul>
+{{ range .Page.Resources }}
+<li>{{ .Name }} ({{ .ResourceType }}) - {{ .RelPermalink }}</li>
+{{ end }}
+</ul>
+
+<h4>All Site Files:</h4>
+<ul>
+{{ range first 20 .Site.AllPages }}
+<li>{{ .RelPermalink }} - {{ .Title }}</li>
+{{ end }}
+</ul>
+
+<h4>Static Files:</h4>
+<ul>
+</ul>

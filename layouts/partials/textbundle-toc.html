@@ -1,0 +1,15 @@
+{{/* Custom TOC for textbundle posts */}}
+{{ $headings := .Page.Store.Get "textbundle_headings" }}
+<div class="article-toc">
+    <div class="toc-wrapper">
+        <h4 id="contents">Contents</h4>
+        <nav id="TableOfContents">
+            <ul>
+                {{ range $headings }}
+                    {{ if eq .level 2 }}<li><a href="#{{ .id }}">{{ .text }}</a></li>{{ end }}
+                    {{ if eq .level 3 }}<li style="margin-left: 20px;"><a href="#{{ .id }}">{{ .text }}</a></li>{{ end }}
+                {{ end }}
+            </ul>
+        </nav>
+    </div>
+</div>

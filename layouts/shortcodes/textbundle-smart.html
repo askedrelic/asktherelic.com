@@ -1,0 +1,99 @@
+{{/*
+Smart textbundle shortcode that extracts metadata and updates page context
+Usage: {{< textbundle-smart "bundle-name.textbundle" >}}
+*/}}
+
+{{ $bundlePath := .Get 0 }}
+{{ $bundleDir := printf "content/textbundles/%s" $bundlePath }}
+
+{{/* Read the markdown content */}}
+{{ $textPath := printf "%s/text.markdown" $bundleDir }}
+{{ if not (fileExists $textPath) }}
+  {{ $textPath = printf "%s/text.md" $bundleDir }}
+{{ end }}
+{{ $content := "" }}
+{{ if fileExists $textPath }}
+  {{ $content = readFile $textPath }}
+{{ else }}
+  {{ errorf "Textbundle text.markdown not found: %s" $textPath }}
+{{ end }}
+
+{{/* Extract first header as title */}}
+{{ $title := "" }}
+{{ $lines := split $content "\n" }}
+{{ range $lines }}
+  {{ if and (hasPrefix . "# ") (eq $title "") }}
+    {{ $title = trim (substr . 2) " " }}
+    {{ break }}
+  {{ end }}
+{{ end }}
+
+{{/* Try to extract date from title if it starts with YYYY-MM-DD */}}
+{{ $cleanDate := "" }}
+{{ $cleanTitle := $title }}
+{{ if $title }}
+  {{ $titleParts := split $title " - " }}
+  {{ if gt (len $titleParts) 1 }}
+    {{ $datePart := index $titleParts 0 }}
+    {{ if and (eq (len $datePart) 10) (findRE "-" $datePart) }}
+      {{ $cleanDate = $datePart }}
+      {{ $cleanTitle = delimit (after 1 $titleParts) " - " }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{/* Update page title if we extracted one */}}
+{{ if $cleanTitle }}
+  {{ .Page.Store.Set "textbundle_title" $cleanTitle }}
+{{ end }}
+
+{{/* Update page date if we extracted one */}}
+{{ if $cleanDate }}
+  {{ .Page.Store.Set "textbundle_date" $cleanDate }}
+{{ end }}
+
+{{/* Skip first title heading (already in page title) but keep all other headings */}}
+{{ $newLines := slice }}
+{{ $skipFirstTitle := true }}
+{{ range $lines }}
+  {{ if and (hasPrefix . "# ") $skipFirstTitle }}
+    {{ $skipFirstTitle = false }}
+    {{/* Skip the first title heading */}}
+  {{ else }}
+    {{ $newLines = $newLines | append . }}
+  {{ end }}
+{{ end }}
+{{ $processedContent := delimit $newLines "\n" }}
+
+{{/* Extract headings for manual TOC injection into page context */}}
+{{ $headings := slice }}
+{{ range $newLines }}
+  {{ if hasPrefix . "#" }}
+    {{ $hashes := index (findRE "^#+" .) 0 }}
+    {{ $level := len $hashes }}
+    {{ $headingText := trim (replaceRE "^#+\\s*" "" .) " " }}
+    {{ $headingId := anchorize $headingText }}
+    {{ $headings = $headings | append (dict "level" $level "text" $headingText "id" $headingId) }}
+  {{ end }}
+{{ end }}
+{{ .Page.Store.Set "textbundle_headings" $headings }}
+
+{{/* Update asset paths and convert images to HTML */}}
+{{ $assetsDir := printf "%s/assets" $bundleDir }}
+{{ if fileExists $assetsDir }}
+  {{ range readDir $assetsDir }}
+    {{ if not .IsDir }}
+      {{ $oldRef := printf "assets/%s" .Name }}
+      {{ $newRef := printf "/textbundles/%s/assets/%s" $bundlePath .Name }}
+      {{ $processedContent = replace $processedContent $oldRef $newRef }}
+      
+      {{/* Convert markdown image syntax to HTML */}}
+      {{ $markdownImg := printf "![%s](%s)" .Name $newRef }}
+      {{ $htmlImg := printf "<img src=\"%s\" alt=\"%s\">" $newRef .Name }}
+      {{ $processedContent = replace $processedContent $markdownImg $htmlImg }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{/* Process markdown normally */}}
+{{ $processedContent | markdownify }}

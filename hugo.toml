@@ -1,0 +1,100 @@
+#baseURL = 'https://asktherelic.com/'
+languageCode = 'en-us'
+title = 'Ask the Relic'
+theme = "poison"
+pluralizelisttitles = false   # removes the automatically appended "s" on sidebar entries
+
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+  series = "series"
+
+
+[languages.en.params.author]
+    name = "Matthew Behrens"
+    
+[pagination]
+  pagerSize = 10
+
+# Mount textbundle assets as static files
+[module]
+  [[module.mounts]]
+    source = "content/textbundles"
+    target = "static/textbundles"
+    includeFiles = "*/assets/**"
+  
+  [[module.mounts]]
+    source = "static"
+    target = "static"
+
+[permalinks]
+  posts = "/:year/:month/:day/:slug/"
+
+[params]
+    brand = "Ask the Relic"
+    description = "Useful words"
+    dark_mode = false
+    
+    # posion
+    front_page_content = ["posts"]
+    menu = [
+        {Name = "🏄 About", URL = "/about"},
+        {Name = "✏️ Posts", URL = "/posts/"},
+    ]
+    
+    github_url = "https://github.com/askedrelic"
+    linkedin_url = "https://linkedin.com/in/matthewbehrens"
+    email_url = "mailto:relic@asktherelic.com"
+
+    rss_icon = true
+    # Which section the RSS icon links to, defaults to all content. See https://gohugo.io/templates/rss/#section-rss
+    rss_section = "posts"
+    
+    # Color scheme configuration using Poison theme built-ins
+    # Light mode colors
+    content_bg_color = "#fff"
+    text_color = "#333"
+    link_color = "#0066CC"
+    date_color = "#666"
+    list_color = "#666"
+    post_title_color = "#1a1a1a"
+    
+    # Sidebar colors
+    sidebar_bg_color = "#0071bb"
+    sidebar_h1_color = "#fff"
+    sidebar_a_color = "#fff"
+    sidebar_p_color = "#eee"
+    sidebar_socials_color = "#fff"
+    
+    # Code styling
+    code_color = "#333"
+    code_background_color = "#f4f4f4"
+    
+    # Dark mode colors
+    content_bg_color_dark = "#1a1a1a"
+    text_color_dark = "#e6e6e6"
+    link_color_dark = "#0088ff"
+    date_color_dark = "#ccc"
+    list_color_dark = "#999"
+    post_title_color_dark = "#fff"
+    code_color_dark = "#f8f8f2"
+    code_background_color_dark = "#2d2d2d"
+
+[markup]
+  defaultMarkdownHandler = "goldmark"
+  
+[markup.goldmark.renderer]
+  unsafe = true
+
+[markup.goldmark.parser]
+  autoHeadingIDType = "github"
+  wrapStandAloneImageWithinParagraph = false
+
+[markup.goldmark.extensions]
+  definitionList = true
+  footnote = true
+  linkify = true
+  strikethrough = true
+  table = true
+  taskList = true
+  typographer = true

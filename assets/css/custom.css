@@ -1,0 +1,36 @@
+body {
+  font-size: 0.9em;
+}
+
+/* Center-align images in blog posts */
+.post img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+}
+
+.sidebar-nav {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+}
+
+.sidebar-sticky {
+  padding: 0 1.5rem;
+}
+
+.sidebar-nav .nav-item a {
+  display: block;
+  padding: 0.5rem 0;
+  text-decoration: none;
+  /* font-size: 1.1rem; */
+  font-weight: 500;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.sidebar-nav .nav-item a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding-left: 0.5rem;
+}
