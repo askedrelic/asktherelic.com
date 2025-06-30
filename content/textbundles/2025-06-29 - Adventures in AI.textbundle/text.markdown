@@ -18,8 +18,9 @@ The [GYB first time setup](https://github.com/GAM-team/got-your-back/wiki#genera
 
 I like this command to download a single year at a time:
 
-```other
-gyb --email email@gmail.com --action backup --search "after:2025/12/31 before:2026/01/01"
+```bash
+gyb --email email@gmail.com --action backup \
+    --search "after:2025/12/31 before:2026/01/01"
 ```
 
 Now we have thousands of local emails to work with:
@@ -42,7 +43,7 @@ $ tree 2025 | head
 
 And confirm we have the data we are looking for:
 
-```plaintext
+```bash
 $ rg -l "mcdonalds"
 2025/4/12/1962ad5a33cf606d.eml
 2025/1/25/1949e723ad7b39d7.eml
@@ -58,8 +59,14 @@ Another surprising fact was understanding that the MCP interface is HTTP JSON; s
 
 Initial attempts went as expected: 
 
-> \> Search all my files for emails about mcdonalds
-I can see you have a Gmail backup directory with many .eml files organized by date. Let me search through these email files to find any mentions of McDonald's. Since there are many files, I'll search through some of them systematically.
+```text
+> Search all my files for emails about mcdonalds
+
+I can see you have a Gmail backup directory with many .eml files organized by
+date. Let me search through these email files to find any mentions of
+McDonald's. Since there are many files, I'll search through some of them
+systematically.
+```
 
 Claude could understand there are files but the search command was only based on filename. It spun its wheels for several minutes trying to search every single file individually until it burned through its context limit.
 
@@ -75,7 +82,7 @@ Moving onto the [Code terminal app](https://www.anthropic.com/claude-code) gener
 
 Code had a similar approach blunt force approach of trying to add all emails to context and crashing out, but its planning and tool use were much better without prompting. It can break down tasks into smaller tasks that are more likely to be successful and stay organized on completing each task successfully. It will use grep to search versus anything else is the appropriate choice.
 
-```plaintext
+```text
 > Search all my email files for mcdonalds receipts, parse the emails, 
   and summarize any useful data
 
@@ -127,7 +134,7 @@ After finding the correct set of working email receipts, it also performed some 
 
 It's not an LLM artifact without emoji.
 
-```python
+```text
 📊 OVERVIEW:
    Total Receipts: 24
    Date Range: 01/04/2025 to 06/07/2025
@@ -159,7 +166,7 @@ It's not an LLM artifact without emoji.
 
 ```
 
-Source: [https://gist.github.com/askedrelic/0f605ab5c0923541a4c1df2bc1dcd385](https://gist.github.com/askedrelic/0f605ab5c0923541a4c1df2bc1dcd385)
+[Source code here](https://gist.github.com/askedrelic/0f605ab5c0923541a4c1df2bc1dcd385).
 
 ## Next Steps
 
@@ -172,8 +179,3 @@ Some other thoughts from this:
 - How to provide enough context or prompt for the LLM to make the "right" choices. Do you know the right choices up front and should you include these in the prompt?
 - There is value in cheap exploration and real results.
 - Is this making us all dumber? Where is your line between getting work done versus doing it yourself and still maintaining the understanding of the work.
-
-
-
-
-
