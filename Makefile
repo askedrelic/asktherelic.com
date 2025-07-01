@@ -14,36 +14,29 @@ PUBLIC_DIR := public
 CONTENT_DIR := content
 STATIC_DIR := static
 
-# Colors for output
-RED := \033[0;31m
-GREEN := \033[0;32m
-YELLOW := \033[0;33m
-BLUE := \033[0;34m
-NC := \033[0m # No Color
-
 help: ## Show this help message
-	@echo "$(BLUE)Ask The Relic Hugo Blog$(NC)"
-	@echo "$(BLUE)========================$(NC)"
+	@echo "Ask The Relic Hugo Blog"
+	@echo "======================="
 	@echo ""
 	@echo "Available commands:"
 	@echo ""
-	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "  $(GREEN)%-15s$(NC) %s\n", $$1, $$2}'
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "  %-15s %s\n", $$1, $$2}'
 	@echo ""
-	@echo "$(YELLOW)Hugo version:$(NC) $(HUGO_VERSION)"
-	@echo "$(YELLOW)Site URL:$(NC) http://localhost:$(HUGO_PORT)"
+	@echo "Hugo version: $(HUGO_VERSION)"
+	@echo "Site URL: http://localhost:$(HUGO_PORT)"
 
 install: ## Install dependencies and check Hugo installation
-	@echo "$(BLUE)Checking Hugo installation...$(NC)"
+	@echo "Checking Hugo installation..."
 	@if ! command -v hugo >/dev/null 2>&1; then \
-		echo "$(RED)Hugo not found. Please install Hugo first:$(NC)"; \
+		echo "Hugo not found. Please install Hugo first:"; \
 		echo "  brew install hugo"; \
 		echo "  or visit https://gohugo.io/installation/"; \
 		exit 1; \
 	fi
-	@echo "$(GREEN)Hugo $(HUGO_VERSION) is installed$(NC)"
-	@echo "$(BLUE)Installing Python dependencies...$(NC)"
-	@pip3 install requests beautifulsoup4 pyyaml >/dev/null 2>&1 || echo "$(YELLOW)Warning: Could not install Python dependencies$(NC)"
-	@echo "$(GREEN)Dependencies check complete$(NC)"
+	@echo "Hugo $(HUGO_VERSION) is installed"
+	@echo "Installing Python dependencies..."
+	@pip3 install requests beautifulsoup4 pyyaml >/dev/null 2>&1 || echo "Warning: Could not install Python dependencies"
+	@echo "Dependencies check complete"
 
 clean: ## Clean generated files
 	@echo "$(BLUE)Cleaning generated files...$(NC)"
@@ -85,7 +78,7 @@ check: ## Check site configuration and content
 	@echo "$(YELLOW)Static files:$(NC) $$(find $(STATIC_DIR) -type f | wc -l | tr -d ' ')"
 	@echo "$(YELLOW)Images:$(NC) $$(find $(STATIC_DIR) -name "*.jpg" -o -name "*.png" -o -name "*.gif" | wc -l | tr -d ' ')"
 
-lint: ## Check for common issues in content and format with Prettier
+lint: ## Check for common issues in content and format with Prettier and markdownlint
 	@echo "$(BLUE)Linting content...$(NC)"
 	@echo "$(YELLOW)Checking markdown formatting with Prettier...$(NC)"
 	@if [ -f node_modules/.bin/prettier ]; then \
@@ -93,6 +86,13 @@ lint: ## Check for common issues in content and format with Prettier
 		echo "$(GREEN)Prettier formatting check passed$(NC)"; \
 	else \
 		echo "$(YELLOW)Prettier not found. Run 'npm install' first.$(NC)"; \
+	fi
+	@echo "$(YELLOW)Checking markdown lint rules...$(NC)"
+	@if [ -f node_modules/.bin/markdownlint ]; then \
+		npx markdownlint "$(CONTENT_DIR)/**/*.md" || (echo "$(RED)Markdownlint issues found. Check output above.$(NC)" && exit 1); \
+		echo "$(GREEN)Markdownlint check passed$(NC)"; \
+	else \
+		echo "$(YELLOW)Markdownlint not found. Run 'npm install' first.$(NC)"; \
 	fi
 	@echo "$(YELLOW)Checking for broken markdown links...$(NC)"
 	@find $(CONTENT_DIR) -name "*.md" -exec grep -l "]()" {} \; | head -5 | while read file; do \
@@ -111,23 +111,15 @@ format: ## Format markdown files with Prettier
 	else \
 		echo "$(YELLOW)Prettier not found. Run 'npm install' first.$(NC)"; \
 	fi
+    # Fix header spacing issues (###What -> ### What)
+	@echo "$(BLUE)Fixing header spacing...$(NC)"
+	@find $(CONTENT_DIR) -name "*.md" -exec sed -i '' 's/^###\([A-Za-z]\)/### \1/g' {} \;
+	@find $(CONTENT_DIR) -name "*.md" -exec sed -i '' 's/^####\([A-Za-z]\)/#### \1/g' {} \;
+	@find $(CONTENT_DIR) -name "*.md" -exec sed -i '' 's/^#####\([A-Za-z]\)/##### \1/g' {} \;
+	@echo "$(GREEN)Header spacing fixed$(NC)"
 
-compare: ## Compare local site with remote asktherelic.com
-	@echo "$(BLUE)Comparing local site with remote...$(NC)"
-	@if [ ! -f compare_sites.py ]; then \
-		echo "$(RED)compare_sites.py not found$(NC)"; \
-		exit 1; \
-	fi
-	@echo "$(YELLOW)Starting Hugo server for comparison...$(NC)"
-	@hugo server --port $(HUGO_PORT) --buildDrafts=false >/dev/null 2>&1 & \
-	SERVER_PID=$$!; \
-	sleep 3; \
-	echo "$(YELLOW)Running comparison...$(NC)"; \
-	python3 compare_sites.py; \
-	kill $$SERVER_PID 2>/dev/null || true; \
-	echo "$(GREEN)Comparison complete$(NC)"
 
-markdown-test: ## Test markdown rendering for specific posts
+test: ## Test markdown rendering for specific posts
 	@echo "$(BLUE)Testing markdown rendering...$(NC)"
 	@echo "$(YELLOW)Building site...$(NC)"
 	@hugo --gc --quiet

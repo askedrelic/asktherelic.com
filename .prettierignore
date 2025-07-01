@@ -1,0 +1,22 @@
+# Ignore Hugo generated files
+/public/
+/resources/
+/static/
+/themes/
+
+# Ignore node modules
+node_modules/
+
+# Ignore git
+.git/
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
+
+# Ignore logs
+*.log
+
+# Ignore temporary files
+*.tmp
+*.temp

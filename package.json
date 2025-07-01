@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/askedrelic/asktherelic.com#readme",
   "devDependencies": {
+    "markdownlint-cli": "^0.45.0",
     "prettier": "^3.6.2"
   }
 }
