@@ -1,9 +1,8 @@
 ---
-date: '2011-01-20T22:51:10Z'
+date: "2011-01-20T22:51:10Z"
 slug: upgrading-to-blogofile-0-7
 title: Upgrading To Blogofile 0.7
 ---
-
 
 I saw [recently on PyPI][1] that blogofile, the Python blog engine that
 builds this blog, updated to version 0.7. This prompted me to upgrade my blog
@@ -15,35 +14,35 @@ and pulled code from them when my 0.6 code wasn't working.
 
 ### Main Changes
 
-* The blogofile main config has changed. This always seems to the change the
+- The blogofile main config has changed. This always seems to the change the
   most between versions, My recommendation is that it would be quicker to scrap
   your old config and just reconfigure everything. The main reason is that every
   config variable is now more OO, being attached to a blog object, cleaning up
   the mess of random variables previously:
 
-    ```
-    -blog_auto_permalink_enabled = True
-    +blog.auto_permalink.enabled = True
-    ```
+  ```diff
+  -blog_auto_permalink_enabled = True
+  +blog.auto_permalink.enabled = True
+  ```
 
-* With the new config naming scheme, your templates must be updated.  I did this
+- With the new config naming scheme, your templates must be updated. I did this
   manually since I had tweaked my templates and wanted to keep my changes. You
   must update all config references to use the blog object; the disqus config
   variable mostly:
 
-    ```
-    -% if bf.config.disqus_enabled:
-    +% if bf.config.blog.disqus.enabled:
-    ```
+  ```diff
+  -% if bf.config.disqus_enabled:
+  +% if bf.config.blog.disqus.enabled:
+  ```
 
-* Controllers have become more generic and the "blog" controller has moved to
+- Controllers have become more generic and the "blog" controller has moved to
   it's own subfolder/module. From what I understand with the development of
   blogofile, this has been done to point blogofile toward becoming more of
   a static file generating engine with a blog controller, not just a blog
   engine. This is a good thing, but requires rebuild most of your controllers
   directory. I would pull these from the `simple_blog` project.
 
-* Likewise, filters for markdown and syntax highlighting have been updated,
+- Likewise, filters for markdown and syntax highlighting have been updated,
   I would pull these from the `simple_blog` project.
 
 [See here][2] for the diff of my main 0.6>0.7 commit.
@@ -52,20 +51,20 @@ and pulled code from them when my 0.6 code wasn't working.
 
 With that out of the way, the cool things that 0.7 brings are:
 
-* Support for drafts! Just add a `draft: true` to your blog header and you can
+- Support for drafts! Just add a `draft: true` to your blog header and you can
   keep your post in source control, but not have it published!
 
-* Built-in linenums on source code now! Just add the `linenums=true` variable in
+- Built-in linenums on source code now! Just add the `linenums=true` variable in
   your code tag.
 
-    ```
-    $$code(lang=python,linenums=true)
-    foo = 1
-    bar = 3
-    $$/code
-    ```
+  ```
+  $$code(lang=python,linenums=true)
+  foo = 1
+  bar = 3
+  $$/code
+  ```
 
-* Version increment! This version has been a long time coming, but I feel I am
+- Version increment! This version has been a long time coming, but I feel I am
   missing most of the "behind-the-scenes" code changes that have made blogofile
   more dynamic and are paving the way for more powerful stuff in the future.
 

@@ -1,9 +1,8 @@
 ---
-date: '2012-01-15T14:31:28Z'
+date: "2012-01-15T14:31:28Z"
 slug: interesting-trends-in-vim
 title: Interesting Trends in Vim
 ---
-
 
 Something I've noticed lately with vim plugins are that miniscripts and smaller
 vim tweaks, any sort of vim functionality, are being packaged and shared as
@@ -13,17 +12,17 @@ and git submodules to share everything vim related, rather than copying and
 pasting actual code, I think the idea of managing everything via git, github,
 and git submodules is pretty neat.
 
-* Thanks to [Pathogen][1], plugins can remain separate from your main
+- Thanks to [Pathogen][1], plugins can remain separate from your main
   configuration, which great decreases the friction of trying new plugins and
   keeping your existing plugins organized.
-* Thanks to git, plugins have revision history and stable versions (tags).
-* Thanks to github, plugins have easy and stable endpoints to install from, to
+- Thanks to git, plugins have revision history and stable versions (tags).
+- Thanks to github, plugins have easy and stable endpoints to install from, to
   get updates from, and to complain about for bugs. Additionally, forking makes
   it easy to fix bugs yourself or make any tweaks you want, while still keeping
   everything in git.
-* Thanks to [git submodules][2], you can store your list of installed vim
+- Thanks to [git submodules][2], you can store your list of installed vim
   plugins, update them when necessary, and share them between multiple machines.
-* With [vundle][3] or [vim-addon-manager][4], you can search and install new
+- With [vundle][3] or [vim-addon-manager][4], you can search and install new
   plugins, all from within vim.
 
 ### The Theory
@@ -63,7 +62,6 @@ I feel plugins have traditionally been complex things in vim, but by having this
 easy and module process available and understood, more cool plugins will be
 made. Looks like it's time to [Learn Vimscript the Hard Way][7] and start
 writing my own plugins now!
-
 
 [1]: https://github.com/tpope/vim-pathogen
 [2]: http://vimcasts.org/episodes/synchronizing-plugins-with-git-submodules-and-pathogen/

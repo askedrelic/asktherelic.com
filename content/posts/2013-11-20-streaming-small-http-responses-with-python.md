@@ -1,9 +1,8 @@
 ---
-date: '2013-11-20T09:39:00Z'
+date: "2013-11-20T09:39:00Z"
 slug: streaming-small-http-responses-with-python
 title: Streaming Small HTTP Responses with Python
 ---
-
 
 For a recent hackathon project, I wanted to setup a client/server
 configuration, all in Python, so that the server could run shell commands and
@@ -98,7 +97,6 @@ correctly. Looking at HTTPie's code for consuming responses, led to me look at
 Request's code and figure everything out. Definitely recommend this tool!
 
 Lastly, always check the code and don't be afraid to dive deep.
-
 
 [1]: http://docs.python-requests.org/en/latest/index.html
 [2]: http://bottlepy.org/docs/dev/

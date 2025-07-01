@@ -1,9 +1,8 @@
 ---
-date: '2013-06-16T10:32:56Z'
+date: "2013-06-16T10:32:56Z"
 slug: goruck-light-experiences
 title: GoRuck Light Experiences
 ---
-
 
 Several months ago, I had the pleasure of completing a GoRuck Light event. It
 involved a seven-ish mile hike through the Presidio area of San Francisco,
@@ -80,7 +79,6 @@ Much of this preparation was based on my experiences and these experiences:
 - [http://briangreen.net/2012/07/goruck-challenge-gear-loadout.html][6]
 
 Here's to being prepared!
-
 
 [1]: /pic/goruck1.jpg
 [2]: http://www.goruck.com/

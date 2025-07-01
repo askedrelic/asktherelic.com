@@ -1,9 +1,8 @@
 ---
-date: '2012-09-10T22:12:25Z'
+date: "2012-09-10T22:12:25Z"
 slug: book-reviews---the-tipping-point-and-made-to-stick
 title: Book Reviews - The Tipping Point And Made To Stick
 ---
-
 
 Two for one special today. My reading backlog of late has been oriented on some
 well known books covering ideas; how they spread, how they are shared, and how

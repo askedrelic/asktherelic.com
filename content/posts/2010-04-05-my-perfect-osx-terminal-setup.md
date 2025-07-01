@@ -1,9 +1,8 @@
 ---
-date: '2010-04-05T14:44:13Z'
+date: "2010-04-05T14:44:13Z"
 slug: my-perfect-osx-terminal-setup
 title: My Perfect OSX Terminal Setup
 ---
-
 
 As a programmer and a part-time sysadmin, I spend a huge amount of time in the
 OSX Terminal and find it be one of the better CLI environments I've used, after

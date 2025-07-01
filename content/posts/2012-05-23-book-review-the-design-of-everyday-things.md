@@ -1,9 +1,8 @@
 ---
-date: '2012-05-23T22:50:25Z'
+date: "2012-05-23T22:50:25Z"
 slug: book-review-the-design-of-everyday-things
 title: Book Review - The Design Of Everyday Things
 ---
-
 
 ![the design of everyday things][1]
 

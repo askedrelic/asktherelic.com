@@ -1,9 +1,8 @@
 ---
-date: '2014-02-08T13:50:00Z'
+date: "2014-02-08T13:50:00Z"
 slug: another-year-another-set-of-backups
 title: Another Year, Another Set Of Backups
 ---
-
 
 You might not be able to call it a New Years Resolution anyone, but it's not too
 late to backup everything you did online last year. I usually get around [to
@@ -50,24 +49,24 @@ backup.
 Now that you have someplace to backup files, backup every important online
 service you used last year into a simple file format.
 
-* **Email**: most online email providers are now offering simple backup
+- **Email**: most online email providers are now offering simple backup
   solutions, [even Gmail][8].
-* **Passwords**: I also switched this year to religiously using [1Password][9],
+- **Passwords**: I also switched this year to religiously using [1Password][9],
   an application that stores all of your passwords and automatically fills them
   in, like when you need to access your bank account website. This has not only
   made my life easier, but improved the overall security of my passwords, since
   1Password can generate a unique password for each website you use. I can write
   volumes about this topic, but for now, get some application that stores your
   passwords for you.
-* **Bank account and credit card statements**: all my banking is done online
+- **Bank account and credit card statements**: all my banking is done online
   with e-paper statements. It saves time and paper. At the end of the year, most
   banks offer a Year End Summary, which you should download and store as a PDF.
   Most banks store these statements for up to seven years, but why not keep the
   copy locally? It makes keeping financial records much easier.
-* **Bookmarks**: Pinboard is an online bookmark service I use, which [offers an
+- **Bookmarks**: Pinboard is an online bookmark service I use, which [offers an
   export here][10]. If you just use Firefox or Chrome bookmarks and have
   hundreds or thousands of bookmarks, back them up!
-* **Social media services**: I used to find value in Twitter, Facebook,
+- **Social media services**: I used to find value in Twitter, Facebook,
   LinkedIn, but lately, I don't think the value is worth longterm backing up.
   JWZ argues for backing these services up and [offers some helpful
   exporters][11]. Facebook offers an [export under Settings][12] and [Twitter
@@ -91,7 +90,6 @@ That's my recommendation for the year. Everything that is physical fades
 eventually and everything that is digital can instantly disappear if you aren't
 careful. Understand the digital world and do what is necessary to preserve your
 important memories and documents!
-
 
 [1]: /2012/01/02/backup-everything-you-did-last-year/
 [2]: https://db.tt/xduLbMk

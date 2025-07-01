@@ -1,9 +1,8 @@
 ---
-date: '2011-02-17T23:07:54Z'
+date: "2011-02-17T23:07:54Z"
 slug: dynamic-fabric-commands-for-managing-cloud-servers
 title: Dynamic Fabric Commands For Managing Cloud Servers
 ---
-
 
 Fabric is a Python CLI
 tool for interacting with remote servers, that I've been pushing at work the
@@ -14,7 +13,7 @@ currently! It's a great tool.
 The two main ideas of Fabric are that you have hosts and tasks you apply to
 those hosts. Fabric uses `fabfile.py` as its default instruction file, similar
 to a Rakefile or makefile. From a command line, you can call multiple tasks on
-a host and they will get applied in the order you called them.  Hosts can be
+a host and they will get applied in the order you called them. Hosts can be
 defined staticly in the fabfile through a variety of methods, but this gets
 hard once you have multiple hosts that can change easily with cloud
 computing/VPS solutions. I found a straight foward way to handle this was to

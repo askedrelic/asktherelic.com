@@ -1,9 +1,8 @@
 ---
-date: '2010-04-26T18:19:40Z'
+date: "2010-04-26T18:19:40Z"
 slug: accessing-google-reader-via-oauth-and-python
 title: Accessing Google Reader via OAuth and Python
 ---
-
 
 Last month, Google Reader [announced][1] support for accessing user data via
 OAuth. Previously, access was unofficially allowed using the [ClientLogin
@@ -60,8 +59,8 @@ using a 3-step process to verify and get your required tokens from Google. In
 step 2, you have to manually open the link and authorize your script with
 Google.
 
-    # Step 1: Get a request token. This is a temporary token that is used for 
-    # having the user authorize an access token and to sign the request to obtain 
+    # Step 1: Get a request token. This is a temporary token that is used for
+    # having the user authorize an access token and to sign the request to obtain
     # said access token.
 
     resp, content = client.request(request_token_url, "GET")
@@ -112,7 +111,7 @@ the user's subscription list. Then the user's reading list.
     #Get user's subscription list
     resp, content = client.request(sub_url, 'GET')
     print content
-    print 
+    print
 
     #Get user's reading list
     resp, content = client.request(reading_url, 'GET')

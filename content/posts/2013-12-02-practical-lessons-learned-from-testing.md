@@ -1,9 +1,8 @@
 ---
-date: '2013-12-02T21:21:00Z'
+date: "2013-12-02T21:21:00Z"
 slug: practical-lessons-learned-from-testing
 title: Practical Lessons Learned From Testing
 ---
-
 
 After recently [joining a much larger company][1] and taking a look at my team's
 product from different perspectives, I've found new value from testing. While
@@ -96,7 +95,6 @@ always read your code and making it easier for them to read and analyze is
 a good thing. Finally, double checking yourself is a good thing. Testing is an
 investment, sometimes the return may take awhile to surface, but improving your
 testing ability is one step to becoming a better programmer.
-
 
 [1]: /2013/08/22/the-birthday-surprise/
 [2]: http://superprofundo.com/2010/12/13/top-down-and-bottom-up-pros-and-cons/

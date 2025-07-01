@@ -1,11 +1,10 @@
 ---
-date: '2012-05-13T13:29:36Z'
+date: "2012-05-13T13:29:36Z"
 slug: journal-0-3-released
 title: Journal 0.3 Released
 ---
 
-
-After some recent emails from new users of Journal, I've released version  0.3.
+After some recent emails from new users of Journal, I've released version 0.3.
 (Journal is a [CLI tool][1] to help with keeping a work/personal journal).
 
 If you have Journal installed with pip, you can
@@ -18,9 +17,9 @@ This version has been a long time coming, pulling in some patches from my friend
 Drew and changing how arguments passing to Journal are handled. Here is the
 official list:
 
-* added support for multiple journals and journal locations
-* added ~/.journalrc for storing default configurations of journals/locations
-* changed argument handling to add all arguments to the same entry instead of
+- added support for multiple journals and journal locations
+- added ~/.journalrc for storing default configurations of journals/locations
+- changed argument handling to add all arguments to the same entry instead of
   splitting them up
 
 ### In Detail
@@ -58,14 +57,13 @@ and simler to understand.
 
 Two things I'm looking at improving on are tests and long messages:
 
-* I want to use a "fake FS" to limit be able to to unit test the features of
+- I want to use a "fake FS" to limit be able to to unit test the features of
   Journal ([something like this][2])
-* Entering long messages from the command line using $EDITOR; `journal edit` or
+- Entering long messages from the command line using $EDITOR; `journal edit` or
   something, which opens your editor in with a temporary file and when you
   save/close that file, that entire file gets saved. Perhaps integrating with
   the clipboard as well, for autosaving snippets of things. Journal all the
   things!
-
 
 [1]: https://github.com/askedrelic/journal
 [2]: http://www.willmcgugan.com/blog/tech/2011/3/20/creating-a-virtual-filesystem-with-python-and-why-you-need-one/

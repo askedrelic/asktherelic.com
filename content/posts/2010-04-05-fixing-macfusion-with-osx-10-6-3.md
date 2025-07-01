@@ -1,9 +1,8 @@
 ---
-date: '2010-04-05T14:11:58Z'
+date: "2010-04-05T14:11:58Z"
 slug: fixing-macfusion-with-osx-10-6-3
 title: Fixing MacFusion with OSX 10.6.3
 ---
-
 
 MacFusion is a great little app that allows you to mount network locations over
 SSH, which I've [mentioned before][1]. With the latest 10.6.3 update in OSX, the

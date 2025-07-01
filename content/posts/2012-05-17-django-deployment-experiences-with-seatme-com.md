@@ -1,9 +1,8 @@
 ---
-date: '2012-05-17T23:11:23Z'
+date: "2012-05-17T23:11:23Z"
 slug: django-deployment-experiences-with-seatme-com
 title: Django Deployment Experiences with SeatMe.com
 ---
-
 
 Wednesday night [I gave a presentation on][1] how I deploy SeatMe.com @ the
 Life360 offices in SF. It was pretty fun and had a good turnout! Here's that
@@ -15,6 +14,5 @@ One other idea someone had mentioned afterward for running a local PyPI was to
 run a Squid proxy in front of PyPI and set a 1 year cache on everything. The
 more I think about, it's pretty ingenious and simple, versus running a full
 Python app.
-
 
 [1]: http://www.meetup.com/The-San-Francisco-Django-Meetup-Group/events/62536212/

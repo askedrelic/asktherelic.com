@@ -1,5 +1,5 @@
 ---
-date: '2011-04-02T15:43:41Z'
+date: "2011-04-02T15:43:41Z"
 slug: on-easily-replacing-text-in-vim
 title: On Easily Replacing Text In Vim
 ---
@@ -56,8 +56,8 @@ vmap <Leader>c "sy:%s/<C-R>=substitute(@s,"\n",'\\n','g')<CR>//n<CR>
 
 Other cool search aliases I found in vim:
 
-* `[I` shows all instances of the word under the cursor in the document
-* `]I` shows all instances of the word under the cursor after your current location
+- `[I` shows all instances of the word under the cursor in the document
+- `]I` shows all instances of the word under the cursor after your current location
 
 One final tip, regex can be a dangerous tool kids, so always use the confirm flag when replacing!
 
