@@ -1,12 +1,11 @@
 ---
-date: '2011-08-16T00:32:46Z'
+date: "2011-08-16T00:32:46Z"
 slug: journaling
 title: Journaling
 ---
 
-
-I'm releasing 0.1 of Journal, a simple Python CLI tool to help with keeping
-a journal for work/personal stuff! Inspired by Peter Lyons' [article on career
+I'm releasing 0.1 of Journal, a simple Python CLI tool to help with keeping a
+journal for work/personal stuff! Inspired by Peter Lyons' [article on career
 development][1], I decided to write up a script to help manage things.
 
 The idea from Lyons' article is to keep a chronological log of everything you do

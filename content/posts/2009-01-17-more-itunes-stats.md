@@ -1,9 +1,8 @@
 ---
-date: '2009-01-17T12:00:01Z'
+date: "2009-01-17T12:00:01Z"
 slug: more-itunes-stats
 title: More iTunes Stats
 ---
-
 
 My friend Drew updated his Perl iTunes library module <a
 title="http://dinomite.net/2009/macituneslibrary/"

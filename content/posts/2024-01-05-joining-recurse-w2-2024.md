@@ -1,13 +1,14 @@
 ---
-date: '2024-01-05T14:00:00Z'
+date: "2024-01-05T14:00:00Z"
 slug: joining-recurse-w2-2024
 title: Joining Recurse Center for W2 2024
 ---
 
-I’m thrilled to announce that I've joined the [Recurse Center](https://recurse.com) 
-for the Winter 2 batch, where I'll be immersed in a 12-week community-focused retreat dedicated
-to programming and self-improvement. In their words, it’s a “retreat where
-curious programmers recharge and grow.”
+I’m thrilled to announce that I've joined the
+[Recurse Center](https://recurse.com) for the Winter 2 batch, where I'll be
+immersed in a 12-week community-focused retreat dedicated to programming and
+self-improvement. In their words, it’s a “retreat where curious programmers
+recharge and grow.”
 
 I'm fortunate to be in a stable financial position, allowing me to step outside
 my comfort zone and explore something new. While my career has been built on
@@ -15,11 +16,12 @@ predictability and meeting expectations, I believe there's value in venturing
 outside your comfort zone, especially when it aligns with your true self. My
 hope is to discover new passions and delve into them more deeply than I have
 lately. This experience brings back memories of my college days when I lived on
-a "special interest" dormitory floor for computers, called 
+a "special interest" dormitory floor for computers, called
 [Computer Science House](https://www.csh.rit.edu/), that had a great community
 and environment for learning. Recurse Center reminds me of that fondly.
 
 ## Day One
+
 The Recurse Center [principles](https://www.recurse.com/self-directives)
 prioritize self-direction and working towards personal goals. So, what are my
 goals?

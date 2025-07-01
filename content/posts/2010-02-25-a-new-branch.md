@@ -1,9 +1,8 @@
 ---
-date: '2010-02-25T15:25:14Z'
+date: "2010-02-25T15:25:14Z"
 slug: a-new-branch
 title: A New Branch
 ---
-
 
 I've been writing on this site for a couple years now, slowing figuring out how
 to organize things and finding out what I like to write about. I've finally come

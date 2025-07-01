@@ -1,9 +1,8 @@
 ---
-date: '2009-07-28T22:23:04Z'
+date: "2009-07-28T22:23:04Z"
 slug: svn-line-output-totals
 title: SVN Line Output Totals
 ---
-
 
 I'm working in a group project currently and annoyed at the lack of output by my
 teammates. Wanting hard metrics of how awesome I am and how awesome they aren't,

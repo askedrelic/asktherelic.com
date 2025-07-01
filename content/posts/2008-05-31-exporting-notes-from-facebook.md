@@ -1,9 +1,8 @@
 ---
-date: '2008-05-31T23:36:30Z'
+date: "2008-05-31T23:36:30Z"
 slug: exporting-notes-from-facebook
 title: Exporting Notes From Facebook
 ---
-
 
 I'm importing some lost data tonight thanks to Facebook Notes. My FB Notes are
 subscribed to this blog's RSS feed, it pulls down all my posts and re-posts

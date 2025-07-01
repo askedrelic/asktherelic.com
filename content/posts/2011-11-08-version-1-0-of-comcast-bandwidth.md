@@ -1,9 +1,8 @@
 ---
-date: '2011-11-08T01:01:01Z'
+date: "2011-11-08T01:01:01Z"
 slug: version-1-0-of-comcast-bandwidth
 title: Version 1.0 of Comcast Bandwidth Usage
 ---
-
 
 After receiving some patches on GitHub this weekend and renewing my interest in
 this project, I've decided to tag a 1.0 version of my [Comcast Bandwidth
@@ -12,13 +11,13 @@ new feature, it's probably worth finally tagging a stable version.
 
 What's new in 1.0?
 
-* Android Notifications of your usage via [Notify My Android][2]
-* The ability to easily run the script on Heroku instead of your own server
-* Now using standard config.ini configuration for your Comcast username/password
+- Android Notifications of your usage via [Notify My Android][2]
+- The ability to easily run the script on Heroku instead of your own server
+- Now using standard config.ini configuration for your Comcast username/password
 
 What's already there; what is this script?
 
-* A simple way to scrape your current bandwidth usage from Comcast's website
+- A simple way to scrape your current bandwidth usage from Comcast's website
   with the ability to specific warn you if are coming close to the 250GB soft
   limit
 
@@ -53,7 +52,6 @@ See the [HEROKU_USAGE.markdown][7] document and try running the script on
 Heroku!
 
 Until bandwidth limits disappear, enjoy the script!
-
 
 [1]: https://github.com/askedrelic/comcast-bw/
 [2]: http://nma.usk.bz/

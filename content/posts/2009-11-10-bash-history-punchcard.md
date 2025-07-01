@@ -1,9 +1,8 @@
 ---
-date: '2009-11-10T21:13:54Z'
+date: "2009-11-10T21:13:54Z"
 slug: bash-history-punchcard
 title: Bash History Punchcard
 ---
-
 
 I love the punchcard graph on GitHub, showing the hourly/daily/weekly output of
 a project in a nice and neat format. I decided to apply the punchcard format to

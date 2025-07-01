@@ -1,9 +1,8 @@
 ---
-date: '2007-11-27T21:39:07Z'
+date: "2007-11-27T21:39:07Z"
 slug: blackberry-sync-under-osx
 title: Blackberry Sync under OSX
 ---
-
 
 The state of affairs in OSX with Blackberries is pretty sad. RIM offers a free
 program called [PocketMac][1], which amazingly works, but sucks very badly. It
@@ -18,16 +17,15 @@ and lack of options and documentation. However, it does seem to work. I tried
 just doing a 1-way with my contacts, dumping them on the Blackberry, and syncing
 my Notes on the Blackberry to Stickies on OSX.
 
-* Contacts sync 1-way fine, but it is a complete 1-way sync. It deletes all
+- Contacts sync 1-way fine, but it is a complete 1-way sync. It deletes all
   contacts on the Blackberry first, then overwrites your contacts. I have to try
   a 2-way sync, but I'm cautious because I don't want the Blackberry deleting
   info on the Address Book.
-* Notes lose their title, but they transfer fine to Stickies. 2-way sync works
+- Notes lose their title, but they transfer fine to Stickies. 2-way sync works
   fine.
 
 I'm keeping it simple and not gonna try Calendar sync or anything. Overall, this
-is a very negative review, but I can't complain too much because it
-*does* work. Oh well.
-
+is a very negative review, but I can't complain too much because it _does_ work.
+Oh well.
 
 [1]: http://www.pocketmac.net/

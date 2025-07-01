@@ -1,12 +1,11 @@
 ---
-date: '2011-05-29T11:41:56Z'
+date: "2011-05-29T11:41:56Z"
 slug: simple-sidebar-navigation-with-sausage-js
 title: Simple Sidebar Navigation with Sausage.js
 ---
 
-
-Several weeks ago, a friend linked me to [Sausage.js][1], "a jQuery UI widget for
-contextual pagination." I would call it more of a sidebar navigation widget.
+Several weeks ago, a friend linked me to [Sausage.js][1], "a jQuery UI widget
+for contextual pagination." I would call it more of a sidebar navigation widget.
 The example page was intriguing and prompted me to add it to this blog.
 
 ### Requirements
@@ -19,10 +18,10 @@ something else set to 100% height which didn't work well...
 
 The main requirements:
 
-* modern jQuery version (I'm using 1.5.2)
-* modern jQuery UI widget library (I'm using 1.8.11)
-* [Sausage CSS reset][3]
-* [Sausage CSS styles][4]
+- modern jQuery version (I'm using 1.5.2)
+- modern jQuery UI widget library (I'm using 1.8.11)
+- [Sausage CSS reset][3]
+- [Sausage CSS styles][4]
 
 Here is the main code to setup Sausage for my blog:
 

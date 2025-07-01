@@ -1,5 +1,5 @@
 ---
-date: '2011-10-26T22:35:39Z'
+date: "2011-10-26T22:35:39Z"
 slug: returning-to-normal
 title: A Return To Normal
 ---
@@ -11,8 +11,8 @@ again and can start coding and writing in peace. My new job has kept me quite
 busy, but what little free time I find, I try and make good use of.
 
 I found an article through HackerNews recently that, while quite old, still
-seemed quite relevent and impressed me greatly: ["You and Your Research,"][1]
-a transcription of a talk given by Richard Hamming in 1986, the year I was born.
+seemed quite relevent and impressed me greatly: ["You and Your Research,"][1] a
+transcription of a talk given by Richard Hamming in 1986, the year I was born.
 
 Of the many great quotes and ideas in his talk, this stood out to me:
 
@@ -20,6 +20,5 @@ Of the many great quotes and ideas in his talk, this stood out to me:
 
 That is the best way to describe my goal for this blog, along with the code in
 my github repos. It's time to accomplish great things.
-
 
 [1]: http://www.paulgraham.com/hamming.html

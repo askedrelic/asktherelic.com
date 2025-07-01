@@ -1,9 +1,8 @@
 ---
-date: '2008-08-17T16:33:01Z'
+date: "2008-08-17T16:33:01Z"
 slug: wordcamp-wrapup
 title: Wordcamp Wrapup
 ---
-
 
 It was a great day Saturday at Wordcamp, meeting so many interesting people,
 fostering some new ideas, and learn quite a lot. I've used wordpress now as my
@@ -33,27 +32,26 @@ gain interest, I think they have a lot of potential.
 
 Buffet style BBQ with macaroni and chicken, vegetarians be damned! Long lines at
 first, but they subsided quickly. Another meal done well. I headed into more
-talks and was quite happy to hear Nginx mentioned by Chris Lea. Nginx is
-a Russian developed webserver that is substantially faster than Apache or
+talks and was quite happy to hear Nginx mentioned by Chris Lea. Nginx is a
+Russian developed webserver that is substantially faster than Apache or
 Lighttpd, but due to be Russian, it's always been hard as hell to find docs for
 it in English. From what I heard, the situation has improved now, so maybe it's
 time to switch back to Nginx now! jQuery was demoed, the Wordpress APIs were
 shown, and BuddyPress, a Facebook-like version of Wordpress was shown, to be
 public by end of the year.
 
-I found there was a very distinct difference between users and developers,
-I could tell which side people were on immediately. Users just created content
-and have no clue about anything else. I applaud them for pushing forward and
-having a passion, someone needs to poke the developers to be productive. One of
-the other interesting aspects with the crowd was the rampant use of flickr and
+I found there was a very distinct difference between users and developers, I
+could tell which side people were on immediately. Users just created content and
+have no clue about anything else. I applaud them for pushing forward and having
+a passion, someone needs to poke the developers to be productive. One of the
+other interesting aspects with the crowd was the rampant use of flickr and
 twitter. Everyone in the room was twittering nonstop. I would post a picture to
 flickr, mention it on twitter, and watch it appear on 8 laptop screens
 instantly. It was a unique social experience.
 
 One other cool thing were several tattoo of wordpress that were lying around.
 They asked us to apply them and mentioned prizes. I added the tattoo to my foot
-and then ended up winning a WP Moleskin notepad! Very cool contest and
-prize.
+and then ended up winning a WP Moleskin notepad! Very cool contest and prize.
 
 <a
 href="http://www.thebehrensventure.com/wp-content/uploads/2008/08/2769495380_0e90b28e2b_b.jpg"><img

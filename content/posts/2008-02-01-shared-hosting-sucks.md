@@ -1,17 +1,16 @@
 ---
-date: '2008-02-01T13:57:14Z'
+date: "2008-02-01T13:57:14Z"
 slug: shared-hosting-sucks
 title: Shared Hosting Sucks
 ---
-
 
 I'm a bit wired on coffee right now, but this is a rant that has been building
 for awhile. Shared hosting sucks. After years of experience with many different
 providers and situations, I'm fed up with it. The idea is great, a shared
 utilization of resources because usually one person on a server is not going to
 use 100% of the resources, but how the situation is with most providers is
-terrible. Recently, I've been coming around more and more to the idea of
-a [VPS][1], a shared server setup, but not sharing just one system.
+terrible. Recently, I've been coming around more and more to the idea of a
+[VPS][1], a shared server setup, but not sharing just one system.
 
 To rant specifically, I'm tired of dealing with other people. Most shared hosts
 have CPanel or some other web-based GUI management system that is usually not
@@ -28,6 +27,5 @@ more than reasonable for most website solutions running Apache and MySQL. If you
 need better performance, run a low memory webserver like nginx or lighttpd. It's
 just so much easier to fix something that is broken yourself. From now on, VPS
 will be my first choice for running a webserver and I hope you do the same.
-
 
 [1]: http://en.wikipedia.org/wiki/Virtual_private_server

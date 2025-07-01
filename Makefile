@@ -65,7 +65,7 @@ serve: ## Start development server
 	@echo "$(BLUE)Starting Hugo development server...$(NC)"
 	@echo "$(YELLOW)Site will be available at:$(NC) http://localhost:$(HUGO_PORT)"
 	@echo "$(YELLOW)Press Ctrl+C to stop$(NC)"
-	@hugo server --port $(HUGO_PORT) --buildDrafts --buildFuture --disableFastRender --gc --ignoreCache
+	@hugo server --bind 0.0.0.0 --port $(HUGO_PORT) --buildDrafts --buildFuture --disableFastRender --gc --ignoreCache
 
 dev: serve ## Alias for serve
 
@@ -85,24 +85,31 @@ check: ## Check site configuration and content
 	@echo "$(YELLOW)Static files:$(NC) $$(find $(STATIC_DIR) -type f | wc -l | tr -d ' ')"
 	@echo "$(YELLOW)Images:$(NC) $$(find $(STATIC_DIR) -name "*.jpg" -o -name "*.png" -o -name "*.gif" | wc -l | tr -d ' ')"
 
-lint: ## Check for common issues in content
+lint: ## Check for common issues in content and format with Prettier
 	@echo "$(BLUE)Linting content...$(NC)"
+	@echo "$(YELLOW)Checking markdown formatting with Prettier...$(NC)"
+	@if [ -f node_modules/.bin/prettier ]; then \
+		npx prettier --check "$(CONTENT_DIR)/**/*.md" || (echo "$(RED)Prettier formatting issues found. Run 'make format' to fix.$(NC)" && exit 1); \
+		echo "$(GREEN)Prettier formatting check passed$(NC)"; \
+	else \
+		echo "$(YELLOW)Prettier not found. Run 'npm install' first.$(NC)"; \
+	fi
 	@echo "$(YELLOW)Checking for broken markdown links...$(NC)"
-	@find $(CONTENT_DIR) -name "*.md" -exec grep -l "\]\(\)" {} \; | head -5 | while read file; do \
+	@find $(CONTENT_DIR) -name "*.md" -exec grep -l "]()" {} \; | head -5 | while read file; do \
 		echo "$(RED)Broken link in:$(NC) $$file"; \
 	done || echo "$(GREEN)No broken markdown links found$(NC)"
 	@echo "$(YELLOW)Checking for missing alt text in images...$(NC)"
-	@find $(CONTENT_DIR) -name "*.md" -exec grep -l "!\[\]\(" {} \; | head -5 | while read file; do \
+	@find $(CONTENT_DIR) -name "*.md" -exec grep -l "!\[\](" {} \; | head -5 | while read file; do \
 		echo "$(RED)Missing alt text in:$(NC) $$file"; \
 	done || echo "$(GREEN)No missing alt text found$(NC)"
 
-format: ## Format markdown files
+format: ## Format markdown files with Prettier
 	@echo "$(BLUE)Formatting markdown files...$(NC)"
-	@if command -v prettier >/dev/null 2>&1; then \
-		prettier --write "$(CONTENT_DIR)/**/*.md"; \
+	@if [ -f node_modules/.bin/prettier ]; then \
+		npx prettier --write "$(CONTENT_DIR)/**/*.md"; \
 		echo "$(GREEN)Formatting complete$(NC)"; \
 	else \
-		echo "$(YELLOW)Prettier not found. Install with: npm install -g prettier$(NC)"; \
+		echo "$(YELLOW)Prettier not found. Run 'npm install' first.$(NC)"; \
 	fi
 
 compare: ## Compare local site with remote asktherelic.com

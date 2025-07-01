@@ -1,9 +1,8 @@
 ---
-date: '2006-05-03T12:00:00Z'
+date: "2006-05-03T12:00:00Z"
 slug: hiddensource-beta-3
 title: Hidden:Source Beta 3
 ---
-
 
 So for those in the know, [Hidden:Source][1] came out with Beta 3 of their Half
 Life 2 mod. It is an excellent and very much improved version, which I can't
@@ -17,6 +16,5 @@ Predator, but more awesome. A team of marines goes to capture an escaped
 invisible mutant, who turns the tables and tries to kill them. Very fun gameplay
 and mechanics, the thrill that you get playing as the hidden is like nothing
 else I have experienced before. Try this mod out!
-
 
 [1]: http://www.hidden-source.com/

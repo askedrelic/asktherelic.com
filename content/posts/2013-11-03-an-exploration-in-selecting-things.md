@@ -1,9 +1,8 @@
 ---
-date: '2013-11-03T16:44:00Z'
+date: "2013-11-03T16:44:00Z"
 slug: an-exploration-in-selecting-things
 title: An Exploration In Selecting Things
 ---
-
 
 Sometime last year, I remember finding a code snippet [to help switch between
 Python virtual environments][1], which I added to my `.bashrc`.
@@ -28,10 +27,10 @@ alias v.menu='menuvirtualenv'
 (mrcoles)12:54:33 pcoles@peters_air:~/projects/mrcoles >
 ```
 
-This method for selecting an input stood out to me for being so simple: just
-a numbered list. Many command line applications make input too complex, making
-the user think about _what_ they want to select, making them type it in
-again, while many don't even support tab complete.
+This method for selecting an input stood out to me for being so simple: just a
+numbered list. Many command line applications make input too complex, making the
+user think about _what_ they want to select, making them type it in again, while
+many don't even support tab complete.
 
 Several months ago, I was on an airplane with no internet and decided to
 challenge myself to implement that select interface in Python. When looking at
@@ -56,7 +55,7 @@ select name [ in word ] ; do list ; done
 I started hacking, got it working, then forgot it about. Now coming back to the
 code with an internet connection, I've released it on [PyPI][2] and [Github][3].
 
-### Pyselect
+## Pyselect
 
 Pyselect wraps `raw_input()`, more or less:
 
@@ -128,15 +127,15 @@ function gobranch() {
 }
 ```
 
-### Moving Forward
+## Moving Forward
 
 For now, I have some other ideas to try with selecting things:
 
-* Auto-select an option when you have less than 9 options and enter 1-9, no need
+- Auto-select an option when you have less than 9 options and enter 1-9, no need
   to hit the enter key
-* A-Z input, maybe default to home row, ala [vim-easymotion][4]
-* Multi-option select, 1-4 ala `git add --interactive` mode
-* Integration with Fabric perhaps, which has [some simple input functions][5]
+- A-Z input, maybe default to home row, ala [vim-easymotion][4]
+- Multi-option select, 1-4 ala `git add --interactive` mode
+- Integration with Fabric perhaps, which has [some simple input functions][5]
 
 Ideally, pyselect could become "input for humans", ala [Requests][6], because
 `raw_input()` could always use a more friendly API.

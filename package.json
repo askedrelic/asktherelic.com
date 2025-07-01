@@ -1,0 +1,24 @@
+{
+  "name": "asktherelic.com",
+  "version": "1.0.0",
+  "description": "It's a blog.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/askedrelic/asktherelic.com.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/askedrelic/asktherelic.com/issues"
+  },
+  "homepage": "https://github.com/askedrelic/asktherelic.com#readme",
+  "devDependencies": {
+    "prettier": "^3.6.2"
+  }
+}

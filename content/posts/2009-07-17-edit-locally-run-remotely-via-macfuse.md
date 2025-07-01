@@ -1,19 +1,18 @@
 ---
-date: '2009-07-17T13:37:02Z'
+date: "2009-07-17T13:37:02Z"
 slug: edit-locally-run-remotely-via-macfuse
 title: Edit Locally, Run Remotely Via MacFUSE
 ---
-
 
 One of the most ample things I've had this summer has been time: time to read,
 time to code, and time to tinker (or waste) on improving how I code. While I am
 occasionally guilt <a
 title="http://www.codinghorror.com/blog/archives/001282.html"
-href="http://www.codinghorror.com/blog/archives/001282.html" target="_blank">of
-being too 'meta,'</a> spending too much much time worrying about how I do work
-rather than doing work, I feel that having the idea to improve in your head is
-far better than stagnating. Some improvements are easy to invest in and quick to
-see returns of saved time, others are not. Improving how you work and trying new
+href="http://www.codinghorror.com/blog/archives/001282.html" target="_blank">of being
+too 'meta,'</a> spending too much much time worrying about how I do work rather
+than doing work, I feel that having the idea to improve in your head is far
+better than stagnating. Some improvements are easy to invest in and quick to see
+returns of saved time, others are not. Improving how you work and trying new
 things is an investment than I feel is worth making.
 
 The most recent change I've done is to use MacFUSE to mount my ssh connections
@@ -79,7 +78,7 @@ mounting/unmounting of shares. Quite easy!
 <h3>Install the CLI SSHFS</h3>
 
 I first found out about the CLI version and prefer this version due to the
-customization it provides. Not everyone needs a command line app though. 
+customization it provides. Not everyone needs a command line app though.
 
 First, checkout the code from Google Code using Subversion, following the <a
 title="http://code.google.com/p/macfuse/wiki/MACFUSE_FS_SSHFS"
@@ -92,7 +91,6 @@ instructions</a>. OSX 10.5 should have Subversion installed.
 The binaries for 10.5 and 10.4 are the latest version of SSHFS, 2.2.0. Now you
 need to create a folder to mount to and then mount the shared drive!
 
-
     # Mounting the SSH file system
     $ mkdir /some/mount/point # or use one that already exists
     $ sshfs user@host:/some/directory /some/mount/point -oauto_cache,reconnect,volname="some vol name"
@@ -101,9 +99,9 @@ need to create a folder to mount to and then mount the shared drive!
     $ sshfs-static-leopard askedrelic@thebehrensventure.com:/home/askedrelic \
             /Volumes/thebehrensventure.com -oauto_cache,reconnect,volname="thebehrensventure.com"
 
-From here, you link the binary to your /usr/local/bin perhaps and create
-a script to automount the drive on login. Generally I prefer doing things via
-the Terminal, but that's just me.
+From here, you link the binary to your /usr/local/bin perhaps and create a
+script to automount the drive on login. Generally I prefer doing things via the
+Terminal, but that's just me.
 
 <h3>Working with SSHFS</h3>
 
@@ -117,10 +115,10 @@ and their performance.
 
 One thing to watch out for is applying commands for the remote server on the
 local folders. SVN or GIT will generally work in the local folders because their
-commands are directory specific. I have heard of issues when working with
-a large amount of folders before, with slow response times, but that is why
-I would recommend to apply all commands remotely over ssh. My main usage of
-SSHFS is over a LAN connection with a server sitting 10 feet from me. Browsing
+commands are directory specific. I have heard of issues when working with a
+large amount of folders before, with slow response times, but that is why I
+would recommend to apply all commands remotely over ssh. My main usage of SSHFS
+is over a LAN connection with a server sitting 10 feet from me. Browsing
 directories via the Finder in the Icon view over a slower connection, with
 Finder previews turned on and other bandwidth intensive accessories, will
 definitely dampen performance. Try browsing in List mode if you have slow

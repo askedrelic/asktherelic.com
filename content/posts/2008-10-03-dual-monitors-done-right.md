@@ -1,9 +1,8 @@
 ---
-date: '2008-10-03T12:00:13Z'
+date: "2008-10-03T12:00:13Z"
 slug: dual-monitors-done-right
 title: Dual Monitors Done Right
 ---
-
 
 After getting back to school and settling in, I put some serious thought into my
 current desk setup. Considering I'm planning on sitting at this desk for the
@@ -17,17 +16,17 @@ something about them until now!</span>
 
 ### Proper Posture
 
-For the amount of time I sit at my desk, I should care about the manner in how
-I sit there. <a title="http://www.codinghorror.com/blog/archives/000938.html"
+For the amount of time I sit at my desk, I should care about the manner in how I
+sit there. <a title="http://www.codinghorror.com/blog/archives/000938.html"
 href="http://www.codinghorror.com/blog/archives/000938.html"
 target="_blank">Computer Ergonomics</a> was the first article which I checked.
 Following the guidelines:
 
-* I put 2 books under my iMac, raising the center of my monitor to be directly
+- I put 2 books under my iMac, raising the center of my monitor to be directly
   at my eye sight looking foward.
-* Raised my chair, so that my belly button is elevated at the same level as my
+- Raised my chair, so that my belly button is elevated at the same level as my
   desktop.
-* Pushed my iMac back, allowing my arms to fully rest on my desktop.
+- Pushed my iMac back, allowing my arms to fully rest on my desktop.
 
 After about 2-3 weeks of doing this, I'd say it's helped. I'm already used to
 sitting at my desk for hours on end, but I feel less stressed maybe, less cramps
@@ -38,12 +37,12 @@ minutes or so and wander around my apartment. Keep the blood flowing!
 
 The second article, <a
 title="http://www.codinghorror.com/blog/archives/000959.html"
-href="http://www.codinghorror.com/blog/archives/000959.html" target="_blank">LCD
-Monitor Arms</a>, had been in my mind for awhile, but I didn't have the funds to
-support it. I've had two LCDs screens available to me for a few years now and
-I would never go back. However, on my current setup, desk space is at a premium
-and I can't space items out as far as I would like. That means that positioning
-a 2nd LCD on the right hand side of my desk was interfering with my right handed
+href="http://www.codinghorror.com/blog/archives/000959.html" target="_blank">LCD Monitor
+Arms</a>, had been in my mind for awhile, but I didn't have the funds to support
+it. I've had two LCDs screens available to me for a few years now and I would
+never go back. However, on my current setup, desk space is at a premium and I
+can't space items out as far as I would like. That means that positioning a 2nd
+LCD on the right hand side of my desk was interfering with my right handed
 mouse. The solution was a desktop mounted arm. <a rel="attachment wp-image-133"
 href="http://www.thebehrensventure.com/wp-content/uploads/2008/09/img_0080.jpg"><img
 class="aligncenter size-medium wp-image-133" title="img_0080"

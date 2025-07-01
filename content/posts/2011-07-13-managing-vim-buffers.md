@@ -1,9 +1,8 @@
 ---
-date: '2011-07-13T20:21:52Z'
+date: "2011-07-13T20:21:52Z"
 slug: managing-vim-buffers
 title: Managing Vim Buffers
 ---
-
 
 Buffers are Vim's underlying way of managing text and perhaps a little confusing
 to work with at first. Most GUI text editors have a direct "one window to one
@@ -50,7 +49,7 @@ useful. It's a drop down list, with last accessed time displayed and sorted by
 MRU. You can use `CTRL+N` or `CTRL+P` and a cursor to select the top few items
 easily. You can type any partial buffer name to filter the list. I've used FF
 for many years, but have found it slow at times and a bit quirky when
-closing/deleting the windows it creates. Therefore, I've moved onto Lusty. 
+closing/deleting the windows it creates. Therefore, I've moved onto Lusty.
 
 ### My New: LustyJuggler
 
@@ -63,9 +62,9 @@ Tab to select. Simple and quick.
 ![LustyBuffer](/pic/lustybuffer.png)
 
 Vim is all about saving key strokes, so why even type out a partial filename?
-LustyJuggler allows you to "juggle" between open buffers, showing the last
-9 used buffers with simple select using the 1-9 number keys or the `asdfghjkl`
-row of keys, for qwerty keyboard users.
+LustyJuggler allows you to "juggle" between open buffers, showing the last 9
+used buffers with simple select using the 1-9 number keys or the `asdfghjkl` row
+of keys, for qwerty keyboard users.
 
 ![LustyJuggler](/pic/lustyjuggler.png)
 
@@ -74,8 +73,8 @@ quick grep of all open buffers.
 
 ![LustyBufferGrep](/pic/lustygrep.png)
 
-I plan to cover LustyExplorer more in the future, but for now, it has been
-a quite useful and clean plugin. Once you have begun to get a better grasp over
+I plan to cover LustyExplorer more in the future, but for now, it has been a
+quite useful and clean plugin. Once you have begun to get a better grasp over
 your buffers, you can move to tabs and vertical split windows and having access
 to your source code in many different ways. Feel free to share how you use
 buffers in the comments.

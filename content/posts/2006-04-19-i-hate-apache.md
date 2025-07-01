@@ -1,9 +1,8 @@
 ---
-date: '2006-04-19T12:00:00Z'
+date: "2006-04-19T12:00:00Z"
 slug: i-hate-apache
 title: I Hate Apache
 ---
-
 
 Okay, not really, Apache does a great job for a webserver, very stable, very
 easy to use, and it works most of the time. However, I'm becoming incredibly fed
@@ -17,6 +16,6 @@ Bandwidth limiting is possible, but only through modules that you have to
 compile and make yourself. I'm decent at Linux, but not that good yet, so it's
 impossible for me.
 
-More or less what I think will happen is that I am going to install LightTPD,
-a lightweight web server with FastCGI, which will help my PHP code, and includes
+More or less what I think will happen is that I am going to install LightTPD, a
+lightweight web server with FastCGI, which will help my PHP code, and includes
 build in URL redirections. Either way, I'm just getting fed up with Apache.

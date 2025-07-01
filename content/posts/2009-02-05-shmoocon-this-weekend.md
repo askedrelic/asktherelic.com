@@ -1,9 +1,8 @@
 ---
-date: '2009-02-05T16:18:57Z'
+date: "2009-02-05T16:18:57Z"
 slug: shmoocon-this-weekend
 title: Shmoocon This Weekend
 ---
-
 
 Still trying to get my trip in China written up, but a busy school schedule and
 great snowboarding this winter has taken precedence over the writting! To top

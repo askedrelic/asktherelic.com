@@ -1,9 +1,8 @@
 ---
-date: '2007-12-06T14:46:36Z'
+date: "2007-12-06T14:46:36Z"
 slug: blackberry-ocd
 title: Blackberry OCD
 ---
-
 
 One of the interesting things I've noticed thanks to having a Blackberry now is
 how OCD I've become, checking the device constantly. I have it set to gently

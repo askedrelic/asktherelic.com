@@ -1,9 +1,8 @@
 ---
-date: '2013-01-27T17:32:04Z'
+date: "2013-01-27T17:32:04Z"
 slug: exploring-github-readmes
 title: Exploring GitHub READMEs
 ---
-
 
 Over the last few years, I've integrated and used many different open source
 projects, looking at a wide range of code quality, documentation, and project
@@ -21,7 +20,7 @@ I was recently wondering about the state of READMEs in GitHub and since it's so
 easy to parse things out of GitHub, I started hacking today and found some quick
 numbers.
 
-### Getting Started
+## Getting Started
 
 First, I wanted a good set of data. GitHub keeps a [list of popular repos][1]
 but it's not part of the v3 API as far as I could see. I couldn't find any easy
@@ -33,14 +32,14 @@ Here is the code using Requests plus shitty regex
 
 <script src="https://gist.github.com/4651871.js"></script>
 
-### Parsing Markdown
+## Parsing Markdown
 
 With a list of "popular" repos (1784 count), I used the GitHub API to determine
 whether a repo had a README and then started parsing out the README type.
 
 <script src="https://gist.github.com/4651896.js"></script>
 
-### Initial Results
+## Initial Results
 
 From the 1784 repos, only 15% (278) don't have any README!
 
@@ -55,7 +54,7 @@ Here is a CSV of repos with URLS: [https://gist.github.com/4651905][2]
 Here is the CSV of repos from which this initial information was estimated:
 [https://gist.github.com/4651912][3]
 
-### Going Forward
+## Going Forward
 
 My next goal is to parse out headers and identify README structure and content;
 what percentage of repos have a license in their README, have a quick change
@@ -77,7 +76,6 @@ quality of all open source projects.
 [DocumentUp][6] is another great tool to generate a much more readable README
 format for your repo, but I would love to have the README be a more useful and
 structured piece of information for a project.
-
 
 [1]: https://github.com/repositories
 [2]: https://gist.github.com/4651905

@@ -1,10 +1,9 @@
 ---
-date: '2012-03-06T22:52:27Z'
+date: "2012-03-06T22:52:27Z"
 slug: pycon-2012-planning
 title: PyCon 2012 Planning
 ---
 
-    
 I'm really looking forward to attending my first PyCon this weekend. After
 moving to SF, it's great to have so many cool conferences right in my backyard!
 It's sold out this year, which might be a first? The talks look great, but I'm
@@ -27,30 +26,30 @@ For **Friday**, having Paul Graham keynote should be quite interesting. After
 that, I'm planning on mostly staying on Track 4 for heavy low-level Python and
 then mixing it up.
 
-* 10:50AM - [Introduction to Metaclasses][3]
-* 11:30AM - [The Art of Subclassing][4]
-* 12:10PM - [Stop Writing Classes][5]
-* 1:45PM - [The Magic of Metaprogramming][6]
-* 2:40PM - [Interfaces and Python][7]
-* 3:20PM - [Make Sure Your Programs Cras][8]
-* 5:20PM - [Practicing Continuous Deployment][9]
+- 10:50AM - [Introduction to Metaclasses][3]
+- 11:30AM - [The Art of Subclassing][4]
+- 12:10PM - [Stop Writing Classes][5]
+- 1:45PM - [The Magic of Metaprogramming][6]
+- 2:40PM - [Interfaces and Python][7]
+- 3:20PM - [Make Sure Your Programs Cras][8]
+- 5:20PM - [Practicing Continuous Deployment][9]
 
 For **Saturday**, it's a better mix of topics, which seem more web related. I'm
 totally happy with that!
 
-* 10:25AM - [What you need to know about datetimes][10]
-* 11:05AM - [Django Form Processing Deep Dive][11]
-* 11:45AM - [Pragmatic Unicode, or, How do I stop the pain?][12]
-* 1:20PM - [Coroutines, event loops, and the history of Python generators][13]
-* 2:15PM - [RESTful APIs With Tastypie][14]
-* 2:55PM - [Using fabric to standardize the development process][15]
+- 10:25AM - [What you need to know about datetimes][10]
+- 11:05AM - [Django Form Processing Deep Dive][11]
+- 11:45AM - [Pragmatic Unicode, or, How do I stop the pain?][12]
+- 1:20PM - [Coroutines, event loops, and the history of Python generators][13]
+- 2:15PM - [RESTful APIs With Tastypie][14]
+- 2:55PM - [Using fabric to standardize the development process][15]
 
 By **Sunday**, I think I will be happy to still be standing.
 
 ### What I'm Looking To Takeaway
 
 I'm really looking forward to chatting with main Python people to get thoughts
-on Python3 and packaging. 
+on Python3 and packaging.
 
 I have yet to fully port any of my libraries to Python3, but I have a few
 branches started.. I'm always curious for more people opinions on what's good
@@ -62,7 +61,6 @@ has caveats and is not as nice as RubyGems or CPAN and I want to fix that.
 
 If you read my blog or follow me on twitter, send me a message, I'd love to
 meetup!
-
 
 [1]: http://www.meetup.com/sfpython/events/54525922/
 [2]: https://us.pycon.org/2012/schedule/

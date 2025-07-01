@@ -1,6 +1,6 @@
 #baseURL = 'https://asktherelic.com/'
 languageCode = 'en-us'
-title = 'Ask the Relic'
+title = 'asktherelic.com'
 theme = "poison"
 pluralizelisttitles = false   # removes the automatically appended "s" on sidebar entries
 
@@ -8,7 +8,6 @@ pluralizelisttitles = false   # removes the automatically appended "s" on sideba
   tag = "tags"
   category = "categories"
   series = "series"
-
 
 [languages.en.params.author]
     name = "Matthew Behrens"
@@ -85,12 +84,15 @@ pluralizelisttitles = false   # removes the automatically appended "s" on sideba
   
 [markup.goldmark.renderer]
   unsafe = true
+  attribute = true
 
 [markup.goldmark.parser]
   autoHeadingIDType = "github"
+  attribute = true
   wrapStandAloneImageWithinParagraph = false
 
 [markup.goldmark.extensions]
+  attribute = true
   definitionList = true
   footnote = true
   linkify = true
