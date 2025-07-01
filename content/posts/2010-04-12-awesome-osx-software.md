@@ -13,7 +13,7 @@ you to do so. Here is a selection of awesome software which I've found really
 helps me out. You can also check out my last post about
 [Terminal and the hacks I use here](/2010/04/05/my-perfect-osx-terminal-setup).
 
-###Spark [Spark](http://www.shadowlab.org/Software/spark.php) is a shortcut
+### Spark [Spark](http://www.shadowlab.org/Software/spark.php) is a shortcut
 manager that has been around for years, but I just recently found out about. I
 am a very keyboard driven user who loves to customize things and Spark lets me
 do that. Spark allow you to rebind keyboard shortcuts to do pretty much
@@ -45,14 +45,14 @@ memory usage, which is less than other iTunes control programs I've seen and it
 does more than other programs. Combined with the expandability to control any
 other program, I think Spark a good choice.
 
-###iStat Menus As you have seen, I love being able to customize and tweak my
+### iStat Menus As you have seen, I love being able to customize and tweak my
 system. [iStat Menus](http://www.islayer.com/apps/istatmenus/) is one of the
 best packages I have seen to monitor your system and what it is doing. It is
 very much a power user program, most people don't need to know as much info as
 it provides, but you do want that info, iStat provides it very well. The website
 for iStat provides a very thorough description, worth checking out.
 
-###Teleport [Teleport](http://abyssoft.com/software/teleport/) is another piece
+### Teleport [Teleport](http://abyssoft.com/software/teleport/) is another piece
 of software that I just found out about recently, but has been around for
 awhile: it allows you to share control of 2(or more) OSX systems via 1
 keyboard/mouse. Very similar to [Synergy](http://synergy2.sourceforge.net/),
@@ -64,7 +64,7 @@ can have Teleport run in the background on both and control the laptop via the
 main system, whenever the laptop is plugged in. Teleport is nearly invisible and
 is one of the reasons it is so good.
 
-###Sequel Pro As a developer, I work with mySQL frequently and installing
+### Sequel Pro As a developer, I work with mySQL frequently and installing
 phpMyAdmin is annoying. Sequel Pro is a mySQL database management program, which
 has evolved quite a bit over the last few years and is way better than the
 default mySQL admin tools, which have not seen an update in years.

@@ -26,7 +26,7 @@ and git submodules is pretty neat.
 * With [vundle][3] or [vim-addon-manager][4], you can search and install new
   plugins, all from within vim.
 
-###The Theory
+### The Theory
 
 My dotfiles and vimrc have been in source control for years. I've always kept
 a selection of vim plugins in my dotfiles repo, specific versions of plugins
@@ -51,7 +51,7 @@ some of the old features? Fork the plugin, delete the official submodule from
 your dotfiles, and checkout your fork as a submodule. Everything can remain in
 git still.
 
-###The Practice
+### The Practice
 
 One of the best examples I've seen recently was a [Stack Overflow question][5]
 a few months back. Someone asked how to add highlighting to paired html tags.

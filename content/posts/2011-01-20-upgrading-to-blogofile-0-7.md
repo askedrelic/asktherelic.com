@@ -13,7 +13,7 @@ blog until it worked. I used the the `blogofile init simple_blog` and
 `blogofile init blogofile.com` projects as examples of "working" 0.7 projects
 and pulled code from them when my 0.6 code wasn't working.
 
-###Main Changes
+### Main Changes
 
 * The blogofile main config has changed. This always seems to the change the
   most between versions, My recommendation is that it would be quicker to scrap
@@ -48,7 +48,7 @@ and pulled code from them when my 0.6 code wasn't working.
 
 [See here][2] for the diff of my main 0.6>0.7 commit.
 
-###New Stuff
+### New Stuff
 
 With that out of the way, the cool things that 0.7 brings are:
 

@@ -25,7 +25,7 @@ check out [http://oauth.net/][6] and the [Google docs][7] for using their OAuth
 implementation. If you just want to experiment with the process not using
 Python, use [this interactive JS/AJAX app][5].
 
-###The Code
+### The Code
 
 First, let's setup some imports and definitions. You can also [view this source
 code][9] on Github.
@@ -125,7 +125,7 @@ In this CLI example, the user experience is pretty disjointed, but in a webapp s
     request_token_url = ("https://www.google.com/"
         "accounts/OAuthGetRequestToken?scope=%s&oauth_callback=%s" % (scope, callback))
 
-###Possible Issues
+### Possible Issues
 
 The Google Reader API is still pretty undocumented, most knowledge comes from
 sniffing Google Reader traffic that their webapp generates or experimenting on

@@ -18,7 +18,7 @@ think it's cool to be able see how emails I get year over year. A benefit of
 being in this day and age is that storage is cheap: storing everything you've
 ever created and done online is entirely possible.
 
-###What To Backup
+### What To Backup
 
 I started out with emails and figuring out to organize things. I then moved onto
 email contacts, chat logs, Delicious bookmarks, and social site data. As of
@@ -33,7 +33,7 @@ in the comments.
 - Social site data (Twitter, FB, LinkedIn, Google+, Reddit)
 - Pictures (Flickr, Picasa)
 
-###How To Backup
+### How To Backup
 
 Having a simple way to backup your data and having easy access to your data from
 a website is also another important social topic that has come up the last
@@ -85,7 +85,7 @@ provides: simple instant search of all your online data. You can easily look
 across all of your data, although I don't think exporting that data is something
 they offer.
 
-###Final Thoughts
+### Final Thoughts
 
 Once you have all this data, don't skimp on your own physical backups. Storing
 all of your financial and personal data unencrypted in one place is a hacker's

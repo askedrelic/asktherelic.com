@@ -23,14 +23,14 @@ What's already there; what is this script?
 
 Download 1.0 [now][3] (zip).
 
-###Upgrading
+### Upgrading
 
 If you have already been running script, it might be easiest to download the 1.0
 and re-enter your Comcast login into the config.ini. The previous method of
 editing the script itself was pretty bad and left a lot of room for errors with
 source control.
 
-###Android Notifications
+### Android Notifications
 
 With commits from [Adalan][4], you can now add your API key from [Notify My
 Android][5] and will be able to get your usage notifications via a push
@@ -38,7 +38,7 @@ notification to your phone.
 
 Attach the `-a` flag when running the script to enable these notifications.
 
-###Running On Heroku
+### Running On Heroku
 
 This is a unique feature of the script, but was an idea I wanted to try: not
 everyone has a server running 24x7 or a place where they can easily run Python
