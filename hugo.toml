@@ -3,6 +3,7 @@ languageCode = 'en-us'
 title = 'asktherelic.com'
 theme = "poison"
 pluralizelisttitles = false   # removes the automatically appended "s" on sidebar entries
+ignoreFiles = [ "\\.textbundle$", "textbundles/.*" ]
 
 [taxonomies]
   tag = "tags"
