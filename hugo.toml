@@ -43,7 +43,7 @@ ignoreFiles = [ "\\.textbundle$", "textbundles/.*" ]
     ]
     
     github_url = "https://github.com/askedrelic"
-    linkedin_url = "https://linkedin.com/in/matthewbehrens"
+    linkedin_url = "https://www.linkedin.com/in/mattybehrens/"
     email_url = "mailto:relic@asktherelic.com"
 
     rss_icon = true
